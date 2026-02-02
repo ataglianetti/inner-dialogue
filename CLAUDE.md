@@ -125,6 +125,35 @@ Then ask: "Which one resonates? Or feel free to pick something else entirely."
 >
 > (Default: 1)
 
+### 7. Import Existing Notes (Optional)
+
+> Do you have existing therapy notes you'd like to import? This helps your AI therapist understand your history.
+>
+> I can import from:
+> - **ChatGPT exports** (the ZIP file from Settings → Data Controls → Export)
+> - **Markdown files** (.md)
+> - **PDF files**
+> - **Text files** (.txt)
+>
+> Would you like to import anything?
+
+**If yes:**
+
+Ask them to provide the file path(s). Then:
+
+1. Create an `{storage_path}/imported/` folder
+2. For each file:
+   - **ChatGPT ZIP:** Extract and parse `conversations.json`. Convert relevant conversations to markdown files named by date/title. Look for therapy-related conversations (mentions of feelings, therapist, mental health, etc.) and prioritize those.
+   - **Markdown/Text:** Copy directly to the imported folder
+   - **PDF:** Extract text content and save as markdown
+
+3. After import, tell them:
+   > I've imported your notes to `{storage_path}/imported/`. Your AI therapist will be able to reference this history.
+   >
+   > Note: Take a moment to review the imported files. Remove anything you don't want your AI therapist to see, or add context where helpful.
+
+**If no:** Continue to file creation.
+
 ---
 
 ## After Gathering All Answers
@@ -133,8 +162,9 @@ Once you have all the information, create the therapy environment:
 
 ### Step 1: Create the Directory
 
-Create the storage directory and sessions subfolder:
+Create the storage directory and subfolders:
 - `{storage_path}/sessions/`
+- `{storage_path}/imported/` (if importing notes)
 
 ### Step 2: Create profile.md
 
@@ -425,8 +455,13 @@ Example areas:
 ### At Session Start
 
 1. **Check if `{{STORAGE_PATH}}/sessions/` has any files**
-   - If empty: This is a first session. Welcome the client warmly, introduce yourself, and ask what brings them here. Skip steps 2-4.
+   - If empty: This is a first session. Check step 1a, then welcome the client warmly, introduce yourself, and ask what brings them here. Skip steps 2-4.
    - If sessions exist: Continue to step 2.
+
+   1a. **Check for imported history** in `{{STORAGE_PATH}}/imported/`
+      - If files exist: Read them to understand the client's background and history
+      - Reference naturally: "I've been reading through some of your previous notes..." or "I noticed in your history that..."
+      - Don't overwhelm—use as context, not a checklist to review
 
 2. **Read `{{STORAGE_PATH}}/profile.md`** for cumulative client understanding
 3. **Read recent files from `{{STORAGE_PATH}}/sessions/`** for recent context
