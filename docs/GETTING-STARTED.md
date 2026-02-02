@@ -54,22 +54,17 @@ cd ai-therapy-kit
 
 ## Step 3: Run Setup
 
-**Mac/Linux:**
+From the ai-therapy-kit folder, run:
+
 ```bash
-./setup.sh
+claude
 ```
 
-**Windows:**
-```powershell
-.\setup.ps1
-```
-
-The script asks a few questions:
+Claude will walk you through setup conversationally:
 - What to name your AI therapist
-- Communication style (warm, direct, or coach)
+- Communication style (warm, direct, coach, or grounded)
 - Which therapeutic approaches to use
 - Where to store your session files
-- Whether to encrypt (for shared computers)
 
 This creates your personalized therapy folder with a `CLAUDE.md` file that shapes how your AI therapist behaves.
 
@@ -77,9 +72,16 @@ This creates your personalized therapy folder with a `CLAUDE.md` file that shape
 
 ## Step 4: Start a Session
 
+At the end of setup, Claude will ask if you want to start your first session right away. Say yes!
+
+For future sessions, you have two options:
+
+**Option A: Launcher script (easiest)**
+If you chose to create a launcher during setup, just double-click `start-session.command` (Mac/Linux) or `start-session.bat` (Windows) in your therapy folder. You can drag this to your Dock or taskbar for quick access.
+
+**Option B: Terminal**
 ```bash
-cd ~/ai-therapy   # or wherever you chose to store files
-claude
+cd ~/sage && claude   # replace with your folder name
 ```
 
 Just talk. Say hello, share what's on your mind. Your AI therapist will:
@@ -110,8 +112,9 @@ Your sessions are saved as plain text files. You can read them with any text edi
 - Make sure you're in your therapy folder (`cd ~/ai-therapy`) before running `claude`
 - Check that `CLAUDE.md` exists in that folder
 
-**Setup script won't run (Mac)**
-- Run `chmod +x setup.sh` first, then try again
+**Setup didn't start**
+- Make sure you're in the `ai-therapy-kit` folder when running `claude`
+- Check that `CLAUDE.md` exists in the repo
 
 ---
 

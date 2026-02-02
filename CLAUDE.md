@@ -839,22 +839,62 @@ Tell the user:
 > **Style:** {style}
 > **Approaches:** {approaches}
 > **Structure:** {structure}
+
+Then ask:
+
+> Would you like me to create an easy launcher script? You'll be able to double-click it to start a session anytime.
+
+### If Yes - Create Launcher Script
+
+**macOS/Linux:** Create `{storage_path}/start-session.command`:
+```bash
+#!/bin/bash
+cd "{storage_path}"
+claude
+```
+Then run `chmod +x "{storage_path}/start-session.command"` to make it executable.
+
+**Windows:** Create `{storage_path}/start-session.bat`:
+```batch
+@echo off
+cd /d "{storage_path}"
+claude
+```
+
+Tell them:
+
+> Done! I created a launcher at `{storage_path}/start-session.command` (or `.bat` on Windows).
 >
-> **To start a session:**
+> To start a session anytime, just double-click that file. You can also drag it to your Dock (Mac) or pin it to your taskbar (Windows) for easy access.
+>
+> Would you like to start your first session with {therapist_name} now?
+
+### If No - Show Manual Instructions
+
+> No problem. To start a session, open your terminal and run:
+>
 > ```
-> cd "{storage_path}"
-> claude
+> cd "{storage_path}" && claude
 > ```
 >
-> That's it. Just talk to {therapist_name}.
+> You'll need to do this each time. {therapist_name} lives in that folder.
 >
-> Take care of yourself.
+> Would you like to start your first session now?
+
+### Starting the First Session
+
+If the user wants to start their first session:
+
+1. Read the newly created `{storage_path}/CLAUDE.md`
+2. Adopt the therapist persona defined there
+3. Begin the session as {therapist_name}, welcoming the client warmly
+4. When the session ends, save notes to `{storage_path}/sessions/` using the absolute path
 
 ---
 
 ## If Setup Already Complete
 
-If the user has already run setup and returns here, remind them to `cd` into their therapy folder and run `claude` from there. This repo is just for installation.
+If the user has already run setup and returns here, remind them to `cd` into their therapy folder and run `claude` from there (or use their launcher script). This repo is just for installation.
 
 ## If User Asks Questions
 
