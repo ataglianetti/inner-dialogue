@@ -107,10 +107,23 @@ Then ask: "Which one resonates? Or feel free to pick something else entirely."
 > Where should your therapy files be stored?
 >
 > Your sessions and profile will be saved as markdown files on your computer. This data stays completely local.
+
+**Suggest discreet options based on their OS and therapist name:**
+
+**macOS/Linux:**
+1. `~/{therapist_name}` - Simple, just the name
+2. `~/Documents/{therapist_name}` - In Documents, looks like any project
+3. `~/notes/{therapist_name}` - Looks like any notes folder
+4. `~/Library/Application Support/{therapist_name}` - Where apps store data (macOS only)
+
+**Windows:**
+1. `C:\Users\{username}\{therapist_name}` - Simple, just the name
+2. `C:\Users\{username}\Documents\{therapist_name}` - In Documents
+3. `C:\Users\{username}\notes\{therapist_name}` - Looks like any notes folder
+
+> Pick a number, or tell me a custom path.
 >
-> Default: `~/ai-therapy`
->
-> Press enter for the default, or type a different path.
+> (Default: 1)
 
 ---
 
