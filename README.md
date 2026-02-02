@@ -35,6 +35,8 @@ This toolkit solves all of them.
 
 ## Quick Start
 
+**New to Claude Code or terminal-based AI tools?** See the [Getting Started Guide](docs/GETTING-STARTED.md) for step-by-step instructions.
+
 ### Prerequisites
 
 - [Claude Code](https://claude.ai/code) (recommended) or another LLM interface
@@ -223,6 +225,37 @@ Optional but recommended for shared computers. Setup script walks you through it
 
 ---
 
+## Known Limitations
+
+### LLM Safety Guardrails
+
+All major LLMs (Claude, GPT, etc.) have built-in safety filters. These can affect therapy conversations in ways you should know about:
+
+**Topics where the AI may seem hesitant or awkward:**
+- Sexual trauma and assault
+- Abuse (especially detailed descriptions)
+- Self-harm (specifics, not general discussion)
+- Violent experiences
+- Suicidal ideation (the AI will pivot to crisis resources)
+
+**What this looks like:**
+- The AI may give generic responses instead of engaging deeply
+- It may redirect the conversation or change the subject
+- It may add disclaimers or suggest professional help more than necessary
+- In some cases, it may refuse to continue a line of discussion
+
+**This is not the AI judging you.** It's hitting guardrails built into the model. The AI cannot override these filters.
+
+**What you can do:**
+- Frame topics in terms of feelings and impact rather than graphic details
+- If the AI redirects, try rephrasing: "I want to process how this affected me emotionally"
+- Understand that some trauma processing may require a human therapist who can hold space for the full story
+- Consider a local LLM with fewer guardrails (see SECURITY.md), though this trades off response quality
+
+This limitation is real, and we want you to know about it upfront rather than feel dismissed mid-session.
+
+---
+
 ## FAQ
 
 **Can I use this with ChatGPT instead of Claude?**
@@ -244,6 +277,10 @@ Yes. Edit CLAUDE.md directly, or purchase expansion packs for additional modalit
 **What if I need more than self-reflection?**
 
 This tool is designed for everyday emotional support. If you're dealing with severe symptoms, trauma, or crisis situations, please seek professional help. The AI will also recommend this when appropriate.
+
+**Why does the AI seem evasive when I talk about trauma?**
+
+LLMs have safety guardrails that can make them awkward around certain topics (abuse, sexual trauma, self-harm, violence). This isn't the AI judging you — it's hitting built-in filters it can't override. See "Known Limitations" above for more detail and workarounds.
 
 ---
 
