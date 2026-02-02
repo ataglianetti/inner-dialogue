@@ -27,7 +27,7 @@ This toolkit solves all of them.
 
 **Portable** — Works with Claude Code, ChatGPT API, or any LLM that can read files. Switch providers without losing your history.
 
-**Evidence-based framework** — Built-in CBT, ACT, and DBT skills. Structured therapeutic approaches, not just vibes.
+**Evidence-based framework** — Built-in CBT, ACT, DBT, Somatic Experiencing, and Lifespan Integration. Structured therapeutic approaches, not just vibes.
 
 **Customizable** — Choose your therapist's communication style. Add modalities. Make it yours.
 
@@ -78,19 +78,22 @@ Just talk. Your AI therapist will maintain context, take notes, and remember eve
 
 ## Features
 
-### Three Communication Styles
+### Communication Styles
 
 | Style | Best For |
 |-------|----------|
 | **Warm & Supportive** | Validation-first, gentle challenges, nurturing presence |
 | **Direct & Challenging** | Socratic questioning, will push back, insight-focused |
 | **Coach** | Action-oriented, goal-focused, accountability |
+| **Grounded & Real** | Down-to-earth, honest feedback, uses humor, focused on growth |
 
-### Three Therapeutic Approaches (Free)
+### Therapeutic Approaches
 
 - **CBT** (Cognitive Behavioral Therapy) — Identify and challenge unhelpful thought patterns
 - **ACT** (Acceptance & Commitment Therapy) — Values-based action, mindful acceptance
 - **DBT Skills** — Emotional regulation, distress tolerance, interpersonal effectiveness
+- **Lifespan Integration** — Body-based trauma integration, builds coherent life narrative
+- **Somatic Experiencing** — Nervous system regulation, completing stuck survival responses
 
 ### Session Continuity
 
@@ -167,38 +170,6 @@ This toolkit includes built-in safety protocols:
 - **741741** — Crisis Text Line (text HOME)
 - **911** — Immediate emergencies
 - **[findahelpline.com](https://findahelpline.com)** — International directory
-
----
-
-## Expansion Packs
-
-The core kit is free. Additional modalities and personas available:
-
-### Modality Packs ($5+ each)
-- **Schema Therapy** — Early maladaptive schemas, parts work, reparenting
-- **IFS (Internal Family Systems)** — Parts work, exiles/protectors, self-leadership
-- **Somatic/Trauma-Informed** — Body-based awareness, window of tolerance
-- **Psychodynamic** — Defense mechanisms, unconscious patterns, insight-oriented
-
-### Persona Packs ($3+ each)
-- **Peer/Friend** — Casual, non-clinical, conversational
-- **Narrative Therapist** — Story-focused, externalization
-- **Existential** — Meaning-focused, philosophical
-- **Mindfulness Guide** — Meditation-integrated, present-moment
-
-**Get them at:** [gumroad.com/ataglianetti](https://gumroad.com/ataglianetti)
-
----
-
-## Support This Project
-
-This toolkit is free and open source. If it helps you, consider supporting development:
-
-☕ **[Buy Me a Coffee](https://buymeacoffee.com/ataglianetti)** — One-time donation
-
-💚 **[Gumroad](https://gumroad.com/ataglianetti)** — Name-your-price or expansion packs
-
-Your support helps me maintain the project and create new content.
 
 ---
 
