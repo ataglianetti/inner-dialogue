@@ -1,292 +1,204 @@
-# Security Guide
+# Privacy & Security Guide
 
-This guide covers privacy and security options for your AI therapy data.
+This guide explains your privacy options—from the basics to maximum protection.
 
----
-
-## Security Tiers
-
-| Tier | What It Does | Best For |
-|------|--------------|----------|
-| **Standard** | Local files, no sync | Most users |
-| **Encrypted** | Password-protected folder | Shared computers, privacy-conscious |
-| **Maximum** | Encrypted + local LLM | High-stakes privacy needs |
+**Quick summary:** Your files already stay on your computer. For most people, that's enough. If you share a computer or want extra protection, read on.
 
 ---
 
-## Standard Security (Default)
+## Choose Your Level
 
-Your therapy files are stored locally in plain markdown. This is sufficient for most users on a personal computer.
+| Level | What It Means | Good For |
+|-------|---------------|----------|
+| **Standard** | Files on your computer, no extra steps | Most people on a personal computer |
+| **Password-Protected** | Files locked behind a password | Shared computers, extra peace of mind |
+| **Maximum** | Password + offline AI | When privacy is critical |
+
+---
+
+## Standard (Default)
+
+Your therapy files are stored on your computer as regular text files. This is already more private than keeping notes in a cloud app.
 
 **What's protected:**
-- Files never leave your machine (unless you sync them)
-- `.gitignore` excludes sensitive files from version control
-- No telemetry or data collection
+- Files never leave your computer (unless you sync them somewhere)
+- No tracking or data collection by this toolkit
+- You can delete everything by removing the folder
 
-**What's not protected:**
-- Anyone with access to your computer can read the files
-- If your computer is compromised, files are exposed
-- Cloud backups (iCloud, OneDrive) may sync the folder
+**What to be aware of:**
+- Anyone who uses your computer could open the files
+- Cloud backup services (iCloud, OneDrive, Dropbox) might sync the folder
 
-**Recommendations:**
-- Use your OS login password
-- Enable full-disk encryption (FileVault on Mac, BitLocker on Windows)
-- Exclude the therapy folder from cloud sync
+**Simple steps to improve privacy:**
+- Use a login password on your computer
+- Turn on disk encryption (FileVault on Mac, BitLocker on Windows)—this protects everything if your computer is lost or stolen
+- Don't put your therapy folder in a cloud-synced location
 
 ---
 
-## Encrypted Storage
+## Password-Protected Storage
 
-For shared computers or heightened privacy needs.
+If you share a computer or want extra protection, you can put your therapy files in a password-protected folder.
 
-### macOS: Encrypted Disk Image
+### Mac: Built-in Encryption
 
-macOS includes built-in encryption. No additional software needed.
+Macs have this built in—no extra software needed.
 
-**During setup:** Select "Encrypted" when prompted for security level. The script creates an encrypted sparse bundle automatically.
+**How it works:** Your therapy files go inside an encrypted "disk image." When you want to use them, you enter a password and the folder appears. When you're done, it locks back up.
 
-**Manual setup:**
+**To set up manually:**
 
-```bash
-# Create encrypted disk image (500MB, grows as needed)
-hdiutil create -size 500m -encryption AES-256 -type SPARSEBUNDLE \
-  -fs "APFS" -volname "TherapyVault" ~/therapy-vault.sparsebundle
+1. Open **Disk Utility** (search for it in Spotlight)
+2. Click **File** → **New Image** → **Blank Image**
+3. Name it something like "TherapyVault"
+4. Size: 500 MB (it grows as needed)
+5. Encryption: **256-bit AES**
+6. Click Create and choose a password
 
-# Mount (prompts for password)
-hdiutil attach ~/therapy-vault.sparsebundle
+**To use:**
+1. Double-click the disk image file to open it (enter password)
+2. Your files appear in a folder called TherapyVault
+3. When done, right-click the folder in Finder and choose "Eject"
 
-# Your files go in /Volumes/TherapyVault/
-# Unmount when done
-hdiutil detach /Volumes/TherapyVault
-```
-
-**Daily usage:**
-1. Double-click `mount-therapy.command` on Desktop (created by setup)
-2. Open Claude Code: `cd /Volumes/TherapyVault/ai-therapy && claude`
-3. When done, double-click `unmount-therapy.command`
-
-**Password recovery:** Not possible. If you forget your password, your data is gone. Use a password manager.
+**Important:** If you forget your password, your files are gone forever. Use a password manager.
 
 ### Windows: VeraCrypt
 
-VeraCrypt is free, open-source, and provides strong encryption.
+Windows doesn't have built-in folder encryption, but VeraCrypt is free and works well.
 
-**Install:** Download from [veracrypt.fr](https://veracrypt.fr)
+**To set up:**
 
-**Create encrypted container:**
+1. Download VeraCrypt from [veracrypt.fr](https://veracrypt.fr)
+2. Open VeraCrypt and click **Create Volume**
+3. Choose **Create an encrypted file container**
+4. Pick a location and size (500 MB is plenty)
+5. Choose a strong password
+6. Click Format to create it
 
+**To use:**
 1. Open VeraCrypt
-2. Click **Create Volume**
-3. Select **Create an encrypted file container**
-4. Select **Standard VeraCrypt volume**
-5. Choose location: `C:\Users\[you]\therapy-vault.hc`
-6. Encryption: AES (default is fine)
-7. Size: 500MB or more
-8. Password: Choose a strong one
-9. Format the volume
-
-**Mount the volume:**
-
-1. Open VeraCrypt
-2. Select a drive letter (e.g., `T:`)
-3. Click **Select File**, choose your `.hc` file
-4. Click **Mount**, enter password
-5. Your files go in `T:\ai-therapy\`
-
-**Unmount when done:**
-1. Select the mounted drive in VeraCrypt
-2. Click **Dismount**
-
-**Auto-mount script (optional):**
-
-Create `mount-therapy.bat`:
-```batch
-@echo off
-"C:\Program Files\VeraCrypt\VeraCrypt.exe" /v "%USERPROFILE%\therapy-vault.hc" /l T /a /q
-echo Therapy vault mounted on T:
-pause
-```
+2. Pick a drive letter (like T:)
+3. Click **Select File** and choose your container
+4. Click **Mount** and enter your password
+5. Your files appear in the new drive letter
+6. When done, click **Dismount**
 
 ---
 
-## Maximum Privacy: Local LLM
+## Maximum Privacy: Offline AI
 
-For users who need data to never leave their machine.
+For when you need your conversations to never leave your computer at all.
 
-### Why Local?
+### What This Means
 
-Cloud LLMs (Claude, GPT) process your messages on remote servers. Even with good privacy policies, your words pass through their infrastructure.
+When you use Claude or ChatGPT, your messages travel to their servers to be processed. Even with good privacy policies, your words pass through their systems.
 
-Local LLMs run entirely on your computer. Nothing is transmitted.
+With a "local" AI, everything runs on your computer. Nothing is transmitted anywhere.
 
-### Trade-offs
+### The Trade-off
 
-| | Cloud LLM | Local LLM |
-|---|-----------|-----------|
-| **Privacy** | Subject to provider policies | Complete |
-| **Quality** | State-of-the-art | Good, not quite as capable |
-| **Speed** | Fast | Depends on hardware |
-| **Hardware** | Any computer | 16GB+ RAM recommended |
+| | Claude/ChatGPT | Local AI |
+|---|----------------|----------|
+| **Privacy** | Good (not used for training) | Complete (never leaves your computer) |
+| **Quality** | Excellent | Good, but not as nuanced |
+| **Speed** | Fast | Depends on your computer |
+| **Requirements** | Any computer | Newer computer with 16GB+ RAM |
 
-### Setup with Ollama
+### Getting Started with Local AI
 
-[Ollama](https://ollama.ai) is the easiest way to run local LLMs.
+**Easiest option: LM Studio**
 
-**Install:**
-```bash
-# macOS/Linux
-curl -fsSL https://ollama.ai/install.sh | sh
-
-# Windows: Download from ollama.ai
-```
-
-**Pull a capable model:**
-```bash
-# Good balance of quality and speed
-ollama pull llama3.1:8b
-
-# Better quality, needs more RAM (16GB+)
-ollama pull llama3.1:70b
-
-# Smaller, faster, less capable
-ollama pull llama3.1:3b
-```
-
-**Use with your therapy setup:**
-
-Option 1: Ollama's built-in chat
-```bash
-cd ~/ai-therapy
-cat CLAUDE.md  # Copy this as system prompt
-ollama run llama3.1:8b
-# Paste your CLAUDE.md content when prompted
-```
-
-Option 2: Use a local LLM frontend like [Open WebUI](https://github.com/open-webui/open-webui)
-
-**Limitations:**
-- No automatic file reading (you may need to manually paste session context)
-- Less capable than Claude/GPT for nuanced therapeutic responses
-- Slower on modest hardware
-
-### Setup with LM Studio
-
-[LM Studio](https://lmstudio.ai) provides a GUI for running local models.
+[LM Studio](https://lmstudio.ai) gives you a simple app for running AI locally.
 
 1. Download from lmstudio.ai
-2. Search for and download a model (Llama 3.1, Mistral, etc.)
+2. Search for and download a model (try "Llama 3" or "Mistral")
 3. Load the model
-4. Paste your CLAUDE.md as system prompt
+4. Paste your CLAUDE.md contents as the system prompt
 5. Chat locally
 
----
+**More technical option: Ollama**
 
-## API Privacy Comparison
+[Ollama](https://ollama.ai) runs from the command line and offers more control.
 
-If using cloud LLMs, understand their policies:
+1. Download from ollama.ai
+2. Open Terminal and run: `ollama pull llama3.1:8b`
+3. Start chatting: `ollama run llama3.1:8b`
+4. Paste your CLAUDE.md content when prompted
 
-### Claude API (Anthropic)
+### Limitations of Local AI
 
-- **Training:** Data not used for training by default
-- **Retention:** Prompts retained for 30 days for trust & safety, then deleted
-- **Policy:** [anthropic.com/privacy](https://www.anthropic.com/privacy)
-
-### OpenAI API
-
-- **Training:** API data not used for training by default (since March 2023)
-- **Retention:** Data retained for 30 days for abuse monitoring
-- **Policy:** [openai.com/policies/privacy-policy](https://openai.com/policies/privacy-policy)
-
-### Key Difference from Consumer Products
-
-API access (what Claude Code uses) has different policies than consumer chat interfaces:
-- Consumer ChatGPT may use data for training (unless opted out)
-- API access typically does not
+- Less capable than Claude or ChatGPT for nuanced therapeutic conversations
+- No automatic file reading (you may need to paste context manually)
+- Requires a reasonably powerful computer
+- Setup is more hands-on
 
 ---
 
-## Excluding from Cloud Sync
+## Understanding Cloud AI Privacy
 
-If you use iCloud, OneDrive, Dropbox, or similar, exclude your therapy folder:
+When you use Claude or ChatGPT through their regular websites, your conversations may be used to improve their AI (unless you opt out).
 
-### iCloud (macOS)
+**Claude Code and API access are different.** When you use Claude Code (what this toolkit uses), your conversations:
+- Are **not** used to train the AI
+- Are kept for about 30 days for safety monitoring, then deleted
+- Are handled under stricter privacy policies
 
-Don't store therapy files in `~/Documents` or `~/Desktop` if they sync to iCloud.
+This is true for both Claude (Anthropic) and ChatGPT (OpenAI) when using their APIs.
 
-**Recommended locations:**
-- `~/ai-therapy` (outside synced folders)
-- Encrypted disk image anywhere (iCloud can't read encrypted content)
-
-### OneDrive (Windows)
-
-Right-click the therapy folder → **Free up space** or move outside OneDrive folder.
-
-**Recommended locations:**
-- `C:\Users\[you]\ai-therapy` (not in OneDrive folder)
-- Encrypted VeraCrypt container
-
-### General Rule
-
-Store therapy files outside any cloud-synced folder, or use encryption.
+**Bottom line:** Using Claude Code is more private than chatting on claude.ai or chatgpt.com directly.
 
 ---
 
-## Backup Recommendations
+## Avoiding Cloud Sync
 
-Even private data needs backup. Options:
+If you use iCloud, OneDrive, Dropbox, or Google Drive, be careful where you put your therapy folder.
 
-### Encrypted Backup
+**The issue:** These services automatically upload files to the cloud. Your therapy notes could end up on their servers without you realizing it.
 
-1. Keep your encrypted container/disk image in a backed-up location
-2. The backup is useless without your password
-3. Consider a separate backup of the password in a password manager
+**Simple fix:** Put your therapy folder somewhere that doesn't sync.
 
-### Manual Export
+**Mac:** Avoid putting it in Documents or Desktop if they sync to iCloud. Instead, create a folder directly in your home folder (like `~/Sage`).
 
-Periodically copy your therapy folder to an encrypted USB drive stored securely.
+**Windows:** Avoid the OneDrive folder. Create your therapy folder directly in `C:\Users\YourName\` instead.
 
-### What NOT to Do
-
-- Don't backup unencrypted therapy files to cloud services
-- Don't email yourself session notes
-- Don't store passwords in plain text alongside encrypted files
+**Or:** Use password-protected storage (see above). Even if the encrypted file syncs, no one can read it without your password.
 
 ---
 
-## Threat Model
+## Backing Up Safely
 
-Consider what you're protecting against:
+Your therapy notes are valuable. Here's how to back them up without compromising privacy:
 
-| Threat | Mitigation |
-|--------|------------|
-| Casual snooping (family, roommate) | Encryption |
-| Device theft | Full-disk encryption + container encryption |
-| Cloud provider access | Local storage, no sync |
-| LLM provider access | Local LLM |
-| Legal subpoena | Consult a lawyer; encryption helps but has limits |
-| Sophisticated attacker | Beyond scope; seek professional security advice |
+**If using password protection:**
+Your encrypted container can be backed up anywhere (even cloud storage). Without your password, it's unreadable.
 
-For most users, encrypted local storage with a cloud LLM provides excellent privacy.
+**If not using password protection:**
+- Back up to an encrypted USB drive you keep somewhere safe
+- Don't email session notes to yourself
+- Don't back up to cloud services without encryption
+
+**Important:** Store your encryption password in a password manager, not in a file next to your therapy folder.
 
 ---
 
-## Security Checklist
+## Quick Privacy Checklist
 
-**Minimum (everyone):**
-- [ ] Store therapy files locally, not in cloud-synced folders
-- [ ] Use your OS login password
-- [ ] Enable full-disk encryption (FileVault/BitLocker)
+**Basics (everyone should do these):**
+- [ ] Put therapy folder outside cloud-synced locations
+- [ ] Use a login password on your computer
+- [ ] Turn on disk encryption (protects if your computer is lost/stolen)
+  - Mac: System Settings → Privacy & Security → FileVault
+  - Windows: Search "BitLocker" in Settings
 
-**Recommended (shared computer or privacy-conscious):**
-- [ ] Use encrypted container (built into setup)
-- [ ] Unmount encrypted volume when not in use
-- [ ] Use a password manager for your encryption password
+**For shared computers:**
+- [ ] Use password-protected storage (see above)
+- [ ] Lock the folder when not in use
+- [ ] Store your password in a password manager
 
-**Maximum (high-stakes privacy):**
+**For maximum privacy:**
 - [ ] All of the above
-- [ ] Use local LLM (Ollama, LM Studio)
-- [ ] Air-gapped computer for sessions (extreme)
+- [ ] Use a local AI instead of Claude/ChatGPT
 
 ---
 
-*Questions about security? Open an issue on GitHub.*
+*Questions? Open an issue on [GitHub](https://github.com/ataglianetti/ai-therapy-kit/issues).*
