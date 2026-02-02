@@ -54,7 +54,7 @@ prompt_choice() {
     local default="$2"
     local result
 
-    echo -ne "${prompt} [${default}]: "
+    echo -ne "${prompt} [${default}]: " >&2
     read -r result
     echo "${result:-$default}"
 }
@@ -64,7 +64,7 @@ prompt_yes_no() {
     local default="$2"
     local result
 
-    echo -ne "${prompt} [${default}]: "
+    echo -ne "${prompt} [${default}]: " >&2
     read -r result
     result="${result:-$default}"
     [[ "$result" =~ ^[Yy] ]]
