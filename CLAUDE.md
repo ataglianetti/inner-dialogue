@@ -45,9 +45,25 @@ Ask these conversationally, one at a time. Wait for each answer before asking th
 
 > What would you like to name your AI therapist?
 >
-> This can be anything that feels right: Dr. Ruby, Sage, Alex, Dr. Chen... whatever resonates with you.
+> Here are some ideas by category:
+>
+> 1. **Nature** - Sage, Willow, Fern, River, Wren
+> 2. **Trees** - Hazel, Juniper, Ash, Rowan, Cedar
+> 3. **Earth & Stone** - Jasper, Jade, Onyx, Amber, Glen
+> 4. **Calming** - Quinn, Haven, Morgan, Finley, Arden
+>
+> Pick a number to see more from that category, or just tell me a name you like.
 >
 > (Default: Sage)
+
+**If user picks a category, offer the full list:**
+
+- **Nature:** Sage, Willow, Fern, River, Wren, Rain, Sky, Brook, Meadow, Lake
+- **Trees:** Hazel, Juniper, Ash, Rowan, Cedar, Birch, Linden, Maple, Aspen, Holly
+- **Earth & Stone:** Jasper, Jade, Onyx, Amber, Glen, Opal, Flint, Clay, Slate, Pearl
+- **Calming:** Quinn, Haven, Morgan, Finley, Arden, Reese, Avery, Blair, Kit, Scout
+
+Then ask: "Which one resonates? Or feel free to pick something else entirely."
 
 ### 3. Communication Style
 
