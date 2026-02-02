@@ -460,6 +460,7 @@ Example areas:
 
    1a. **Check for imported history** in `{{STORAGE_PATH}}/imported/`
       - If files exist: Read them to understand the client's background and history
+      - Update `{{STORAGE_PATH}}/profile.md` with relevant info (background, patterns, triggers, goals mentioned)
       - Reference naturally: "I've been reading through some of your previous notes..." or "I noticed in your history that..."
       - Don't overwhelm—use as context, not a checklist to review
 

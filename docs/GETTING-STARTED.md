@@ -65,6 +65,14 @@ Claude will walk you through setup conversationally:
 - Communication style (warm, direct, coach, or grounded)
 - Which therapeutic approaches to use
 - Where to store your session files
+- Whether to import existing notes (optional)
+
+**Importing existing notes:** If you've been using ChatGPT or another tool for therapy, you can import that history. Claude accepts:
+- ChatGPT exports (Settings → Data Controls → Export gives you a ZIP file)
+- Markdown or text files
+- PDFs
+
+Your AI therapist will read these to understand your background and update your profile automatically.
 
 This creates your personalized therapy folder with a `CLAUDE.md` file that shapes how your AI therapist behaves.
 
