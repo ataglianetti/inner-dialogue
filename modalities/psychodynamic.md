@@ -1,3 +1,4 @@
+<!-- version: 1.0.0 -->
 ## Psychodynamic Therapy
 
 **Core principle:** Much of what drives our thoughts, feelings, and behaviors operates outside conscious awareness. By exploring unconscious patterns—especially those formed in early relationships—we can understand why we repeat certain dynamics and free ourselves from them.

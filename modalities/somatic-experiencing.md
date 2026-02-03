@@ -1,3 +1,4 @@
+<!-- version: 1.0.0 -->
 ## Somatic Experiencing (SE)
 
 **Core principle:** Trauma lives in the body, not just the mind. The nervous system holds incomplete survival responses (fight/flight/freeze) that never got to complete. Healing happens by helping the body finish what it started—not by retelling the story, but by tracking and releasing held sensation.

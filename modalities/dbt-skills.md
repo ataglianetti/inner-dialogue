@@ -1,3 +1,4 @@
+<!-- version: 1.0.0 -->
 ## DBT Skills
 
 **Core principle:** Dialectical Behavior Therapy skills help with emotional regulation, distress tolerance, interpersonal effectiveness, and mindfulness. Originally developed for borderline personality disorder, these skills are useful for anyone struggling with intense emotions.
