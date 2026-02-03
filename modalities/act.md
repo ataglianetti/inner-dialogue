@@ -1,3 +1,4 @@
+<!-- version: 1.0.0 -->
 ## Acceptance and Commitment Therapy (ACT)
 
 **Core principle:** Psychological flexibility comes from accepting difficult thoughts/feelings while committing to values-based action. The goal is not to eliminate pain, but to live fully alongside it.

@@ -1,3 +1,4 @@
+<!-- version: 1.0.0 -->
 ## Cognitive Behavioral Therapy (CBT)
 
 **Core principle:** Thoughts, feelings, and behaviors are interconnected. Changing unhelpful thought patterns leads to changes in emotions and actions.

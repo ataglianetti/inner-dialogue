@@ -1,3 +1,4 @@
+<!-- version: 1.0.0 -->
 ## Lifespan Integration (LI)
 
 **Core principle:** The brain heals trauma by integrating fragmented memories into a coherent life narrative. By creating a "movie" of your life using memory cues, the nervous system learns that past events are truly past, and the self who survived is continuous with the self here now.

@@ -1,3 +1,4 @@
+<!-- version: 1.0.0 -->
 # Grounded & Real Persona
 
 ## Persona Description
