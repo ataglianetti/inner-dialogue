@@ -128,6 +128,91 @@ Make sure you're in the `ai-therapy-kit` folder (not your therapy folder) when f
 
 ---
 
+## Updating Your Therapist
+
+The AI Therapy Kit periodically receives updates—improved safety protocols, refined therapeutic techniques, bug fixes. Here's how to get them:
+
+### Check for Updates
+
+During any session, just say: **"update my therapist"** or **"check for updates"**
+
+Your therapist will:
+- Fetch the latest versions from GitHub
+- Compare your installed versions with the latest
+- Show what's changed
+- Apply updates you approve
+
+No need to keep the ai-therapy-kit repo after setup—your therapist folder is self-contained and updates directly from GitHub.
+
+### What Gets Updated
+
+| Component | Updated? | Notes |
+|-----------|----------|-------|
+| Safety protocols | Yes (recommended) | Crisis resources, safety guidelines |
+| Modalities | Yes | Therapeutic technique refinements |
+| Session structures | Yes | Session flow improvements |
+| Your profile.md | Never | Your personal data is untouched |
+| Your sessions/ | Never | Your session history is untouched |
+| Your CLAUDE.md | Never | Your therapist's persona stays the same |
+
+### Safety Protocol Updates
+
+**Always accept safety protocol updates.** These contain crisis resources and guidelines that should never be stale. Claude will specifically recommend these updates.
+
+---
+
+## Migrating from an Older Version
+
+If you set up your therapist before version 1.0.0 (the split-file architecture), you can migrate to the new format:
+
+1. Open the ai-therapy-kit repo in Claude Code
+2. Say: **"migrate my existing therapist"**
+3. Claude will:
+   - Read your existing CLAUDE.md to understand your setup
+   - Create the new `.therapy/` folder structure
+   - Preserve all your sessions and profile data
+
+Benefits of migrating:
+- Smaller CLAUDE.md = faster session startup
+- Independent component updates
+- Better organized files
+
+---
+
+## Customizing After Setup
+
+You can change your therapist's configuration anytime—just ask during a session. Your therapist knows where to find the source files.
+
+### Switch Communication Style
+
+Say: **"switch persona"**
+
+Choose from:
+- Warm & Supportive
+- Direct & Challenging
+- Coach
+- Grounded & Real
+
+This changes how your therapist communicates without affecting their memory of you.
+
+### Add or Remove Therapeutic Approaches
+
+Say: **"add modality"** or **"remove modality"**
+
+You can add approaches like Somatic Experiencing or Psychodynamic, or remove ones you're not using.
+
+### Change Session Structure
+
+Say: **"change session structure"**
+
+Switch between Structured, Moderate, or Freeform session styles.
+
+### Self-Contained After Setup
+
+After setup completes, your therapist folder is fully self-contained. You can safely delete the ai-therapy-kit repo if you want—all customization options are stored in your therapist's `.therapy/library/` folder, and updates are fetched directly from GitHub.
+
+---
+
 ## More Questions?
 
 See the [FAQ in the README](../README.md#faq) for common questions about cost, privacy, and customization.

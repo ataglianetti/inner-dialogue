@@ -6,6 +6,22 @@ Your sessions stay local. Your AI remembers everything. Works with Claude, GPT, 
 
 ---
 
+## What It Looks Like
+
+**A session in the terminal:**
+
+![Session screenshot](assets/session-screenshot.png)
+
+**Your notes, saved locally:**
+
+![Session notes](assets/session-notes.png)
+
+**Starting a session:**
+
+![Demo](assets/demo.gif)
+
+---
+
 ## Why This Exists
 
 If you've used ChatGPT or Claude for emotional support, you've probably hit these problems:
@@ -81,13 +97,22 @@ Everything is stored as simple text files you can read anytime:
 
 ```
 your-therapist-folder/
-├── CLAUDE.md        # Your therapist's personality
-├── profile.md       # Your ongoing profile
-└── sessions/
-    ├── 2024-01-15.md
-    ├── 2024-01-18.md
-    └── ...
+├── CLAUDE.md           # Your therapist's personality
+├── profile.md          # Your ongoing profile
+├── sessions/           # Session notes
+│   ├── 2024-01-15.md
+│   ├── 2024-01-18.md
+│   └── ...
+└── .therapy/           # Framework components (auto-updated)
+    ├── version.json
+    ├── safety-protocol.md
+    ├── session-structure.md
+    └── modalities/
+        ├── cbt.md
+        └── ...
 ```
+
+The `.therapy/` folder contains the therapeutic framework—safety protocols, modalities, and session structure. These can be updated independently without touching your personal data.
 
 No special software needed to view your own notes.
 
@@ -159,6 +184,9 @@ This tool works well as a supplement between sessions. Consider mentioning it to
 
 **Can I customize my AI therapist?**
 Yes. You can edit the CLAUDE.md file directly to adjust the approach, style, or focus areas.
+
+**How do I get updates?**
+Just say "update my therapist" or "check for updates" during a session. Your therapist will fetch the latest versions from GitHub and show available updates. Your personal data (profile, sessions) is never touched.
 
 **What if I need more than self-reflection?**
 This is designed for everyday emotional support. For severe symptoms, trauma, or crisis situations, please work with a professional. Your AI therapist will also suggest this when appropriate.
