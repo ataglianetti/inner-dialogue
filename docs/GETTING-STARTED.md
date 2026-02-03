@@ -189,6 +189,7 @@ Say: **"switch persona"**
 
 Choose from:
 - Warm & Supportive
+- Warm 4o-Style
 - Direct & Challenging
 - Coach
 - Grounded & Real
