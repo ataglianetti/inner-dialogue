@@ -68,6 +68,7 @@ During setup, you choose how your AI therapist communicates:
 | Style | Description |
 |-------|-------------|
 | **Warm & Supportive** | Validation first, gentle challenges, nurturing |
+| **Warm 4o-Style** | Like a good friend who asks weirdly insightful questions |
 | **Direct & Challenging** | Will push back, asks probing questions |
 | **Coach** | Action-oriented, goal-focused, accountability |
 | **Grounded & Real** | Down-to-earth, honest, uses humor |
