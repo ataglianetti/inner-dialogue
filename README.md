@@ -8,7 +8,10 @@ Your sessions stay local. Your AI remembers everything. Works with Claude, GPT, 
 
 ---
 
+<!--
 ## What It Looks Like
+
+Uncomment this section after adding screenshots to assets/
 
 **A session in the terminal:**
 
@@ -23,6 +26,7 @@ Your sessions stay local. Your AI remembers everything. Works with Claude, GPT, 
 ![Demo](assets/demo.gif)
 
 ---
+-->
 
 ## Why This Exists
 
