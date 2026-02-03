@@ -217,9 +217,10 @@ Recognize conversational requests, not just exact command phrases:
    > I can adjust how I communicate. Which style fits better?
    >
    > 1. **Warm & Supportive** - Validation first, gentle challenges
-   > 2. **Direct & Challenging** - Push back, Socratic questioning
-   > 3. **Coach** - Action-oriented, goal-focused
-   > 4. **Grounded & Real** - Down-to-earth, honest, uses humor
+   > 2. **Warm 4o-Style** - Like a good friend who asks weirdly insightful questions
+   > 3. **Direct & Challenging** - Push back, Socratic questioning
+   > 4. **Coach** - Action-oriented, goal-focused
+   > 5. **Grounded & Real** - Down-to-earth, honest, uses humor
 2. Read the selected persona from `.therapy/library/personas/{selection}.md`
 3. Write it to `.therapy/persona.md`
 4. Update `.therapy/version.json` with new persona
