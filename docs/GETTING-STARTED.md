@@ -58,7 +58,7 @@ claude
 Claude will guide you through setup by asking a few questions:
 
 1. **Therapist name** — What to call your AI therapist (e.g., Sage, Willow, Quinn)
-2. **Communication style** — Warm, direct, coach-like, or down-to-earth
+2. **Communication style** — Warm & supportive, warm 4o-style, direct & challenging, coach, or grounded & real
 3. **Therapeutic approaches** — Which methods to use (CBT, ACT, DBT, etc.)
 4. **Storage location** — Where to save your session files
 5. **Import history** (optional) — Bring in notes from ChatGPT or other tools
