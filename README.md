@@ -181,6 +181,10 @@ Areas of interest:
 
 MIT License. See [LICENSE](LICENSE).
 
+## Support
+
+This isn't my full-time gig, but I want to keep improving it based on community feedback. If you find it helpful, consider [buying me a coffee](https://buymeacoffee.com/ataglianetti).
+
 ---
 
 ## Acknowledgments
