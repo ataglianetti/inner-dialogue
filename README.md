@@ -74,21 +74,17 @@ During setup, you choose how your AI therapist communicates:
 | Style | Description |
 |-------|-------------|
 | **Warm & Supportive** | Validation first, gentle challenges, nurturing |
-| **Warm 4o-Style** | Like a good friend who asks weirdly insightful questions |
 | **Direct & Challenging** | Will push back, asks probing questions |
-| **Coach** | Action-oriented, goal-focused, accountability |
-| **Grounded & Real** | Down-to-earth, honest, uses humor |
+
+Want more options? The [Expansion Pack](#expansion-pack) includes 3 additional styles.
 
 ### Therapeutic Approaches
 
-Your AI therapist can draw from multiple evidence-based approaches:
+Your AI therapist uses evidence-based approaches:
 
 - **CBT** — Identify and challenge unhelpful thought patterns
-- **ACT** — Values-based action, mindful acceptance
-- **DBT Skills** — Emotional regulation, distress tolerance
-- **Lifespan Integration** — Body-based trauma integration
-- **Somatic Experiencing** — Nervous system awareness and regulation
-- **Psychodynamic** — Understanding patterns from the past
+
+Want more approaches? The [Expansion Pack](#expansion-pack) includes ACT, DBT Skills, Somatic Experiencing, and more.
 
 ### How Sessions Work
 
@@ -122,6 +118,26 @@ your-therapist-folder/
 The `.therapy/` folder contains the therapeutic framework—safety protocols, modalities, and session structure. These can be updated independently without touching your personal data.
 
 No special software needed to view your own notes.
+
+---
+
+## Expansion Pack
+
+Want more communication styles and therapeutic approaches? The **AI Therapy Kit Expansion Pack** adds:
+
+**3 Additional Styles:**
+- Warm 4o-Style (conversational, insightful)
+- Coach (action-oriented, accountability)
+- Grounded & Real (down-to-earth, uses humor)
+
+**5 Additional Modalities:**
+- ACT (Acceptance and Commitment Therapy)
+- DBT Skills (emotional regulation, distress tolerance)
+- Lifespan Integration (body-based trauma work)
+- Psychodynamic (understanding patterns from the past)
+- Somatic Experiencing (nervous system regulation)
+
+**[Get the Expansion Pack](https://gumroad.com/l/ai-therapy-kit-extras)** — Pay what you want (including free).
 
 ---
 
