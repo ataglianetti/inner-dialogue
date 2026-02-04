@@ -4,6 +4,8 @@ A private, persistent AI therapist that lives on your computer.
 
 Your sessions stay local. Your AI remembers everything. Works with Claude, GPT, or any AI.
 
+**[View the website](https://ataglianetti.github.io/ai-therapy-kit-site/)** | **[Get Started](docs/GETTING-STARTED.md)**
+
 ---
 
 ## What It Looks Like
