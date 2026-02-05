@@ -1,5 +1,7 @@
 # AI Therapy Starter Kit - Setup
 
+> **Maintainer docs:** `~/Documents/My Vault/Contexts/Personal/Career/Side Projects/AI Therapy Starter Kit/`
+
 You are helping a user set up their AI therapy environment. **Start setup immediately** when the user opens this project.
 
 ## On First Message
@@ -24,6 +26,7 @@ Ask for their therapist's name, then provide access instructions:
 > - "update my therapist" - Check for new versions (fetches from GitHub)
 > - "switch persona" - Change communication style
 > - "add modality" - Add a therapeutic approach
+> - "install expansion pack" - Add purchased expansion content
 > - "migrate my therapist" - Upgrade to self-contained architecture
 
 Then handle their request, or end the conversation if they just needed directions.
@@ -60,45 +63,68 @@ Ask these conversationally, one at a time.
 >
 > (Default: Sage)
 
-### 3. Communication Style
+### 3. Expansion Pack Check
+
+> Your therapist will use **Cognitive Behavioral Therapy (CBT)** by default, which focuses on how thoughts affect feelings and actions.
+>
+> The [Expansion Pack](https://gumroad.com/l/ai-therapy-kit-extras) adds more communication styles and therapeutic approaches (ACT, DBT Skills, Somatic Experiencing, and more).
+>
+> Do you have the expansion pack? (yes/no)
+
+**If yes:** Ask for the expansion pack folder path, then run the expansion pack install flow (see Install Expansion Pack Flow section) to copy content to `.therapy/library/`. Set `has_expansion_pack = true` for subsequent questions.
+
+**If no:** Continue with core-only setup. Set `has_expansion_pack = false`. User can always run "install expansion pack" later.
+
+### 4. Communication Style
+
+**Core options (always shown):**
 
 > How should your AI therapist communicate?
 >
 > 1. **Warm & Supportive** - Validation first, gentle challenges
 > 2. **Direct & Challenging** - Will push back, Socratic questioning
+
+**If has_expansion_pack, add:**
+
 > 3. **Coach** - Action-oriented, goal-focused
 > 4. **Grounded & Real** - Down-to-earth, honest, uses humor
->
-> Pick 1-4.
+> 5. **Warm 4o-Style** - Like a good friend who asks insightful questions
 
 **Map selection to persona file:**
 - 1 → `personas/warm-supportive.md`
 - 2 → `personas/direct-challenging.md`
-- 3 → `personas/coach.md`
-- 4 → `personas/grounded-real.md`
+- 3 → `personas/coach.md` (expansion)
+- 4 → `personas/grounded-real.md` (expansion)
+- 5 → `personas/warm-4o.md` (expansion)
 
-### 4. Therapeutic Approaches
+### 5. Therapeutic Approaches
+
+**If core-only (no expansion pack):**
+
+Skip this question. CBT is the default and only option.
+
+**If has_expansion_pack:**
 
 > Which therapeutic approaches? Pick any combination (e.g., "1,2,3"):
 >
-> 1. **CBT** - Thoughts affect feelings and actions
+> 1. **CBT** - Thoughts affect feelings and actions (included in core)
 > 2. **ACT** - Values-based, mindful acceptance
 > 3. **DBT Skills** - Emotional regulation, distress tolerance
 > 4. **Lifespan Integration** - Body-based trauma integration
 > 5. **Somatic Experiencing** - Nervous system regulation
 > 6. **Psychodynamic** - Explores unconscious patterns
 >
-> Not sure? Default: 1, 2, 3
+> (Default: 1)
 
 **Map selections to modality files:**
 - 1 → `modalities/cbt.md`
-- 2 → `modalities/act.md`
-- 3 → `modalities/dbt-skills.md`
-- 4 → `modalities/lifespan-integration.md`
-- 5 → `modalities/somatic-experiencing.md`
-- 6 → `modalities/psychodynamic.md`
+- 2 → `modalities/act.md` (expansion)
+- 3 → `modalities/dbt-skills.md` (expansion)
+- 4 → `modalities/lifespan-integration.md` (expansion)
+- 5 → `modalities/somatic-experiencing.md` (expansion)
+- 6 → `modalities/psychodynamic.md` (expansion)
 
-### 5. Session Structure
+### 6. Session Structure
 
 > How structured do you want sessions?
 >
@@ -113,7 +139,7 @@ Ask these conversationally, one at a time.
 - 2 → `structures/moderate.md`
 - 3 → `structures/freeform.md`
 
-### 6. Storage Location
+### 7. Storage Location
 
 > Where should your therapy files be stored?
 >
@@ -123,7 +149,7 @@ Ask these conversationally, one at a time.
 >
 > (Default: 1)
 
-### 7. Import Existing Notes (Optional)
+### 8. Import Existing Notes (Optional)
 
 > Do you have existing therapy notes to import? (ChatGPT exports, markdown, PDF, text files)
 
@@ -137,6 +163,33 @@ After gathering all answers, create the therapy environment.
 
 ### Step 1: Create Directory Structure
 
+**Core-only setup:**
+```
+{storage_path}/
+├── CLAUDE.md
+├── profile.md
+├── sessions/
+├── imported/           (if importing)
+└── .therapy/
+    ├── version.json
+    ├── safety-protocol.md
+    ├── persona.md              (active persona)
+    ├── session-structure.md    (active structure)
+    ├── modalities/             (active modalities)
+    │   └── cbt.md
+    └── library/                (options for switching)
+        ├── personas/
+        │   ├── warm-supportive.md
+        │   └── direct-challenging.md
+        ├── modalities/
+        │   └── cbt.md
+        └── structures/
+            ├── structured.md
+            ├── moderate.md
+            └── freeform.md
+```
+
+**With expansion pack:**
 ```
 {storage_path}/
 ├── CLAUDE.md
@@ -154,15 +207,16 @@ After gathering all answers, create the therapy environment.
         ├── personas/
         │   ├── warm-supportive.md
         │   ├── direct-challenging.md
-        │   ├── coach.md
-        │   └── grounded-real.md
+        │   ├── coach.md              # expansion
+        │   ├── grounded-real.md      # expansion
+        │   └── warm-4o.md            # expansion
         ├── modalities/
         │   ├── cbt.md
-        │   ├── act.md
-        │   ├── dbt-skills.md
-        │   ├── lifespan-integration.md
-        │   ├── somatic-experiencing.md
-        │   └── psychodynamic.md
+        │   ├── act.md                # expansion
+        │   ├── dbt-skills.md         # expansion
+        │   ├── lifespan-integration.md  # expansion
+        │   ├── somatic-experiencing.md  # expansion
+        │   └── psychodynamic.md      # expansion
         └── structures/
             ├── structured.md
             ├── moderate.md
@@ -191,12 +245,13 @@ Create `{storage_path}/.therapy/` with:
 
 4. **Create `.therapy/modalities/`** and copy only the selected modality files
 
-5. **Create `.therapy/library/`** and copy ALL component files for future customization:
-   - Copy all files from `personas/` to `.therapy/library/personas/`
-   - Copy all files from `modalities/` to `.therapy/library/modalities/`
-   - Copy all files from `structures/` to `.therapy/library/structures/`
+5. **Create `.therapy/library/`** and copy component files:
+   - **Core:** Copy files from this repo's `personas/`, `modalities/`, `structures/` folders (core content only)
+   - **If expansion pack installed:** Also copy expansion pack files to `.therapy/library/personas/` and `.therapy/library/modalities/`
 
 6. **Create `.therapy/version.json`:**
+
+**Core-only:**
 ```json
 {
   "kit_version": "1.0.0",
@@ -208,6 +263,25 @@ Create `{storage_path}/.therapy/` with:
     "modalities": {
       "[modality]": "1.0.0"
     }
+  },
+  "source_url": "https://github.com/ataglianetti/ai-therapy-kit"
+}
+```
+
+**With expansion pack:**
+```json
+{
+  "kit_version": "1.0.0",
+  "installed": "YYYY-MM-DD",
+  "expansion_installed": "YYYY-MM-DD",
+  "components": {
+    "safety-protocol": "1.0.0",
+    "persona": "[persona-name]@1.0.0",
+    "session-structure": "[structure-name]@1.0.0",
+    "modalities": {
+      "[modality]": "1.0.0"
+    },
+    "expansion_pack": "1.0.0"
   },
   "source_url": "https://github.com/ataglianetti/ai-therapy-kit"
 }
@@ -306,21 +380,34 @@ When user says "switch persona" or "change communication style":
 
 1. **Ask for their therapist folder location** (if not known)
 
-2. **Show available personas:**
+2. **Check for expansion pack content:**
+   - Read `.therapy/library/personas/` directory
+   - If only warm-supportive.md and direct-challenging.md exist → show core options only
+   - If additional personas exist (coach.md, grounded-real.md, warm-4o.md) → show all available
+
+3. **Show available personas:**
+
+   **Core options (always available):**
    > Which communication style would you like?
    >
    > 1. **Warm & Supportive** - Validation first, gentle challenges
    > 2. **Direct & Challenging** - Will push back, Socratic questioning
+
+   **If expansion pack detected, add:**
    > 3. **Coach** - Action-oriented, goal-focused
    > 4. **Grounded & Real** - Down-to-earth, honest, uses humor
+   > 5. **Warm 4o-Style** - Like a good friend who asks insightful questions
 
-3. **Read the new persona file** from `.therapy/library/personas/`
+   **If no expansion pack:**
+   > *Want more styles? Get the [Expansion Pack](https://gumroad.com/l/ai-therapy-kit-extras)*
 
-4. **Copy to their `.therapy/persona.md`** (overwrites existing)
+4. **Read the new persona file** from `.therapy/library/personas/`
 
-5. **Update `.therapy/version.json`** with new persona version
+5. **Copy to their `.therapy/persona.md`** (overwrites existing)
 
-6. **Confirm:**
+6. **Update `.therapy/version.json`** with new persona version
+
+7. **Confirm:**
    > Done! Your therapist now uses the {new_style} communication style.
    >
    > This takes effect at your next session.
@@ -335,20 +422,36 @@ When user says "add modality" or "remove modality":
 
 1. **Ask for their therapist folder location** (if not known)
 
-2. **Read their `.therapy/modalities/`** to see what's installed
+2. **Check for expansion pack content:**
+   - Read `.therapy/library/modalities/` directory
+   - Core: cbt.md
+   - Expansion: act.md, dbt-skills.md, lifespan-integration.md, psychodynamic.md, somatic-experiencing.md
 
-3. **Show options:**
-   > Currently installed: CBT, ACT, DBT
+3. **Read their `.therapy/modalities/`** to see what's installed
+
+4. **Show options based on what's in their library:**
+
+   **Core (always available):**
+   > Currently installed: {list of installed modalities}
    >
-   > Available to add: Lifespan Integration, Somatic Experiencing, Psychodynamic
-   >
-   > What would you like to do?
+   > Available to add:
+   > - **CBT** - Thoughts affect feelings and actions
 
-4. **To add:** Copy the modality file from `.therapy/library/modalities/` to their `.therapy/modalities/`
+   **If expansion pack detected, add available options:**
+   > - **ACT** - Values-based, mindful acceptance
+   > - **DBT Skills** - Emotional regulation, distress tolerance
+   > - **Lifespan Integration** - Body-based trauma integration
+   > - **Somatic Experiencing** - Nervous system regulation
+   > - **Psychodynamic** - Explores unconscious patterns
 
-5. **To remove:** Delete the file from their `.therapy/modalities/`
+   **If no expansion pack:**
+   > *Want more approaches? Get the [Expansion Pack](https://gumroad.com/l/ai-therapy-kit-extras)*
 
-6. **Update `.therapy/version.json`**
+5. **To add:** Copy the modality file from `.therapy/library/modalities/` to their `.therapy/modalities/`
+
+6. **To remove:** Delete the file from their `.therapy/modalities/`
+
+7. **Update `.therapy/version.json`**
 
 ---
 
@@ -376,6 +479,38 @@ When user says "change session structure":
 
 ---
 
+## Install Expansion Pack Flow
+
+When user says "install expansion pack" or "add expansion pack":
+
+1. **Ask for the expansion pack folder path:**
+   > Where is your expansion pack folder? (e.g., ~/Downloads/ai-therapy-kit-extras)
+
+2. **Verify the folder contains expected content:**
+   - Check for `personas/` subfolder with: coach.md, grounded-real.md, warm-4o.md
+   - Check for `modalities/` subfolder with: act.md, dbt-skills.md, lifespan-integration.md, psychodynamic.md, somatic-experiencing.md
+   - If missing files, warn user and confirm they want to proceed with partial install
+
+3. **Ask for their therapist folder location** (if not known)
+
+4. **Copy expansion pack content to their library:**
+   - Copy personas to `.therapy/library/personas/`
+   - Copy modalities to `.therapy/library/modalities/`
+
+5. **Update `.therapy/version.json`:**
+   - Add `"expansion_pack": "1.0.0"` to components
+   - Add `"expansion_installed": "YYYY-MM-DD"`
+
+6. **Confirm installation:**
+   > Expansion pack installed! You now have access to:
+   >
+   > **Styles:** Coach, Grounded & Real, Warm 4o-Style
+   > **Approaches:** ACT, DBT Skills, Lifespan Integration, Somatic Experiencing, Psychodynamic
+   >
+   > Use "switch persona" or "add modality" to try them out.
+
+---
+
 ## Migration Flow
 
 When user says "migrate my existing therapist":
@@ -390,7 +525,7 @@ For users with old monolithic CLAUDE.md (pre-1.0.0):
 
 2. **Create `.therapy/` folder** with appropriate components
 
-3. **Create `.therapy/library/`** and copy ALL component files for future customization
+3. **Create `.therapy/library/`** and copy core component files for future customization
 
 4. **Create `version.json`**
 
@@ -404,6 +539,8 @@ For users with old monolithic CLAUDE.md (pre-1.0.0):
 
 ### File Locations in This Repo
 
+**Core (included):**
+
 | Content | Source File |
 |---------|-------------|
 | Base CLAUDE.md | `CLAUDE.template.md` |
@@ -411,17 +548,23 @@ For users with old monolithic CLAUDE.md (pre-1.0.0):
 | Profile Template | `profile.template.md` |
 | Warm & Supportive | `personas/warm-supportive.md` |
 | Direct & Challenging | `personas/direct-challenging.md` |
+| CBT | `modalities/cbt.md` |
+| Structured Sessions | `structures/structured.md` |
+| Moderate Sessions | `structures/moderate.md` |
+| Freeform Sessions | `structures/freeform.md` |
+
+**Expansion Pack (separate download):**
+
+| Content | Source File |
+|---------|-------------|
 | Coach | `personas/coach.md` |
 | Grounded & Real | `personas/grounded-real.md` |
-| CBT | `modalities/cbt.md` |
+| Warm 4o-Style | `personas/warm-4o.md` |
 | ACT | `modalities/act.md` |
 | DBT Skills | `modalities/dbt-skills.md` |
 | Lifespan Integration | `modalities/lifespan-integration.md` |
 | Somatic Experiencing | `modalities/somatic-experiencing.md` |
 | Psychodynamic | `modalities/psychodynamic.md` |
-| Structured Sessions | `structures/structured.md` |
-| Moderate Sessions | `structures/moderate.md` |
-| Freeform Sessions | `structures/freeform.md` |
 
 ### Version Header Format
 
