@@ -1,14 +1,14 @@
-# AI Therapy Starter Kit - Setup
+# Inner Dialogue - Setup
 
-> **Maintainer docs:** `~/Documents/My Vault/Contexts/Personal/Career/Side Projects/AI Therapy Starter Kit/`
+> **Maintainer docs:** `~/Documents/My Vault/Contexts/Personal/Career/Side Projects/Inner Dialogue/`
 
-You are helping a user set up their AI therapy environment. **Start setup immediately** when the user opens this project.
+You are helping a user set up their Inner Dialogue environment. **Start setup immediately** when the user opens this project.
 
 ## On First Message
 
 First, check if the user has already completed setup:
 
-> Welcome to the AI Therapy Starter Kit.
+> Welcome to Inner Dialogue.
 >
 > Have you already set up your AI therapist, or is this your first time here?
 
@@ -67,11 +67,11 @@ Ask these conversationally, one at a time.
 
 > Your therapist will use **Cognitive Behavioral Therapy (CBT)** by default, which focuses on how thoughts affect feelings and actions.
 >
-> The [Expansion Pack](https://gumroad.com/l/ai-therapy-kit-extras) adds more communication styles and therapeutic approaches (ACT, DBT Skills, Somatic Experiencing, and more).
+> [Inner Dialogue: Deeper](https://gumroad.com/l/inner-dialogue-deeper) adds more communication styles and therapeutic approaches (ACT, DBT Skills, Somatic Experiencing, and more).
 >
-> Do you have the expansion pack? (yes/no)
+> Do you have Inner Dialogue: Deeper? (yes/no)
 
-**If yes:** Ask for the expansion pack folder path, then run the expansion pack install flow (see Install Expansion Pack Flow section) to copy content to `.therapy/library/`. Set `has_expansion_pack = true` for subsequent questions.
+**If yes:** Ask for the Deeper folder path, then run the expansion pack install flow (see Install Expansion Pack Flow section) to copy content to `.therapy/library/`. Set `has_expansion_pack = true` for subsequent questions.
 
 **If no:** Continue with core-only setup. Set `has_expansion_pack = false`. User can always run "install expansion pack" later.
 
@@ -264,7 +264,7 @@ Create `{storage_path}/.therapy/` with:
       "[modality]": "1.0.0"
     }
   },
-  "source_url": "https://github.com/ataglianetti/ai-therapy-kit"
+  "source_url": "https://github.com/ataglianetti/inner-dialogue"
 }
 ```
 
@@ -283,11 +283,11 @@ Create `{storage_path}/.therapy/` with:
     },
     "expansion_pack": "1.0.0"
   },
-  "source_url": "https://github.com/ataglianetti/ai-therapy-kit"
+  "source_url": "https://github.com/ataglianetti/inner-dialogue"
 }
 ```
 
-**Important:** The library folder makes the therapist folder self-contained. Users can delete the ai-therapy-kit repo after setup.
+**Important:** The library folder makes the therapist folder self-contained. Users can delete the inner-dialogue repo after setup.
 
 ### Step 4: Create CLAUDE.md
 
@@ -352,7 +352,7 @@ When user says "update my therapist":
 2. **Read their `.therapy/version.json`** to see installed versions and `source_url`
 
 3. **Fetch version info from GitHub** using WebFetch:
-   - Fetch `https://raw.githubusercontent.com/ataglianetti/ai-therapy-kit/main/safety-protocol.md`
+   - Fetch `https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/safety-protocol.md`
    - Extract version header from fetched content
    - Compare with installed versions
 
@@ -399,7 +399,7 @@ When user says "switch persona" or "change communication style":
    > 5. **Warm 4o-Style** - Like a good friend who asks insightful questions
 
    **If no expansion pack:**
-   > *Want more styles? Get the [Expansion Pack](https://gumroad.com/l/ai-therapy-kit-extras)*
+   > *Want more styles? Get the [Expansion Pack](https://gumroad.com/l/inner-dialogue-deeper)*
 
 4. **Read the new persona file** from `.therapy/library/personas/`
 
@@ -445,7 +445,7 @@ When user says "add modality" or "remove modality":
    > - **Psychodynamic** - Explores unconscious patterns
 
    **If no expansion pack:**
-   > *Want more approaches? Get the [Expansion Pack](https://gumroad.com/l/ai-therapy-kit-extras)*
+   > *Want more approaches? Get the [Expansion Pack](https://gumroad.com/l/inner-dialogue-deeper)*
 
 5. **To add:** Copy the modality file from `.therapy/library/modalities/` to their `.therapy/modalities/`
 
@@ -484,7 +484,7 @@ When user says "change session structure":
 When user says "install expansion pack" or "add expansion pack":
 
 1. **Ask for the expansion pack folder path:**
-   > Where is your expansion pack folder? (e.g., ~/Downloads/ai-therapy-kit-extras)
+   > Where is your expansion pack folder? (e.g., ~/Downloads/inner-dialogue-deeper)
 
 2. **Verify the folder contains expected content:**
    - Check for `personas/` subfolder with: coach.md, grounded-real.md, warm-4o.md

@@ -34,22 +34,22 @@ Typical cost: $5-20/month depending on how often you chat.
 
 ---
 
-## Step 2: Download the Starter Kit
+## Step 2: Download Inner Dialogue
 
 Open Terminal (Mac) or PowerShell (Windows) and run these commands:
 
 ```
-git clone https://github.com/ataglianetti/ai-therapy-kit.git
-cd ai-therapy-kit
+git clone https://github.com/ataglianetti/inner-dialogue.git
+cd inner-dialogue
 ```
 
-**Don't have git?** Go to the [GitHub page](https://github.com/ataglianetti/ai-therapy-kit), click the green "Code" button, choose "Download ZIP", and extract it somewhere you'll remember.
+**Don't have git?** Go to the [GitHub page](https://github.com/ataglianetti/inner-dialogue), click the green "Code" button, choose "Download ZIP", and extract it somewhere you'll remember.
 
 ---
 
 ## Step 3: Run Setup
 
-From the ai-therapy-kit folder, type:
+From the inner-dialogue folder, type:
 
 ```
 claude
@@ -124,13 +124,13 @@ Make sure you installed Claude Code and restarted your terminal.
 Make sure you're in your therapy folder before running `claude`. Check that `CLAUDE.md` exists in that folder.
 
 **Setup didn't start automatically**
-Make sure you're in the `ai-therapy-kit` folder (not your therapy folder) when first running `claude`.
+Make sure you're in the `inner-dialogue` folder (not your therapy folder) when first running `claude`.
 
 ---
 
 ## Updating Your Therapist
 
-The AI Therapy Kit periodically receives updates—improved safety protocols, refined therapeutic techniques, bug fixes. Here's how to get them:
+Inner Dialogue periodically receives updates—improved safety protocols, refined therapeutic techniques, bug fixes. Here's how to get them:
 
 ### Check for Updates
 
@@ -142,7 +142,7 @@ Your therapist will:
 - Show what's changed
 - Apply updates you approve
 
-No need to keep the ai-therapy-kit repo after setup—your therapist folder is self-contained and updates directly from GitHub.
+No need to keep the Inner Dialogue repo after setup—your therapist folder is self-contained and updates directly from GitHub.
 
 ### What Gets Updated
 
@@ -165,7 +165,7 @@ No need to keep the ai-therapy-kit repo after setup—your therapist folder is s
 
 If you set up your therapist before version 1.0.0 (the split-file architecture), you can migrate to the new format:
 
-1. Open the ai-therapy-kit repo in Claude Code
+1. Open the inner-dialogue repo in Claude Code
 2. Say: **"migrate my existing therapist"**
 3. Claude will:
    - Read your existing CLAUDE.md to understand your setup
@@ -209,7 +209,7 @@ Switch between Structured, Moderate, or Freeform session styles.
 
 ### Self-Contained After Setup
 
-After setup completes, your therapist folder is fully self-contained. You can safely delete the ai-therapy-kit repo if you want—all customization options are stored in your therapist's `.therapy/library/` folder, and updates are fetched directly from GitHub.
+After setup completes, your therapist folder is fully self-contained. You can safely delete the inner-dialogue repo if you want—all customization options are stored in your therapist's `.therapy/library/` folder, and updates are fetched directly from GitHub.
 
 ---
 
