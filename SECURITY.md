@@ -201,4 +201,4 @@ Your encrypted container can be backed up anywhere (even cloud storage). Without
 
 ---
 
-*Questions? Open an issue on [GitHub](https://github.com/ataglianetti/ai-therapy-kit/issues).*
+*Questions? Open an issue on [GitHub](https://github.com/ataglianetti/inner-dialogue/issues).*

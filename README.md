@@ -1,10 +1,10 @@
-# AI Therapy Starter Kit
+# Inner Dialogue
 
 A private, persistent AI therapist that lives on your computer.
 
 Your sessions stay local. Your AI remembers everything. Works with Claude, GPT, or any AI.
 
-**[View the website](https://ataglianetti.github.io/ai-therapy-kit-site/)** | **[Get Started](docs/GETTING-STARTED.md)**
+**[View the website](https://ataglianetti.github.io/inner-dialogue-site/)** | **[Get Started](docs/GETTING-STARTED.md)**
 
 ---
 
@@ -123,7 +123,7 @@ No special software needed to view your own notes.
 
 ## Expansion Pack
 
-Want more communication styles and therapeutic approaches? The **AI Therapy Kit Expansion Pack** adds:
+Want more communication styles and therapeutic approaches? **Inner Dialogue: Deeper** adds:
 
 **3 Additional Styles:**
 - Warm 4o-Style (conversational, insightful)
@@ -137,7 +137,7 @@ Want more communication styles and therapeutic approaches? The **AI Therapy Kit 
 - Psychodynamic (understanding patterns from the past)
 - Somatic Experiencing (nervous system regulation)
 
-**[Get the Expansion Pack](https://gumroad.com/l/ai-therapy-kit-extras)** — Pay what you want (including free).
+**[Get Inner Dialogue: Deeper](https://gumroad.com/l/inner-dialogue-deeper)** — Pay what you want (including free).
 
 ---
 

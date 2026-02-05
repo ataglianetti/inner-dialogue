@@ -247,7 +247,7 @@ Recognize conversational requests, not just exact command phrases:
 
 1. Read `.therapy/version.json` for current versions and `source_url`
 2. Use WebFetch to get files from GitHub raw URLs:
-   - `https://raw.githubusercontent.com/ataglianetti/ai-therapy-kit/main/safety-protocol.md`
+   - `https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/safety-protocol.md`
    - Extract `<!-- version: X.Y.Z -->` header from fetched content
 3. Compare with installed versions
 4. Show available updates, recommend safety-protocol updates

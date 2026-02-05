@@ -1,10 +1,10 @@
-# Contributing to AI Therapy Kit
+# Contributing to Inner Dialogue
 
 Thank you for your interest in contributing! This project helps people access emotional support through AI, so we take contributions seriously.
 
 ## Reporting Bugs
 
-1. Check existing [issues](https://github.com/ataglianetti/ai-therapy-kit/issues) to avoid duplicates
+1. Check existing [issues](https://github.com/ataglianetti/inner-dialogue/issues) to avoid duplicates
 2. Create a new issue with:
    - Clear description of the problem
    - Steps to reproduce
