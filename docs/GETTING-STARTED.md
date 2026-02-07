@@ -55,9 +55,9 @@ From the inner-dialogue folder, type:
 claude
 ```
 
-Then type **"start"** (or anything) to begin setup.
+Your therapist is waiting. Say hello when you're ready.
 
-Claude will guide you through by asking a few questions:
+Claude will guide you through setup by asking a few questions:
 
 1. **Therapist name** — What to call your AI therapist (e.g., Sage, Willow, Quinn)
 2. **Communication style** — Warm 4o-style or direct & challenging (more available with Expansion Pack)
