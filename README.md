@@ -8,25 +8,23 @@ Your sessions stay local. Your AI remembers everything. Works with Claude, GPT, 
 
 ---
 
-<!--
 ## What It Looks Like
-
-Uncomment this section after adding screenshots to assets/
-
-**A session in the terminal:**
-
-![Session screenshot](assets/session-screenshot.png)
-
-**Your notes, saved locally:**
-
-![Session notes](assets/session-notes.png)
 
 **Starting a session:**
 
-![Demo](assets/demo.gif)
+![Sage greeting](assets/inner-dialogue-4o-1.png)
+
+**A conversation in progress:**
+
+![Session conversation](assets/inner-dialogue-4o-3.png)
+
+**Different communication styles:**
+
+The same scenario with the "Direct & Challenging" persona:
+
+![Direct style](assets/inner-dialogue-direct.png)
 
 ---
--->
 
 ## Why This Exists
 
