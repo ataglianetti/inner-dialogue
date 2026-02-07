@@ -73,7 +73,7 @@ During setup, you choose how your AI therapist communicates:
 
 | Style | Description |
 |-------|-------------|
-| **Warm & Supportive** | Validation first, gentle challenges, nurturing |
+| **Warm 4o-Style** | Like a good friend who asks insightful questions |
 | **Direct & Challenging** | Will push back, asks probing questions |
 
 Want more options? The [Expansion Pack](#expansion-pack) includes 3 additional styles.
@@ -126,7 +126,7 @@ No special software needed to view your own notes.
 Want more communication styles and therapeutic approaches? **Inner Dialogue: Deeper** adds:
 
 **3 Additional Styles:**
-- Warm 4o-Style (conversational, insightful)
+- Warm & Supportive (validation first, gentle challenges)
 - Coach (action-oriented, accountability)
 - Grounded & Real (down-to-earth, uses humor)
 

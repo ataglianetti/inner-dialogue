@@ -49,16 +49,21 @@ cd inner-dialogue
 
 ## Step 3: Run Setup
 
-From the inner-dialogue folder, type:
+From the inner-dialogue folder:
 
+**Mac/Linux:** Double-click `setup.command`
+
+**Windows:** Double-click `setup.bat`
+
+**Or from Terminal/PowerShell:**
 ```
-claude
+claude -p "start"
 ```
 
 Claude will guide you through setup by asking a few questions:
 
 1. **Therapist name** — What to call your AI therapist (e.g., Sage, Willow, Quinn)
-2. **Communication style** — Warm & supportive or direct & challenging (more available with Expansion Pack)
+2. **Communication style** — Warm 4o-style or direct & challenging (more available with Expansion Pack)
 3. **Therapeutic approaches** — CBT by default (Expansion Pack adds ACT, DBT Skills, and more)
 4. **Storage location** — Where to save your session files
 5. **Import history** (optional) — Bring in notes from ChatGPT or other tools
@@ -188,10 +193,10 @@ You can change your therapist's configuration anytime—just ask during a sessio
 Say: **"switch persona"**
 
 Choose from:
-- Warm & Supportive
+- Warm 4o-Style
 - Direct & Challenging
 
-With the [Expansion Pack](#expansion-pack): Coach, Grounded & Real, Warm 4o-Style
+With the [Expansion Pack](#expansion-pack): Warm & Supportive, Coach, Grounded & Real
 
 This changes how your therapist communicates without affecting their memory of you.
 
