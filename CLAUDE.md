@@ -223,33 +223,38 @@ After gathering all answers, create the therapy environment.
             └── freeform.md
 ```
 
-### Step 2: Read Source Files
+### Step 2: Create Directories and Copy Files (use Bash)
 
-Read the necessary source files based on user selections:
+**IMPORTANT:** Use bash commands for speed. Do NOT read files then write them individually.
 
-1. **Read the persona file** they selected (e.g., `personas/warm-4o.md`)
-   - Extract `## Persona Description` section for {{PERSONA_CONTENT}}
-   - Extract `## Tone Modifier` line for {{TONE_MODIFIER}}
+Run this single command to create all directories:
+```bash
+mkdir -p "{storage_path}"/{sessions,.therapy/{modalities,library/{personas,modalities,structures}}}
+```
 
-2. **Read `CLAUDE.template.md`** for the base CLAUDE.md structure
+Then copy all static files in one command (from the inner-dialogue repo directory):
 
-### Step 3: Create .therapy/ Folder
+**Core-only setup:**
+```bash
+cp safety-protocol.md "{storage_path}/.therapy/" && \
+cp personas/warm-4o.md personas/direct-challenging.md "{storage_path}/.therapy/library/personas/" && \
+cp modalities/cbt.md "{storage_path}/.therapy/library/modalities/" && \
+cp structures/structured.md structures/moderate.md structures/freeform.md "{storage_path}/.therapy/library/structures/" && \
+cp "personas/{selected_persona}.md" "{storage_path}/.therapy/persona.md" && \
+cp "structures/{selected_structure}.md" "{storage_path}/.therapy/session-structure.md" && \
+cp "modalities/cbt.md" "{storage_path}/.therapy/modalities/" && \
+cp profile.template.md "{storage_path}/profile.md"
+```
 
-Create `{storage_path}/.therapy/` with:
+**With expansion pack:** Also copy expansion files from the expansion pack folder to `.therapy/library/`.
 
-1. **Copy `safety-protocol.md`** from this repo to `.therapy/safety-protocol.md`
+### Step 3: Create CLAUDE.md (use Write tool)
 
-2. **Copy selected persona file** to `.therapy/persona.md`
+Read `CLAUDE.template.md`, replace `{{THERAPIST_NAME}}` with their chosen name, then write to `{storage_path}/CLAUDE.md`.
 
-3. **Copy selected structure file** to `.therapy/session-structure.md`
+### Step 4: Create version.json (use Write tool)
 
-4. **Create `.therapy/modalities/`** and copy only the selected modality files
-
-5. **Create `.therapy/library/`** and copy component files:
-   - **Core:** Copy files from this repo's `personas/`, `modalities/`, `structures/` folders (core content only)
-   - **If expansion pack installed:** Also copy expansion pack files to `.therapy/library/personas/` and `.therapy/library/modalities/`
-
-6. **Create `.therapy/version.json`:**
+Write `{storage_path}/.therapy/version.json`:
 
 **Core-only:**
 ```json
@@ -258,63 +263,32 @@ Create `{storage_path}/.therapy/` with:
   "installed": "YYYY-MM-DD",
   "components": {
     "safety-protocol": "1.0.0",
-    "persona": "[persona-name]@1.0.0",
-    "session-structure": "[structure-name]@1.0.0",
+    "persona": "{persona-name}@1.0.0",
+    "session-structure": "{structure-name}@1.0.0",
     "modalities": {
-      "[modality]": "1.0.0"
+      "cbt": "1.0.0"
     }
   },
   "source_url": "https://github.com/ataglianetti/inner-dialogue"
 }
 ```
 
-**With expansion pack:**
-```json
-{
-  "kit_version": "1.0.0",
-  "installed": "YYYY-MM-DD",
-  "expansion_installed": "YYYY-MM-DD",
-  "components": {
-    "safety-protocol": "1.0.0",
-    "persona": "[persona-name]@1.0.0",
-    "session-structure": "[structure-name]@1.0.0",
-    "modalities": {
-      "[modality]": "1.0.0"
-    },
-    "expansion_pack": "1.0.0"
-  },
-  "source_url": "https://github.com/ataglianetti/inner-dialogue"
-}
+**With expansion pack:** Add `"expansion_installed": "YYYY-MM-DD"` and `"expansion_pack": "1.0.0"` to components.
+
+### Step 5: Create Launcher Script (use Bash)
+
+**macOS/Linux:**
+```bash
+printf '#!/bin/bash\ncd "%s"\nclaude\n' "{storage_path}" > "{storage_path}/start-session.command" && \
+chmod +x "{storage_path}/start-session.command"
+```
+
+**Windows:**
+```bash
+printf '@echo off\r\ncd /d "%s"\r\nclaude\r\n' "{storage_path}" > "{storage_path}/start-session.bat"
 ```
 
 **Important:** The library folder makes the therapist folder self-contained. Users can delete the inner-dialogue repo after setup.
-
-### Step 4: Create CLAUDE.md
-
-Generate `{storage_path}/CLAUDE.md` by:
-1. Reading `CLAUDE.template.md`
-2. Replacing {{THERAPIST_NAME}} with their chosen name
-
-### Step 5: Create profile.md
-
-Copy `profile.template.md` to `{storage_path}/profile.md`
-
-### Step 6: Create Launcher Script
-
-**macOS/Linux:** Create `{storage_path}/start-session.command`:
-```bash
-#!/bin/bash
-cd "{storage_path}"
-claude
-```
-Run: `chmod +x "{storage_path}/start-session.command"`
-
-**Windows:** Create `{storage_path}/start-session.bat`:
-```batch
-@echo off
-cd /d "{storage_path}"
-claude
-```
 
 ---
 
