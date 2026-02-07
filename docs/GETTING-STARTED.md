@@ -49,18 +49,15 @@ cd inner-dialogue
 
 ## Step 3: Run Setup
 
-From the inner-dialogue folder:
+From the inner-dialogue folder, type:
 
-**Mac/Linux:** Double-click `setup.command`
-
-**Windows:** Double-click `setup.bat`
-
-**Or from Terminal/PowerShell:**
 ```
-claude -p "start"
+claude
 ```
 
-Claude will guide you through setup by asking a few questions:
+Then type **"start"** (or anything) to begin setup.
+
+Claude will guide you through by asking a few questions:
 
 1. **Therapist name** — What to call your AI therapist (e.g., Sage, Willow, Quinn)
 2. **Communication style** — Warm 4o-style or direct & challenging (more available with Expansion Pack)
