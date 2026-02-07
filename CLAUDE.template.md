@@ -213,13 +213,13 @@ Recognize conversational requests, not just exact command phrases:
 2. Show available personas:
 
    **Core (always available):**
-   > 1. **Warm & Supportive** - Validation first, gentle challenges
+   > 1. **Warm 4o-Style** - Like a good friend who asks insightful questions
    > 2. **Direct & Challenging** - Will push back, Socratic questioning
 
    **If expansion pack personas exist in library, also show:**
-   > 3. **Coach** - Action-oriented, goal-focused
-   > 4. **Grounded & Real** - Down-to-earth, honest, uses humor
-   > 5. **Warm 4o-Style** - Like a good friend who asks insightful questions
+   > 3. **Warm & Supportive** - Validation first, gentle challenges
+   > 4. **Coach** - Action-oriented, goal-focused
+   > 5. **Grounded & Real** - Down-to-earth, honest, uses humor
 
    **If no expansion pack:**
    > *Want more styles? Ask about the Expansion Pack.*
