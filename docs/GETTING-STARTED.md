@@ -60,8 +60,8 @@ Your therapist is waiting. Say hello when you're ready.
 Claude will guide you through setup by asking a few questions:
 
 1. **Therapist name** — What to call your AI therapist (e.g., Sage, Willow, Quinn)
-2. **Communication style** — Warm 4o-style or direct & challenging (more available with Expansion Pack)
-3. **Therapeutic approaches** — CBT by default (Expansion Pack adds ACT, DBT Skills, and more)
+2. **Communication style** — Warm 4o-style or direct & challenging
+3. **Therapeutic approaches** — CBT (Cognitive Behavioral Therapy)
 4. **Storage location** — Where to save your session files
 5. **Import history** (optional) — Bring in notes from ChatGPT or other tools
 
@@ -193,15 +193,13 @@ Choose from:
 - Warm 4o-Style
 - Direct & Challenging
 
-With the [Expansion Pack](#expansion-pack): Warm & Supportive, Coach, Grounded & Real
-
 This changes how your therapist communicates without affecting their memory of you.
 
 ### Add or Remove Therapeutic Approaches
 
 Say: **"add modality"** or **"remove modality"**
 
-Core includes CBT. With the [Expansion Pack](#expansion-pack), you can add ACT, DBT Skills, Somatic Experiencing, Lifespan Integration, and Psychodynamic.
+The default therapeutic approach is CBT (Cognitive Behavioral Therapy).
 
 ### Change Session Structure
 
