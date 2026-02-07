@@ -8,24 +8,6 @@ Your sessions stay local. Your AI remembers everything. Works with Claude, GPT, 
 
 ---
 
-## What It Looks Like
-
-**Starting a session:**
-
-![Sage greeting](assets/inner-dialogue-4o-1.png)
-
-**A conversation in progress:**
-
-![Session conversation](assets/inner-dialogue-4o-3.png)
-
-**Different communication styles:**
-
-The same scenario with the "Direct & Challenging" persona:
-
-![Direct style](assets/inner-dialogue-direct.png)
-
----
-
 ## Why This Exists
 
 If you've used ChatGPT or Claude for emotional support, you've probably hit these problems:
