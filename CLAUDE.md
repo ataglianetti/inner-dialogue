@@ -81,21 +81,21 @@ Ask these conversationally, one at a time.
 
 > How should your AI therapist communicate?
 >
-> 1. **Warm & Supportive** - Validation first, gentle challenges
+> 1. **Warm 4o-Style** - Like a good friend who asks insightful questions
 > 2. **Direct & Challenging** - Will push back, Socratic questioning
 
 **If has_expansion_pack, add:**
 
-> 3. **Coach** - Action-oriented, goal-focused
-> 4. **Grounded & Real** - Down-to-earth, honest, uses humor
-> 5. **Warm 4o-Style** - Like a good friend who asks insightful questions
+> 3. **Warm & Supportive** - Validation first, gentle challenges
+> 4. **Coach** - Action-oriented, goal-focused
+> 5. **Grounded & Real** - Down-to-earth, honest, uses humor
 
 **Map selection to persona file:**
-- 1 → `personas/warm-supportive.md`
+- 1 → `personas/warm-4o.md`
 - 2 → `personas/direct-challenging.md`
-- 3 → `personas/coach.md` (expansion)
-- 4 → `personas/grounded-real.md` (expansion)
-- 5 → `personas/warm-4o.md` (expansion)
+- 3 → `personas/warm-supportive.md` (expansion)
+- 4 → `personas/coach.md` (expansion)
+- 5 → `personas/grounded-real.md` (expansion)
 
 ### 5. Therapeutic Approaches
 
@@ -179,7 +179,7 @@ After gathering all answers, create the therapy environment.
     │   └── cbt.md
     └── library/                (options for switching)
         ├── personas/
-        │   ├── warm-supportive.md
+        │   ├── warm-4o.md
         │   └── direct-challenging.md
         ├── modalities/
         │   └── cbt.md
@@ -205,11 +205,11 @@ After gathering all answers, create the therapy environment.
     │   └── (selected modalities)
     └── library/                (ALL options for switching)
         ├── personas/
-        │   ├── warm-supportive.md
+        │   ├── warm-4o.md
         │   ├── direct-challenging.md
+        │   ├── warm-supportive.md    # expansion
         │   ├── coach.md              # expansion
-        │   ├── grounded-real.md      # expansion
-        │   └── warm-4o.md            # expansion
+        │   └── grounded-real.md      # expansion
         ├── modalities/
         │   ├── cbt.md
         │   ├── act.md                # expansion
@@ -227,7 +227,7 @@ After gathering all answers, create the therapy environment.
 
 Read the necessary source files based on user selections:
 
-1. **Read the persona file** they selected (e.g., `personas/warm-supportive.md`)
+1. **Read the persona file** they selected (e.g., `personas/warm-4o.md`)
    - Extract `## Persona Description` section for {{PERSONA_CONTENT}}
    - Extract `## Tone Modifier` line for {{TONE_MODIFIER}}
 
@@ -382,21 +382,21 @@ When user says "switch persona" or "change communication style":
 
 2. **Check for expansion pack content:**
    - Read `.therapy/library/personas/` directory
-   - If only warm-supportive.md and direct-challenging.md exist → show core options only
-   - If additional personas exist (coach.md, grounded-real.md, warm-4o.md) → show all available
+   - If only warm-4o.md and direct-challenging.md exist → show core options only
+   - If additional personas exist (warm-supportive.md, coach.md, grounded-real.md) → show all available
 
 3. **Show available personas:**
 
    **Core options (always available):**
    > Which communication style would you like?
    >
-   > 1. **Warm & Supportive** - Validation first, gentle challenges
+   > 1. **Warm 4o-Style** - Like a good friend who asks insightful questions
    > 2. **Direct & Challenging** - Will push back, Socratic questioning
 
    **If expansion pack detected, add:**
-   > 3. **Coach** - Action-oriented, goal-focused
-   > 4. **Grounded & Real** - Down-to-earth, honest, uses humor
-   > 5. **Warm 4o-Style** - Like a good friend who asks insightful questions
+   > 3. **Warm & Supportive** - Validation first, gentle challenges
+   > 4. **Coach** - Action-oriented, goal-focused
+   > 5. **Grounded & Real** - Down-to-earth, honest, uses humor
 
    **If no expansion pack:**
    > *Want more styles? Get the [Expansion Pack](https://gumroad.com/l/inner-dialogue-deeper)*
@@ -487,7 +487,7 @@ When user says "install expansion pack" or "add expansion pack":
    > Where is your expansion pack folder? (e.g., ~/Downloads/inner-dialogue-deeper)
 
 2. **Verify the folder contains expected content:**
-   - Check for `personas/` subfolder with: coach.md, grounded-real.md, warm-4o.md
+   - Check for `personas/` subfolder with: warm-supportive.md, coach.md, grounded-real.md
    - Check for `modalities/` subfolder with: act.md, dbt-skills.md, lifespan-integration.md, psychodynamic.md, somatic-experiencing.md
    - If missing files, warn user and confirm they want to proceed with partial install
 
@@ -504,7 +504,7 @@ When user says "install expansion pack" or "add expansion pack":
 6. **Confirm installation:**
    > Expansion pack installed! You now have access to:
    >
-   > **Styles:** Coach, Grounded & Real, Warm 4o-Style
+   > **Styles:** Warm & Supportive, Coach, Grounded & Real
    > **Approaches:** ACT, DBT Skills, Lifespan Integration, Somatic Experiencing, Psychodynamic
    >
    > Use "switch persona" or "add modality" to try them out.
@@ -546,7 +546,7 @@ For users with old monolithic CLAUDE.md (pre-1.0.0):
 | Base CLAUDE.md | `CLAUDE.template.md` |
 | Safety Protocol | `safety-protocol.md` |
 | Profile Template | `profile.template.md` |
-| Warm & Supportive | `personas/warm-supportive.md` |
+| Warm 4o-Style | `personas/warm-4o.md` |
 | Direct & Challenging | `personas/direct-challenging.md` |
 | CBT | `modalities/cbt.md` |
 | Structured Sessions | `structures/structured.md` |
@@ -557,9 +557,9 @@ For users with old monolithic CLAUDE.md (pre-1.0.0):
 
 | Content | Source File |
 |---------|-------------|
+| Warm & Supportive | `personas/warm-supportive.md` |
 | Coach | `personas/coach.md` |
 | Grounded & Real | `personas/grounded-real.md` |
-| Warm 4o-Style | `personas/warm-4o.md` |
 | ACT | `modalities/act.md` |
 | DBT Skills | `modalities/dbt-skills.md` |
 | Lifespan Integration | `modalities/lifespan-integration.md` |
