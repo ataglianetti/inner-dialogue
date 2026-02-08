@@ -67,13 +67,44 @@ Claude will guide you through setup by asking a few questions:
 
 ### Importing Existing Notes
 
-If you've been using ChatGPT for therapy-like conversations, you can import that history:
+If you've been using ChatGPT or other tools for therapy-like conversations, you can import that history.
 
-1. In ChatGPT: Go to Settings → Data Controls → Export
-2. You'll get a ZIP file
-3. During setup, tell Claude you want to import and provide the file path
+#### Supported Formats
 
-Your AI therapist will read these notes to understand your background.
+- **ChatGPT exports** — ZIP file from Settings → Data Controls → Export
+- **Markdown files** — Any `.md` files (journal entries, notes, previous AI conversations)
+- **Text files** — Plain `.txt` files
+- **PDF files** — Will be read and processed
+
+#### During Setup
+
+1. When asked about importing, say yes
+2. Provide the file path(s) to your export files
+3. Your therapist processes the files during your first session
+
+#### What Happens to Imported Files
+
+Your therapist does two things with imported content:
+
+1. **Builds your profile** — Key patterns, background, recurring themes, and important context get extracted into `profile.md`. This is read every session.
+
+2. **Creates session history** — Conversations are converted to session files (`sessions/YYYY-MM-DD.md`) with their original dates. These become part of your session history.
+
+#### How It Works Over Time
+
+- Your profile (patterns, background) is always referenced
+- Recent sessions are read at startup for continuity
+- Older imported sessions naturally fade as new sessions accumulate
+- Nothing is deleted—older context can still be referenced when relevant
+
+This mirrors how memory works: core patterns stay present, recent details are fresh, older specifics are available but not top-of-mind.
+
+#### Adding Context Later
+
+After setup, you can still add to your history:
+- Add notes directly to `profile.md` for persistent context
+- Drop new files in `sessions/` with appropriate dates
+- Tell your therapist "I want to add some background" and share it in conversation
 
 ---
 

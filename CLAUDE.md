@@ -147,7 +147,7 @@ Ask these conversationally, one at a time.
 
 > Do you have existing therapy notes to import? (ChatGPT exports, markdown, PDF, text files)
 
-If yes, ask for file paths. Create `{storage_path}/imported/` and process files there.
+If yes, ask for file paths. Store paths for processing during first session.
 
 ---
 
@@ -162,7 +162,6 @@ After gathering all answers, create the therapy environment.
 ├── CLAUDE.md
 ├── profile.md
 ├── sessions/
-├── imported/           (if importing)
 └── .therapy/
     ├── version.json
     ├── safety-protocol.md
