@@ -4,7 +4,7 @@ A private, persistent AI therapist that lives on your computer.
 
 Your sessions stay local. Your AI remembers everything. Works with Claude, GPT, or any AI.
 
-**[View the website](https://ataglianetti.github.io/inner-dialogue-site/)** | **[Get Started](docs/GETTING-STARTED.md)**
+**[View the website](https://ataglianetti.github.io/inner-dialogue-site/)** | **[Get Started](docs/GETTING-STARTED.md)** | **[Changelog](CHANGELOG.md)**
 
 ---
 
