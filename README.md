@@ -102,6 +102,7 @@ your-therapist-folder/
 └── .therapy/           # Framework components (auto-updated)
     ├── version.json
     ├── safety-protocol.md
+    ├── commands.md         # Customization commands
     ├── persona.md
     ├── session-structure.md
     ├── modalities/         # Your active modalities
