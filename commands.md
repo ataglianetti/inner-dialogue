@@ -1,4 +1,4 @@
-<!-- version: 1.0.0 -->
+<!-- version: 1.1.0 -->
 # Customization Commands
 
 The client can request changes to their therapy setup during a session. All customization files are stored locally in `.therapy/library/`.
@@ -63,15 +63,28 @@ Recognize conversational requests, not just exact command phrases:
 
 ## When client says "update", "check for updates", or "get latest version"
 
-1. Read `.therapy/version.json` for current versions and `source_url`
-2. Use WebFetch to get files from GitHub raw URLs:
-   - `https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/safety-protocol.md`
-   - `https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/commands.md`
-   - Extract `<!-- version: X.Y.Z -->` header from fetched content
-3. Compare with installed versions
-4. Show available updates, recommend safety-protocol updates
-5. Fetch and write updated files to `.therapy/` and `.therapy/library/`
-6. Update version.json
+1. Read `.therapy/version.json` for current versions
+
+2. Fetch the manifest from GitHub:
+   ```
+   https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/manifest.json
+   ```
+
+3. For each component in manifest, fetch the file and extract its version from `<!-- version: X.Y.Z -->` header
+
+4. Compare with installed versions and show available updates:
+   > **Updates available:**
+   > - safety-protocol: 1.0.0 → 1.1.0 ⚠️ (recommended)
+   > - commands: (new) → 1.0.0
+   >
+   > Apply updates?
+
+5. For approved updates:
+   - Fetch files from GitHub using manifest's `base_url` + `file` path
+   - Write to location specified in manifest's `target`
+   - Update `.therapy/version.json`
+
+6. Always recommend safety-protocol updates (crisis resources should never be stale)
 
 ## When client says "import", "import notes", or "I have files to import"
 
