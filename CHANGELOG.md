@@ -4,22 +4,24 @@ All notable changes to Inner Dialogue.
 
 ---
 
-## [2.1.0] - 2025-02-08
+## [2.1.0] - 2026-02-08
 
 ### Added
 - **Import command** — Import notes anytime during a session, not just at setup. Say "import" or "I have files to import" and provide a path.
 - **Manifest-based updates** — Updates now use `manifest.json` to discover all available components. Existing users can get new features automatically.
+- **Smart modality recommendations** — If you import notes during setup, your therapist reads them and recommends modalities based on your history.
 
 ### Changed
 - **Smarter import handling** — Imported files now become session history (`sessions/YYYY-MM-DD.md`) with original dates, plus key patterns extracted to `profile.md`. This gives natural relevance decay like real memory.
 - **Commands moved to updatable file** — Customization commands now live in `.therapy/commands.md` so existing users receive new commands via updates.
+- **Setup flow reordered** — Import step now comes before modality selection, enabling personalized recommendations.
 
 ### For Existing Users
 Run "update" or "check for updates" during a session to get these features.
 
 ---
 
-## [2.0.0] - 2025-02-01
+## [2.0.0] - 2026-02-01
 
 ### Added
 - **8 communication styles** (up from 2):
@@ -56,7 +58,7 @@ Run "update" or "check for updates" during a session to get these features.
 
 ---
 
-## [1.0.0] - 2025-01-15
+## [1.0.0] - 2026-01-15
 
 ### Initial Release
 - Basic AI therapist setup with persistent sessions
