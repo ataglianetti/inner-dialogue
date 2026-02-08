@@ -117,6 +117,12 @@ The `.therapy/` folder contains the therapeutic framework—safety protocols, mo
 
 No special software needed to view your own notes.
 
+### Importing Existing History
+
+You can bring in notes from ChatGPT, journals, or other AI conversations during setup. Your therapist extracts key patterns into your profile and converts conversations into session history.
+
+For details, see [Importing Existing Notes](docs/GETTING-STARTED.md#importing-existing-notes) in the Getting Started guide.
+
 ---
 
 ## Safety & Limitations
