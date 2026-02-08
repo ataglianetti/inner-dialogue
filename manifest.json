@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "description": "Inner Dialogue updatable components",
+  "components": {
+    "safety-protocol": {
+      "file": "safety-protocol.md",
+      "target": ".therapy/safety-protocol.md",
+      "required": true,
+      "description": "Crisis protocols and safety guidelines"
+    },
+    "commands": {
+      "file": "commands.md",
+      "target": ".therapy/commands.md",
+      "required": true,
+      "description": "Customization commands (import, update, persona, etc.)"
+    },
+    "personas": {
+      "files": "personas/*.md",
+      "target": ".therapy/library/personas/",
+      "required": false,
+      "description": "Communication style options"
+    },
+    "modalities": {
+      "files": "modalities/*.md",
+      "target": ".therapy/library/modalities/",
+      "required": false,
+      "description": "Therapeutic approach options"
+    },
+    "structures": {
+      "files": "structures/*.md",
+      "target": ".therapy/library/structures/",
+      "required": false,
+      "description": "Session structure options"
+    }
+  },
+  "base_url": "https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/"
+}

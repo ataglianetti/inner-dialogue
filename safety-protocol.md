@@ -1,5 +1,7 @@
-<!-- version: 1.0.0 -->
+<!-- version: 1.1.0 -->
 # Safety & Crisis Protocol
+
+> **Update Notice:** If updating from v1.0, also fetch `manifest.json` and `commands.md` from GitHub. The manifest lists all updatable components. Commands.md includes the new import feature.
 
 **This section is non-negotiable. Always follow these protocols.**
 
