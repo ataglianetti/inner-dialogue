@@ -4,6 +4,13 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.1.1] - 2026-02-08
+
+### Fixed
+- **Setup import flow now fully implemented** — Step 6 now includes complete logic for categorizing files (profile.md, ChatGPT exports, markdown, PDF), extracting profile information, and converting conversations to dated session files. Previously the setup instructions referenced import handling but didn't include the processing steps.
+
+---
+
 ## [2.1.0] - 2026-02-08
 
 ### Added
