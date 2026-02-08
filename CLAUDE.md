@@ -165,6 +165,7 @@ After gathering all answers, create the therapy environment.
 └── .therapy/
     ├── version.json
     ├── safety-protocol.md
+    ├── commands.md             (customization commands - auto-updated)
     ├── persona.md              (active persona)
     ├── session-structure.md    (active structure)
     ├── modalities/             (active modalities)
@@ -210,7 +211,7 @@ mkdir -p "{storage_path}"/{sessions,.therapy/{modalities,library/{personas,modal
 Then copy all static files in one command (from the inner-dialogue repo directory):
 
 ```bash
-cp safety-protocol.md "{storage_path}/.therapy/" && \
+cp safety-protocol.md commands.md "{storage_path}/.therapy/" && \
 cp personas/*.md "{storage_path}/.therapy/library/personas/" && \
 cp modalities/*.md "{storage_path}/.therapy/library/modalities/" && \
 cp structures/*.md "{storage_path}/.therapy/library/structures/" && \
@@ -238,6 +239,7 @@ Write `{storage_path}/.therapy/version.json`:
   "installed": "YYYY-MM-DD",
   "components": {
     "safety-protocol": "1.0.0",
+    "commands": "1.0.0",
     "persona": "{persona-name}@1.0.0",
     "session-structure": "{structure-name}@1.0.0",
     "modalities": {
