@@ -1,6 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Inner Dialogue updatable components",
+  "base_url": "https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/",
   "components": {
     "safety-protocol": {
       "file": "safety-protocol.md",
@@ -13,25 +14,49 @@
       "target": ".therapy/commands.md",
       "required": true,
       "description": "Customization commands (import, update, persona, etc.)"
-    },
-    "personas": {
-      "files": "personas/*.md",
-      "target": ".therapy/library/personas/",
-      "required": false,
-      "description": "Communication style options"
-    },
-    "modalities": {
-      "files": "modalities/*.md",
-      "target": ".therapy/library/modalities/",
-      "required": false,
-      "description": "Therapeutic approach options"
-    },
-    "structures": {
-      "files": "structures/*.md",
-      "target": ".therapy/library/structures/",
-      "required": false,
-      "description": "Session structure options"
     }
   },
-  "base_url": "https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/"
+  "library": {
+    "personas": {
+      "target": ".therapy/library/personas/",
+      "description": "Communication style options",
+      "files": [
+        "personas/warm-4o.md",
+        "personas/direct-challenging.md",
+        "personas/warm-supportive.md",
+        "personas/coach.md",
+        "personas/grounded-real.md",
+        "personas/contemplative.md",
+        "personas/philosophical.md",
+        "personas/creative.md"
+      ]
+    },
+    "modalities": {
+      "target": ".therapy/library/modalities/",
+      "description": "Therapeutic approach options",
+      "files": [
+        "modalities/cbt.md",
+        "modalities/act.md",
+        "modalities/cft.md",
+        "modalities/dbt-skills.md",
+        "modalities/ifs.md",
+        "modalities/lifespan-integration.md",
+        "modalities/motivational-interviewing.md",
+        "modalities/narrative.md",
+        "modalities/polyvagal.md",
+        "modalities/psychodynamic.md",
+        "modalities/sfbt.md",
+        "modalities/somatic-experiencing.md"
+      ]
+    },
+    "structures": {
+      "target": ".therapy/library/structures/",
+      "description": "Session structure options",
+      "files": [
+        "structures/structured.md",
+        "structures/moderate.md",
+        "structures/freeform.md"
+      ]
+    }
+  }
 }

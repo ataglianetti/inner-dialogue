@@ -1,4 +1,4 @@
-<!-- version: 1.1.0 -->
+<!-- version: 1.2.0 -->
 # Customization Commands
 
 The client can request changes to their therapy setup during a session. All customization files are stored locally in `.therapy/library/`.
@@ -70,7 +70,7 @@ Recognize conversational requests, not just exact command phrases:
    https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/manifest.json
    ```
 
-3. For each component in manifest, fetch the file and extract its version from `<!-- version: X.Y.Z -->` header
+3. For each component in `components`, fetch the file and extract its version from `<!-- version: X.Y.Z -->` header
 
 4. Compare with installed versions and show available updates:
    > **Updates available:**
@@ -85,6 +85,17 @@ Recognize conversational requests, not just exact command phrases:
    - Update `.therapy/version.json`
 
 6. Always recommend safety-protocol updates (crisis resources should never be stale)
+
+7. **Check library for new options:**
+   - Compare files in manifest's `library` section against `.therapy/library/`
+   - If new personas, modalities, or structures are available:
+     > **New options available:**
+     > - 2 new personas (Creative & Playful, Contemplative & Spacious)
+     > - 3 new modalities (IFS, Somatic Experiencing, Narrative)
+     >
+     > Add these to your library?
+   - Fetch each file from `base_url` + file path
+   - Write to the `target` directory
 
 ## When client says "import", "import notes", or "I have files to import"
 
