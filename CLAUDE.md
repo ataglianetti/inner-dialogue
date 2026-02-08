@@ -85,9 +85,53 @@ Ask these conversationally, one at a time.
 - 7 → `personas/philosophical.md`
 - 8 → `personas/creative.md`
 
-### 4. Therapeutic Approaches
+### 4. Session Structure
 
-> Which therapeutic approaches? Pick any combination (e.g., "1,2,3"):
+> How structured do you want sessions?
+>
+> 1. **Structured** - Homework, exercises, progress tracking
+> 2. **Moderate** - Some structure, flexible approach
+> 3. **Freeform** - Just conversation, minimal assignments
+>
+> (Default: 2)
+
+**Map selection to structure file:**
+- 1 → `structures/structured.md`
+- 2 → `structures/moderate.md`
+- 3 → `structures/freeform.md`
+
+### 5. Storage Location
+
+> Where should your therapy files be stored?
+>
+> 1. `~/{therapist_name}` - Simple
+> 2. `~/Documents/{therapist_name}` - In Documents
+> 3. Custom path
+>
+> (Default: 1)
+
+### 6. Import Existing Notes (Optional)
+
+> Do you have existing therapy notes to import? (ChatGPT exports, markdown, PDF, text files)
+
+If yes:
+1. Ask for file paths
+2. Read the files to understand the user's history
+3. Use this context to inform modality recommendations in the next step
+
+### 7. Therapeutic Approaches
+
+**If user imported notes:** Read through the imports and recommend modalities based on what you find:
+
+> Based on what I'm seeing in your notes, I'd recommend:
+> - **[Modality]** — [why it fits based on their history]
+> - **[Modality]** — [why it fits]
+>
+> Does that sound right? You can also add others or choose something different.
+
+**If imports don't provide enough context**, or **if user didn't import:**
+
+> Which therapeutic approaches would you like? Pick any combination (e.g., "1,2,3"):
 >
 > 1. **CBT** - Thoughts affect feelings and actions
 > 2. **ACT** - Values-based, mindful acceptance
@@ -104,6 +148,10 @@ Ask these conversationally, one at a time.
 >
 > (Default: 1)
 
+**After selection, remind user:**
+
+> You can change these anytime—just ask. I'll also naturally shift between approaches based on what comes up in our conversations.
+
 **Map selections to modality files:**
 - 1 → `modalities/cbt.md`
 - 2 → `modalities/act.md`
@@ -117,37 +165,6 @@ Ask these conversationally, one at a time.
 - 10 → `modalities/psychodynamic.md`
 - 11 → `modalities/sfbt.md`
 - 12 → `modalities/somatic-experiencing.md`
-
-### 5. Session Structure
-
-> How structured do you want sessions?
->
-> 1. **Structured** - Homework, exercises, progress tracking
-> 2. **Moderate** - Some structure, flexible approach
-> 3. **Freeform** - Just conversation, minimal assignments
->
-> (Default: 2)
-
-**Map selection to structure file:**
-- 1 → `structures/structured.md`
-- 2 → `structures/moderate.md`
-- 3 → `structures/freeform.md`
-
-### 6. Storage Location
-
-> Where should your therapy files be stored?
->
-> 1. `~/{therapist_name}` - Simple
-> 2. `~/Documents/{therapist_name}` - In Documents
-> 3. Custom path
->
-> (Default: 1)
-
-### 7. Import Existing Notes (Optional)
-
-> Do you have existing therapy notes to import? (ChatGPT exports, markdown, PDF, text files)
-
-If yes, ask for file paths. Store paths for processing during first session.
 
 ---
 
