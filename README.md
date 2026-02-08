@@ -55,16 +55,31 @@ During setup, you choose how your AI therapist communicates:
 |-------|-------------|
 | **Warm 4o-Style** | Like a good friend who asks insightful questions |
 | **Direct & Challenging** | Will push back, asks probing questions |
-
-Want more options? The [Expansion Pack](#expansion-pack) includes 3 additional styles.
+| **Warm & Supportive** | Gentle, validating, and nurturing |
+| **Coach** | Action-oriented, goal-focused, accountability |
+| **Grounded & Real** | Down-to-earth, honest, uses humor |
+| **Contemplative & Spacious** | Calm, unhurried, invites awareness over analysis |
+| **Philosophical & Existential** | Meaning-focused, engages with deeper questions warmly |
+| **Creative & Playful** | Metaphor-driven, imaginative, uses storytelling |
 
 ### Therapeutic Approaches
 
-Your AI therapist uses evidence-based approaches:
+Your AI therapist uses evidence-based approaches — choose any combination during setup:
 
-- **CBT** — Identify and challenge unhelpful thought patterns
-
-Want more approaches? The [Expansion Pack](#expansion-pack) includes ACT, DBT Skills, Somatic Experiencing, and more.
+| Approach | Description |
+|----------|-------------|
+| **CBT** | Identify and challenge unhelpful thought patterns |
+| **ACT** | Values-based action, mindful acceptance |
+| **CFT** | Self-compassion, shame work, emotion system rebalancing |
+| **DBT Skills** | Emotional regulation, distress tolerance |
+| **IFS** | Parts work, Self-leadership, internal system mapping |
+| **Lifespan Integration** | Body-based trauma integration |
+| **Motivational Interviewing** | Ambivalence exploration, change talk, autonomy |
+| **Narrative Therapy** | Externalization, re-authoring, preferred stories |
+| **Polyvagal-Informed Work** | Nervous system states, safety, vagal toning |
+| **Psychodynamic** | Understanding patterns from the past |
+| **SFBT** | Solution-focused, strengths-based, future-oriented |
+| **Somatic Experiencing** | Nervous system awareness and regulation |
 
 ### How Sessions Work
 
@@ -82,42 +97,25 @@ Everything is stored as simple text files you can read anytime:
 your-therapist-folder/
 ├── CLAUDE.md           # Your therapist's personality
 ├── profile.md          # Your ongoing profile
-├── sessions/           # Session notes
-│   ├── 2024-01-15.md
-│   ├── 2024-01-18.md
+├── sessions/           # Session notes (YYYY-MM-DD.md)
 │   └── ...
 └── .therapy/           # Framework components (auto-updated)
     ├── version.json
     ├── safety-protocol.md
+    ├── persona.md
     ├── session-structure.md
-    └── modalities/
-        ├── cbt.md
-        └── ...
+    ├── modalities/         # Your active modalities
+    │   ├── cbt.md
+    │   └── ...
+    └── library/            # All available options
+        ├── personas/
+        ├── modalities/
+        └── structures/
 ```
 
 The `.therapy/` folder contains the therapeutic framework—safety protocols, modalities, and session structure. These can be updated independently without touching your personal data.
 
 No special software needed to view your own notes.
-
----
-
-## Expansion Pack
-
-Want more communication styles and therapeutic approaches? **Inner Dialogue: Deeper** adds:
-
-**3 Additional Styles:**
-- Warm & Supportive (validation first, gentle challenges)
-- Coach (action-oriented, accountability)
-- Grounded & Real (down-to-earth, uses humor)
-
-**5 Additional Modalities:**
-- ACT (Acceptance and Commitment Therapy)
-- DBT Skills (emotional regulation, distress tolerance)
-- Lifespan Integration (body-based trauma work)
-- Psychodynamic (understanding patterns from the past)
-- Somatic Experiencing (nervous system regulation)
-
-**[Get Inner Dialogue: Deeper](https://gumroad.com/l/inner-dialogue-deeper)** — Pay what you want (including free).
 
 ---
 
@@ -214,7 +212,10 @@ MIT License. See [LICENSE](LICENSE).
 
 ## Support
 
-This isn't my full-time gig, but I want to keep improving it based on community feedback. If you find it helpful, consider [buying me a coffee](https://buymeacoffee.com/ataglianetti).
+This is a free, open-source project. If you find it helpful, consider supporting continued development:
+
+- [Buy me a coffee](https://buymeacoffee.com/ataglianetti)
+- [Sponsor on GitHub](https://github.com/sponsors/ataglianetti)
 
 ---
 

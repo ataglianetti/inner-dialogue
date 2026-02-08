@@ -60,8 +60,8 @@ Your therapist is waiting. Say hello when you're ready.
 Claude will guide you through setup by asking a few questions:
 
 1. **Therapist name** — What to call your AI therapist (e.g., Sage, Willow, Quinn)
-2. **Communication style** — Warm 4o-style or direct & challenging (more available with Expansion Pack)
-3. **Therapeutic approaches** — CBT by default (Expansion Pack adds ACT, DBT Skills, and more)
+2. **Communication style** — Choose from 8 styles (Warm, Direct, Coach, and more)
+3. **Therapeutic approaches** — Choose from 12 evidence-based approaches (CBT, ACT, DBT Skills, IFS, and more)
 4. **Storage location** — Where to save your session files
 5. **Import history** (optional) — Bring in notes from ChatGPT or other tools
 
@@ -189,11 +189,7 @@ You can change your therapist's configuration anytime—just ask during a sessio
 
 Say: **"switch persona"**
 
-Choose from:
-- Warm 4o-Style
-- Direct & Challenging
-
-With the [Expansion Pack](#expansion-pack): Warm & Supportive, Coach, Grounded & Real
+Choose from 8 styles including Warm 4o-Style, Direct & Challenging, Warm & Supportive, Coach, Grounded & Real, Contemplative & Spacious, Philosophical & Existential, and Creative & Playful.
 
 This changes how your therapist communicates without affecting their memory of you.
 
@@ -201,7 +197,7 @@ This changes how your therapist communicates without affecting their memory of y
 
 Say: **"add modality"** or **"remove modality"**
 
-Core includes CBT. With the [Expansion Pack](#expansion-pack), you can add ACT, DBT Skills, Somatic Experiencing, Lifespan Integration, and Psychodynamic.
+Choose from 12 evidence-based approaches: CBT, ACT, CFT, DBT Skills, IFS, Lifespan Integration, Motivational Interviewing, Narrative Therapy, Polyvagal-Informed Work, Psychodynamic, SFBT, and Somatic Experiencing.
 
 ### Change Session Structure
 
