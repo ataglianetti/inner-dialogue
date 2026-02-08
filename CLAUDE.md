@@ -114,10 +114,45 @@ Ask these conversationally, one at a time.
 
 > Do you have existing therapy notes to import? (ChatGPT exports, markdown, PDF, text files)
 
+If no: Continue to step 7.
+
 If yes:
-1. Ask for file paths
-2. Read the files to understand the user's history
-3. Use this context to inform modality recommendations in the next step
+
+1. **Ask for file paths**
+   > What files would you like to import? Provide paths separated by commas.
+   > (e.g., `~/Downloads/chatgpt-export.zip`, `~/Documents/therapy-notes.md`)
+
+2. **Read and categorize each file:**
+   - **profile.md** → Mark for merge (this is an existing profile, not a session)
+   - **ChatGPT JSON/ZIP** → Parse conversations
+   - **Markdown/text files** → Session notes or journals
+   - **PDF** → Extract and read text
+
+3. **Extract profile information** from ALL imported content:
+   - Background and key context
+   - Patterns and recurring themes
+   - Triggers and coping mechanisms
+   - Relationships and dynamics
+   - Values and goals
+   - Any therapeutic observations
+
+   Store this extracted content—you will use it to populate `profile.md` in Step 2 of File Creation.
+
+4. **Convert conversations to session format:**
+   For each conversation or session note:
+   - Extract the date from content if available → use for filename `YYYY-MM-DD.md`
+   - If date unclear, **ask the user** for approximate dates
+   - If user doesn't know, **consolidate undated content** into a single file: `{import_date}-import.md`
+   - Format as session notes (themes, observations, patterns)
+   - Store these to write to `sessions/` during File Creation
+
+5. **Summarize for user and inform modality recommendations:**
+   > I've reviewed your files. Here's what I found:
+   > - [Key patterns you noticed]
+   > - [Themes that emerged]
+   > - [Relevant background]
+   >
+   > This will help me recommend approaches that fit your history.
 
 ### 7. Therapeutic Approaches
 
@@ -242,6 +277,18 @@ Then copy the user's selected modalities to the active modalities folder:
 cp "modalities/{selected_modality_1}.md" "modalities/{selected_modality_2}.md" ... "{storage_path}/.therapy/modalities/"
 ```
 
+**If user imported files**, replace the blank profile with populated content:
+
+Use the Write tool to create `{storage_path}/profile.md` with the profile information extracted during import. Fill in the template sections with actual data:
+- Background → key context from imports
+- Primary Concerns → main issues identified
+- Patterns → recurring themes found
+- Core Beliefs → beliefs revealed in content
+- Coping Mechanisms → what's working and what isn't
+- Values & Goals → values and goals mentioned
+
+Do NOT copy the blank template—create a pre-populated profile.
+
 ### Step 3: Create CLAUDE.md (use Write tool)
 
 Read `CLAUDE.template.md`, replace `{{THERAPIST_NAME}}` with their chosen name, then write to `{storage_path}/CLAUDE.md`.
@@ -279,6 +326,34 @@ chmod +x "{storage_path}/start-session.command"
 ```bash
 printf '@echo off\r\ncd /d "%s"\r\nclaude\r\n' "{storage_path}" > "{storage_path}/start-session.bat"
 ```
+
+### Step 6: Create Session Files from Imports (if applicable)
+
+If imported conversations were processed, write each to `{storage_path}/sessions/YYYY-MM-DD.md`:
+
+```markdown
+# Session: YYYY-MM-DD
+
+## Key Themes
+- [Themes from that conversation]
+
+## Emotional State
+- [Observations about affect]
+
+## Patterns Noted
+- [Patterns observed]
+
+## Observations
+- [Therapeutic notes]
+
+---
+*Imported from [source]*
+```
+
+For multiple sessions on the same date, use: `YYYY-MM-DD-2.md`, `YYYY-MM-DD-3.md`, etc.
+
+For undated content (user couldn't provide dates), consolidate into a single file:
+`{import_date}-import.md` containing all undated sessions with clear separators.
 
 **Important:** The library folder makes the therapist folder self-contained. Users can delete the inner-dialogue repo after setup.
 
