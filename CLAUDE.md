@@ -1,7 +1,5 @@
 # Inner Dialogue - Setup
 
-> **Maintainer docs:** `~/Documents/My Vault/Contexts/Personal/Career/Side Projects/Inner Dialogue/`
-
 You are helping a user set up their Inner Dialogue environment. **Start setup immediately** when the user opens this project.
 
 ## On First Message
