@@ -146,13 +146,26 @@ Your AI therapist:
 
 ## Privacy
 
-All your files stay on your computer. Nothing is uploaded by this toolkit.
+**Your files stay on your computer.** Session notes, your profile, and therapeutic framework components are never uploaded anywhere by this toolkit.
 
-When you chat, your messages go through the AI provider you're using (Claude or ChatGPT). Their privacy policies apply, but API access is more private than their consumer chat apps—your conversations aren't used to train their models.
+**Your conversations do pass through AI servers.** When you chat, your messages are sent to whichever AI provider you're using (Anthropic, OpenAI, Google, etc.) for processing. This is how all AI tools work, including ChatGPT and Claude.ai.
 
-**Want more privacy options?** See [SECURITY.md](SECURITY.md) for:
+The difference is what happens after:
+
+| Platform | Data Retention | Used for Training? |
+|----------|---------------|-------------------|
+| **Claude Code (API)** | 7 days, then deleted | No |
+| **Claude.ai** | 30 days (up to 5 years if you opt into training) | Only if you opt in |
+| **ChatGPT** | Indefinitely unless you delete | Only if you opt in |
+| **Local models** | Never leaves your machine | No |
+
+API access (what Claude Code and similar tools use) is meaningfully more private than consumer chat apps. Your conversations aren't stored long-term and aren't used to train models.
+
+For full details, see [Anthropic's privacy policy](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data) and [OpenAI's data retention policy](https://help.openai.com/en/articles/8983778-chat-and-file-retention-policies-in-chatgpt).
+
+**Want even more privacy?** See [SECURITY.md](SECURITY.md) for:
 - Password-protected folders
-- Running a fully local AI (nothing leaves your computer)
+- Running a fully local AI (nothing leaves your computer at all)
 
 ---
 
