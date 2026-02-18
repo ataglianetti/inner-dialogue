@@ -154,7 +154,8 @@ The difference is what happens after:
 
 | Platform | Data Retention | Used for Training? |
 |----------|---------------|-------------------|
-| **Claude Code (API)** | 7 days, then deleted | No |
+| **Claude Code (API key)** | 7 days, then deleted | No |
+| **Claude Code (Pro/Max plan)** | 30 days (up to 5 years if you opt into training) | Only if you opt in |
 | **Claude.ai** | 30 days (up to 5 years if you opt into training) | Only if you opt in |
 | **ChatGPT** | Indefinitely unless you delete | Only if you opt in |
 | **Local models** | Never leaves your machine | No |
