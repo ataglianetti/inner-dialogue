@@ -4,6 +4,13 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.1.2] - 2026-05-09
+
+### Fixed
+- **Profile updates now target specific sections** — At session end, the AI must match each update to an existing H2 section in `profile.md` rather than appending freeform. Prevents `profile.md` from accumulating unstructured content over many sessions.
+
+---
+
 ## [2.1.1] - 2026-02-08
 
 ### Fixed

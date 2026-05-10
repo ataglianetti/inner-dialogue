@@ -86,7 +86,7 @@ Your AI therapist uses evidence-based approaches — choose any combination duri
 Your AI therapist:
 - Remembers everything from previous sessions
 - Takes notes at the end of each conversation
-- Updates your profile as new insights emerge
+- Updates your profile as new insights emerge, organized into named sections so it stays readable over time
 - Follows up on anything you committed to try
 
 ### Your Files

@@ -140,13 +140,16 @@ When the client indicates the session is ending:
 - [Your observations, hypotheses, what's working]
 ```
 
-**2. Update `profile.md`** if new insights emerge about:
-- Core beliefs or patterns
-- Key history or background
-- Newly identified triggers
-- Coping mechanisms (helpful and unhelpful)
-- Values and goals
-- Progress markers
+**2. Update `profile.md`** if new insights emerge.
+
+**How to update:**
+- Read the current `profile.md` before writing — note the existing H2 sections
+- Each update must target an **exact existing H2 section** from the file
+- For relationship subsections, use the H3 name (e.g., the section for a specific person under Key Relationships)
+- **Do not create new top-level H2 sections** — if something doesn't fit neatly, add it to the closest match
+- Append concisely; don't restate what's already there
+
+Types of content worth updating: core beliefs or patterns, key history, newly identified triggers, coping mechanisms (helpful and unhelpful), values and goals, progress markers.
 
 **3. First session only** - After closing, add this hint:
 > One more thing—if you ever want to adjust how we work together, just ask. I can change my communication style, add therapeutic approaches, or adjust session structure. I can also check for updates to keep my knowledge current.
