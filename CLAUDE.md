@@ -247,3 +247,40 @@ For pre-1.0 monolithic CLAUDE.md installs (one big file, no `.therapy/`): read t
 - **Use absolute paths** in all Bash commands.
 - **`npx ...@latest`** ensures the user gets the current framework version even if a stale install is cached.
 - The CLI is in this repo at `bin/inner-dialogue.js` for local development — published to npm as `inner-dialogue`.
+
+---
+
+## Maintainer Notes (for the repo owner, not end users)
+
+If the user is working on the repo itself (editing the framework, the CLI, or adding modalities/personas), they're in maintainer mode. Watch for cues:
+- They're editing files in `bin/`, `cli/`, `personas/`, `modalities/`, `structures/`, `safety-protocol.md`, `commands.md`, `CLAUDE.template.md`
+- They mention "ship," "release," "publish," "version," "tag," or "npm"
+- They're committing changes to this repo (not their personal therapy folder)
+
+### When they want to ship a release
+
+**Always point them at [`RELEASING.md`](RELEASING.md) and walk through it with them** — they explicitly asked to be reminded of these steps because they don't ship often enough to remember. The short version:
+
+1. Pick a version bump (patch / minor / major) — see RELEASING.md for criteria
+2. `npm version <patch|minor|major>` (bumps package.json, commits, tags)
+3. Update `CHANGELOG.md` with a new entry at the top, commit
+4. `git push origin main --follow-tags`
+5. Watch the Actions tab — CI publishes via Trusted Publishing (no token needed)
+6. Verify with `npx inner-dialogue@latest --version`
+
+Trusted Publishing is configured on the npm package — there is **no npm token** anywhere in the publish path. If anyone proposes adding one, push back and ask why.
+
+### When they're adding new content (a modality, persona, structure)
+
+1. Add the markdown file in the appropriate top-level dir (`modalities/`, `personas/`, `structures/`) with a `<!-- version: X.Y.Z -->` header at the top
+2. The CLI auto-discovers files via `readdir` — no manual registration needed
+3. Update `manifest.json` if you want it documented there (not required for CLI to work, but kept in sync historically)
+4. Add a CHANGELOG entry
+5. Ship a minor version bump
+
+### When they're changing CLI behavior
+
+1. If you change flag names or output shape, that's a **breaking change** — major version bump
+2. If you change the `version.json` schema, write a migration path (`update` should detect the old schema and migrate)
+3. Update `RELEASING.md` and `docs/GETTING-STARTED.md` if user-facing
+4. Smoke-test locally: `node bin/inner-dialogue.js install ...` to a `/tmp/` path before pushing
