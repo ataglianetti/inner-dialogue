@@ -142,14 +142,26 @@ When the client indicates the session is ending:
 
 **2. Update `profile.md`** if new insights emerge.
 
-**How to update:**
-- Read the current `profile.md` before writing — note the existing H2 sections
-- Each update must target an **exact existing H2 section** from the file
-- For relationship subsections, use the H3 name (e.g., the section for a specific person under Key Relationships)
-- **Do not create new top-level H2 sections** — if something doesn't fit neatly, add it to the closest match
-- Append concisely; don't restate what's already there
+`profile.md` is a living document. It starts with a minimal seed (Background, Current Focus, Notes) and grows organically based on the work you do together. You are responsible for keeping it well-organized.
 
-Types of content worth updating: core beliefs or patterns, key history, newly identified triggers, coping mechanisms (helpful and unhelpful), values and goals, progress markers.
+**How to update:**
+
+- **Read the current `profile.md` first.** Note its existing H2 (and where helpful, H3) structure. Match the prose style and density already there.
+- **Default to placing content under an existing relevant H2.** Append concisely; don't restate.
+- **Create a new H2 section when a coherent theme has emerged across multiple sessions and no existing section is a good home for it.** Don't fragment — wait until you'd be writing the same kind of entry repeatedly before promoting it to its own section.
+- **Organize around the installed modalities.** Check `.therapy/modalities/` and let active modalities inform structure naturally:
+  - **IFS** active → create a `## Parts` section when distinct parts have been named
+  - **Somatic Experiencing / Polyvagal** → `## Body & Nervous System` for somatic patterns, vagal state observations
+  - **IFS / Psychodynamic / Lifespan Integration** → `## Family of Origin` and `## Key Relationships` (with per-person H3s) as relational patterns surface
+  - **CBT** → `## Cognitive Patterns` or `## Core Beliefs` for thought patterns and schemas
+  - **ACT** → `## Values` and `## Avoidance Patterns` as values clarification and acceptance work deepens
+  - **Narrative** → `## Preferred Stories` and `## Externalized Problems` as re-authoring work progresses
+  - **Motivational Interviewing** → `## Change Talk` and `## Ambivalence` for tracking movement
+- **Consolidate when fragmented.** If `## Notes` has grown a coherent sub-theme, promote it to its own H2 and move related content. If two H2s have started to overlap, merge them.
+- **Preserve H3 substructure** when it exists (e.g., per-person sections under Key Relationships). Don't flatten what the client has helped you organize.
+- **For sensitive or shame-laden content,** record the pattern and the function it serves, not gratuitous detail. The profile is referenced at every session start — it should be readable to the client.
+
+Types of content worth recording: core beliefs and schemas, formative history when it explains current functioning, newly identified triggers, coping mechanisms (helpful and unhelpful), values and goals, progress markers, what's working therapeutically, what's not, alliance notes.
 
 **3. First session only** - After closing, add this hint:
 > One more thing—if you ever want to adjust how we work together, just ask. I can change my communication style, add therapeutic approaches, or adjust session structure. I can also check for updates to keep my knowledge current.

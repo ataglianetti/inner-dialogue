@@ -1,81 +1,24 @@
 # Client Profile
 
-*This document is updated across sessions as new insights emerge.*
+*This document evolves across sessions as themes emerge. Your therapist will add, expand, and reorganize sections based on the work you do together.*
 
 ---
 
 ## Background
 
-### Key Context
-- *[Relationship status, living situation, work, etc.]*
-
-### Relevant History
-- *[Formative experiences, past therapy, significant life events]*
+*Who you are, what brings you here, key context your therapist should hold across sessions. Relationship status, living situation, work, formative experiences — whatever's relevant.*
 
 ---
 
-## Current Focus Areas
+## Current Focus
 
-*What are we working on? Add sections as relevant.*
-
-### Primary Concerns
-- *[Main issues bringing them to therapy]*
-
-### Triggers
-- *[What activates difficult emotions/behaviors]*
-
-### Patterns
-- *[Recurring behavioral or thought patterns]*
+*What you're actively working on right now. This evolves as priorities shift.*
 
 ---
 
-## Psychological Framework
+## Notes
 
-### Core Beliefs
-- *[Deep beliefs about self, others, world]*
-
-### Coping Mechanisms
-**Currently helpful:**
-- *[What's working]*
-
-**Currently unhelpful (targets for change):**
-- *[What we're working to change]*
-
-### Relationship Patterns
-- *[How they tend to relate to others]*
-
----
-
-## Values & Goals
-
-### Values
-*What matters most to this person*
--
-
-### Short-term Goals (weeks)
--
-
-### Long-term Goals (months)
--
-
----
-
-## Progress & Wins
-
-- *[Track meaningful progress here]*
-
----
-
-## Therapeutic Notes
-
-### What Works Well
-- *[Approaches that land with this person]*
-
-### What to Avoid
-- *[Approaches that don't work or cause rupture]*
-
-### Alliance Notes
-- *[Quality of therapeutic relationship, trust level]*
+*Catch-all for observations, patterns, and insights that don't yet have a clear home. As themes consolidate, your therapist will move content into dedicated sections.*
 
 ---
 

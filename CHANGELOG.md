@@ -4,6 +4,22 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.3.0] - 2026-05-23
+
+### Changed
+- **Profile structure is now organic, not template-driven.** New installs ship with a minimal seed (`Background`, `Current Focus`, `Notes`) instead of a fixed 6-section template. The LLM is explicitly instructed to add H2 sections as themes emerge across sessions and to organize structure around active modalities — IFS work surfaces a `Parts` section, somatic work surfaces `Body & Nervous System`, narrative work surfaces `Preferred Stories`, etc.
+- **CLAUDE.template.md profile-update logic rewritten** to invite section creation when themes consolidate, consolidate fragmented content into dedicated H2s, and preserve H3 substructure (per-person relationship sections, etc.).
+- **`doctor` validates structure presence, not template adherence.** A profile with 4+ H2 sections is assumed to have evolved its own coherent structure and isn't second-guessed. Smaller profiles get a soft warning if they lack a Background section (or equivalent).
+
+### For Existing Users
+Your folder isn't affected by this release — the LLM-behavior change lives in `CLAUDE.template.md`, which is generated at install time and never modified by `update` (it's user-owned). Your existing profile and CLAUDE.md keep working as they have been. If you want the new profile-evolution behavior for your therapist, either:
+- Re-install over your folder with `npx inner-dialogue install --force --path <your-folder> ...` (regenerates `CLAUDE.md` from the new template; preserves `profile.md` and `sessions/`), or
+- Manually copy the new "How to update profile.md" block from this repo's `CLAUDE.template.md` into your therapist's `CLAUDE.md`.
+
+Most existing users won't need to do either — your therapist has likely already been creating H2 sections organically (the old "don't create new H2s" instruction was widely ignored in practice once profiles got rich enough).
+
+---
+
 ## [2.2.3] - 2026-05-23
 
 ### Changed

@@ -4,16 +4,10 @@ import { existsSync } from 'node:fs';
 import { therapyPaths } from './lib/paths.js';
 import { readVersionJson } from './lib/version.js';
 
-const TEMPLATE_PROFILE_SECTIONS = [
-  'Background',
-  'Current Focus Areas',
-  'Psychological Framework',
-  'Values & Goals',
-  'Progress & Wins',
-  'Therapeutic Notes',
-];
-
-const MINIMUM_H2_COUNT = 3;
+// Minimal seed sections. Profiles are expected to evolve beyond these — the
+// LLM is instructed to add H2s as themes emerge and reorganize around active
+// modalities. We only warn if the file appears truly unstructured.
+const SEED_PROFILE_SECTIONS = ['Background', 'Current Focus', 'Notes'];
 
 function checkProfileStructure(content) {
   const errors = [];
@@ -30,24 +24,20 @@ function checkProfileStructure(content) {
     return { errors, warnings };
   }
 
-  if (h2s.length < MINIMUM_H2_COUNT) {
-    warnings.push(
-      `profile.md has only ${h2s.length} H2 section${
-        h2s.length === 1 ? '' : 's'
-      } — consider adding more so session insights have clear places to land`
-    );
+  // If the profile has a healthy number of H2s, assume it has evolved its own
+  // structure and don't second-guess it.
+  if (h2s.length >= 4) {
+    return { errors, warnings };
   }
 
-  const missing = TEMPLATE_PROFILE_SECTIONS.filter((s) => !h2s.includes(s));
-  if (missing.length === TEMPLATE_PROFILE_SECTIONS.length) {
+  // Small profile — check it has at least one seed-ish section to give the LLM
+  // somewhere to start. Background and Current Focus are the most universal.
+  const hasBackground =
+    h2s.some((h) => /background/i.test(h)) ||
+    h2s.some((h) => /context|history/i.test(h));
+  if (!hasBackground) {
     warnings.push(
-      'profile.md uses none of the template H2 sections, but has its own structure. This is fine — the LLM targets existing H2s, not template ones. Listed for awareness only.'
-    );
-  } else if (missing.length > 0) {
-    warnings.push(
-      `profile.md is missing some template H2 sections: ${missing.join(
-        ', '
-      )}. Not required — the LLM targets your existing H2s — but consider whether content for these themes lives elsewhere in your file.`
+      'profile.md has no Background section (or equivalent). New profiles should seed with at least Background, Current Focus, and Notes — the LLM grows structure from there.'
     );
   }
 
