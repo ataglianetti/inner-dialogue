@@ -107,17 +107,34 @@ function printResult(result, json) {
     if (result.message) process.stdout.write(`\n${result.message}\n`);
     return;
   }
-  if (result.issues !== undefined) {
-    if (result.ok) {
+  if (result.errors !== undefined || result.issues !== undefined) {
+    const errs = result.errors || result.issues || [];
+    const warns = result.warnings || [];
+
+    if (errs.length === 0 && warns.length === 0) {
       process.stdout.write('All checks passed:\n');
       for (const c of result.checks) process.stdout.write(`  ok  ${c}\n`);
-    } else {
-      process.stdout.write('Issues found:\n');
-      for (const i of result.issues) process.stdout.write(`  !!  ${i}\n`);
-      if (result.checks.length) {
-        process.stdout.write('\nPassed:\n');
-        for (const c of result.checks) process.stdout.write(`  ok  ${c}\n`);
-      }
+      return;
+    }
+
+    if (errs.length) {
+      process.stdout.write(`Errors (${errs.length}):\n`);
+      for (const i of errs) process.stdout.write(`  !!  ${i}\n`);
+    }
+    if (warns.length) {
+      process.stdout.write(
+        `${errs.length ? '\n' : ''}Warnings (${warns.length}):\n`
+      );
+      for (const w of warns) process.stdout.write(`  ~~  ${w}\n`);
+    }
+    if (result.checks.length) {
+      process.stdout.write('\nPassed:\n');
+      for (const c of result.checks) process.stdout.write(`  ok  ${c}\n`);
+    }
+    if (errs.length === 0 && warns.length > 0) {
+      process.stdout.write(
+        '\nNo errors. Warnings are informational — your folder works fine as-is.\n'
+      );
     }
   }
 }

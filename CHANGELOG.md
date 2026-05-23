@@ -4,6 +4,15 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.2.3] - 2026-05-23
+
+### Changed
+- **`doctor` now distinguishes errors from warnings.** Template H2 section misses in `profile.md` are demoted from errors to soft warnings — the template's own prompt invites users to add custom sections, and the LLM's update logic targets existing H2s rather than template-specific ones. Profiles that evolved their own structure (common for any folder older than a few weeks) no longer fail `doctor`. Real structural problems (missing `.therapy/`, malformed `version.json`, missing `profile.md`, zero H2s) remain errors.
+- `doctor` exits 0 on warnings-only, 1 on errors. Output visually separates errors (`!!`) from warnings (`~~`).
+- Legacy `version.json` schema is now a warning, not an error — the file still works, the migration is just recommended.
+
+---
+
 ## [2.2.2] - 2026-05-23
 
 ### Fixed
