@@ -1,0 +1,66 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'bin/**'
+      - 'cli/**'
+      - 'personas/**'
+      - 'modalities/**'
+      - 'structures/**'
+      - 'safety-protocol.md'
+      - 'commands.md'
+      - 'CLAUDE.template.md'
+      - 'profile.template.md'
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify package.json version matches tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "Tag $TAG_VERSION does not match package.json version $PKG_VERSION"
+            exit 1
+          fi
+      - name: Smoke test CLI
+        run: |
+          node bin/inner-dialogue.js --version
+          node bin/inner-dialogue.js --help > /dev/null
+          node bin/inner-dialogue.js install \
+            --name CITest --path "$RUNNER_TEMP/ci-test" \
+            --persona warm-4o --structure moderate \
+            --modalities cbt --json
+          node bin/inner-dialogue.js doctor --path "$RUNNER_TEMP/ci-test" --json
+          node bin/inner-dialogue.js update --path "$RUNNER_TEMP/ci-test" --dry-run --json
+      - name: npm pack (dry-run)
+        run: npm pack --dry-run
+
+  publish:
+    needs: smoke-test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

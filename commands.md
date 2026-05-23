@@ -1,4 +1,4 @@
-<!-- version: 1.2.0 -->
+<!-- version: 1.3.0 -->
 # Customization Commands
 
 The client can request changes to their therapy setup during a session. All customization files are stored locally in `.therapy/library/`.
@@ -63,39 +63,42 @@ Recognize conversational requests, not just exact command phrases:
 
 ## When client says "update", "check for updates", or "get latest version"
 
-1. Read `.therapy/version.json` for current versions
+Run the CLI — it handles the diffing, backup, and conflict detection. You handle the conversation.
 
-2. Fetch the manifest from GitHub:
+1. **Preview the plan** (no writes):
+   ```bash
+   npx inner-dialogue@latest update --path "{therapy_folder}" --dry-run --json
    ```
-   https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/manifest.json
-   ```
 
-3. For each component in `components`, fetch the file and extract its version from `<!-- version: X.Y.Z -->` header
+2. **Parse the JSON result** and surface it:
+   - `plan.updates` → files that will be updated, with version transitions
+   - `plan.new_files` → new framework files being added
+   - `plan.skipped_user_edited` → files the client modified, which will be preserved
+   - `plan.unchanged` → already on latest (no need to mention unless asked)
 
-4. Compare with installed versions and show available updates:
-   > **Updates available:**
-   > - safety-protocol: 1.0.0 → 1.1.0 ⚠️ (recommended)
-   > - commands: (new) → 1.0.0
+3. **Show the user**, e.g.:
+   > Updates available:
+   > - `safety-protocol.md`: 1.0.0 → 1.1.0 (recommended)
+   > - `commands.md`: 1.2.0 → 1.3.0
+   > - 2 new modality options to add to your library
    >
-   > Apply updates?
+   > I noticed you've customized `cbt.md` — I'll leave your edits alone. (Use `--force` to overwrite.)
+   >
+   > Apply these updates?
 
-5. For approved updates:
-   - Fetch files from GitHub using manifest's `base_url` + `file` path
-   - Write to location specified in manifest's `target`
-   - Update `.therapy/version.json`
+4. **On approval, run without `--dry-run`**:
+   ```bash
+   npx inner-dialogue@latest update --path "{therapy_folder}" --json
+   ```
 
-6. Always recommend safety-protocol updates (crisis resources should never be stale)
+5. **Confirm**, including the backup location from `result.backup`:
+   > Done. Your previous `.therapy/` was snapshotted to `{backup_path}` in case you need to roll back.
 
-7. **Check library for new options:**
-   - Compare files in manifest's `library` section against `.therapy/library/`
-   - If new personas, modalities, or structures are available:
-     > **New options available:**
-     > - 2 new personas (Creative & Playful, Contemplative & Spacious)
-     > - 3 new modalities (IFS, Somatic Experiencing, Narrative)
-     >
-     > Add these to your library?
-   - Fetch each file from `base_url` + file path
-   - Write to the `target` directory
+**Safety guarantees of the updater:**
+- Never touches `profile.md`, `sessions/`, or the root `CLAUDE.md`
+- Snapshots `.therapy/` before any write
+- Skips any framework file whose hash doesn't match the registered hash from install time
+- Always recommend running with the CLI, never replicate the file-ops logic yourself
 
 ## When client says "import", "import notes", or "I have files to import"
 

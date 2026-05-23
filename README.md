@@ -43,6 +43,33 @@ Setup takes about 10 minutes and requires:
 - A computer (Mac or Windows)
 - Claude Code (included with Claude Pro, or pay-per-use)
 
+### Two ways to install
+
+**Conversational** (recommended for most people): Open this repo in Claude Code and the setup walks you through it. The conversation gathers your preferences; the framework installs in the background.
+
+**Direct CLI** (for power users / scripting):
+
+```bash
+npx inner-dialogue install \
+  --name Sage --path ~/Sage \
+  --persona warm-4o --structure moderate \
+  --modalities cbt,ifs
+```
+
+To update later — without touching your profile or session notes:
+
+```bash
+npx inner-dialogue update --path ~/Sage
+```
+
+The updater hashes every framework file at install time. If you've customized one, it's skipped and your edits are preserved. Each run snapshots `.therapy/` to `.therapy.bak-<timestamp>/` before any write.
+
+To validate your folder:
+
+```bash
+npx inner-dialogue doctor --path ~/Sage
+```
+
 ---
 
 ## Features
@@ -208,7 +235,7 @@ This tool works well as a supplement between sessions. Consider mentioning it to
 Yes. You can edit the CLAUDE.md file directly to adjust the approach, style, or focus areas.
 
 **How do I get updates?**
-Just say "update my therapist" or "check for updates" during a session. Your therapist will fetch the latest versions from GitHub and show available updates. Your personal data (profile, sessions) is never touched.
+Just say "update my therapist" or "check for updates" during a session — under the hood your therapist runs `npx inner-dialogue update`, which hash-diffs framework files against the latest release, snapshots your `.therapy/` folder before any write, and skips any file you've customized. Your `profile.md`, `sessions/`, and root `CLAUDE.md` are never touched. You can also run the updater directly: `npx inner-dialogue update --path ~/your-therapist`.
 
 **What if I need more than self-reflection?**
 This is designed for everyday emotional support. For severe symptoms, trauma, or crisis situations, please work with a professional. Your AI therapist will also suggest this when appropriate.

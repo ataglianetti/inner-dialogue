@@ -1,0 +1,48 @@
+{
+  "name": "inner-dialogue",
+  "version": "2.2.0",
+  "description": "Private, persistent AI therapist that lives on your computer.",
+  "type": "module",
+  "bin": {
+    "inner-dialogue": "bin/inner-dialogue.js"
+  },
+  "engines": {
+    "node": ">=18.3"
+  },
+  "files": [
+    "bin/",
+    "cli/",
+    "personas/",
+    "modalities/",
+    "structures/",
+    "safety-protocol.md",
+    "commands.md",
+    "CLAUDE.template.md",
+    "profile.template.md",
+    "manifest.json",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test cli/__tests__/"
+  },
+  "keywords": [
+    "therapy",
+    "ai",
+    "claude",
+    "mental-health",
+    "self-reflection",
+    "journaling"
+  ],
+  "homepage": "https://github.com/ataglianetti/inner-dialogue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ataglianetti/inner-dialogue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ataglianetti/inner-dialogue/issues"
+  },
+  "license": "MIT",
+  "author": "Anthony Taglianetti"
+}
