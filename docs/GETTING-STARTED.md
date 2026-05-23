@@ -34,36 +34,48 @@ Typical cost: $5-20/month depending on how often you chat.
 
 ---
 
-## Step 2: Download Inner Dialogue
+## Step 2: Run Setup
 
-Open Terminal (Mac) or PowerShell (Windows) and run these commands:
+You have two ways to install. Pick whichever feels right.
+
+### Conversational setup (recommended)
+
+Open Terminal (Mac) or PowerShell (Windows) and clone the repo:
 
 ```
 git clone https://github.com/ataglianetti/inner-dialogue.git
 cd inner-dialogue
-```
-
-**Don't have git?** Go to the [GitHub page](https://github.com/ataglianetti/inner-dialogue), click the green "Code" button, choose "Download ZIP", and extract it somewhere you'll remember.
-
----
-
-## Step 3: Run Setup
-
-From the inner-dialogue folder, type:
-
-```
 claude
 ```
 
-Your therapist is waiting. Say hello when you're ready.
+**Don't have git?** Go to the [GitHub page](https://github.com/ataglianetti/inner-dialogue), click the green "Code" button, choose "Download ZIP", and extract it somewhere you'll remember. Then `cd` into that folder and run `claude`.
 
-Claude will guide you through setup by asking a few questions:
+Claude walks you through setup by asking a few questions:
 
 1. **Therapist name** — What to call your AI therapist (e.g., Sage, Willow, Quinn)
 2. **Communication style** — Choose from 8 styles (Warm, Direct, Coach, and more)
 3. **Therapeutic approaches** — Choose from 12 evidence-based approaches (CBT, ACT, DBT Skills, IFS, and more)
 4. **Storage location** — Where to save your session files
 5. **Import history** (optional) — Bring in notes from ChatGPT or other tools
+
+### Direct CLI setup (for power users)
+
+Skip the conversational flow and install directly from npm:
+
+```
+npx inner-dialogue install \
+  --name Sage --path ~/Sage \
+  --persona warm-4o --structure moderate \
+  --modalities cbt,ifs
+```
+
+Available `--persona` values: `warm-4o`, `direct-challenging`, `warm-supportive`, `coach`, `grounded-real`, `contemplative`, `philosophical`, `creative`.
+
+Available `--structure` values: `structured`, `moderate`, `freeform`.
+
+Available `--modalities` values (comma-separated): `cbt`, `act`, `cft`, `dbt-skills`, `ifs`, `lifespan-integration`, `motivational-interviewing`, `narrative`, `polyvagal`, `psychodynamic`, `sfbt`, `somatic-experiencing`.
+
+Running `npx inner-dialogue install` without flags drops into an interactive prompt with the same options.
 
 ### Importing Existing Notes
 
@@ -108,7 +120,7 @@ After setup, you can still add to your history:
 
 ---
 
-## Step 4: Start a Session
+## Step 3: Start a Session
 
 At the end of setup, Claude will ask if you want to start your first session. Say yes!
 
@@ -163,34 +175,55 @@ Make sure you're in the `inner-dialogue` folder (not your therapy folder) when f
 
 ## Updating Your Therapist
 
-Inner Dialogue periodically receives updates—improved safety protocols, refined therapeutic techniques, bug fixes. Here's how to get them:
+Inner Dialogue periodically receives updates — improved safety protocols, refined therapeutic techniques, bug fixes. Here's how to get them:
 
 ### Check for Updates
 
-During any session, just say: **"update my therapist"** or **"check for updates"**
+You have two ways. Either works.
 
-Your therapist will:
-- Fetch the latest versions from GitHub
-- Compare your installed versions with the latest
-- Show what's changed
-- Apply updates you approve
+**During a session:** Say "update my therapist" or "check for updates." Your therapist runs the updater for you, surfaces what will change, and asks for approval.
 
-No need to keep the Inner Dialogue repo after setup—your therapist folder is self-contained and updates directly from GitHub.
+**Direct from terminal:**
+
+```
+npx inner-dialogue update --path ~/Sage
+```
+
+(Replace `~/Sage` with the path to your therapy folder.) Add `--dry-run` to preview without writing.
+
+### What the Updater Does
+
+- Pulls the latest framework files from the npm package
+- Compares them against the SHA-256 hashes recorded at install time
+- Updates files that match their installed hash (safe to overwrite)
+- **Skips files you've customized** and tells you which ones — your edits are preserved
+- Snapshots `.therapy/` to `.therapy.bak-<timestamp>/` before any write, so any update is reversible
 
 ### What Gets Updated
 
 | Component | Updated? | Notes |
 |-----------|----------|-------|
 | Safety protocols | Yes (recommended) | Crisis resources, safety guidelines |
-| Modalities | Yes | Therapeutic technique refinements |
+| Modality library | Yes | New techniques and refinements |
 | Session structures | Yes | Session flow improvements |
-| Your profile.md | Never | Your personal data is untouched |
-| Your sessions/ | Never | Your session history is untouched |
-| Your CLAUDE.md | Never | Your therapist's persona stays the same |
+| Your `profile.md` | **Never** | Your personal data is untouched |
+| Your `sessions/` | **Never** | Your session history is untouched |
+| Your `CLAUDE.md` | **Never** | Your therapist's persona stays the same |
+| Files you customized | Skipped with a warning | Use `--force` to overwrite (backup runs first regardless) |
+
+### Validating Your Folder
+
+If something seems off:
+
+```
+npx inner-dialogue doctor --path ~/Sage
+```
+
+Checks that `profile.md` still has the expected sections, `version.json` is valid, and all framework files are present.
 
 ### Safety Protocol Updates
 
-**Always accept safety protocol updates.** These contain crisis resources and guidelines that should never be stale. Claude will specifically recommend these updates.
+**Always accept safety protocol updates.** These contain crisis resources and guidelines that should never be stale.
 
 ---
 
@@ -238,7 +271,7 @@ Switch between Structured, Moderate, or Freeform session styles.
 
 ### Self-Contained After Setup
 
-After setup completes, your therapist folder is fully self-contained. You can safely delete the inner-dialogue repo if you want—all customization options are stored in your therapist's `.therapy/library/` folder, and updates are fetched directly from GitHub.
+After setup completes, your therapist folder is fully self-contained. You can safely delete the inner-dialogue repo if you cloned it — all customization options are stored in your therapist's `.therapy/library/` folder, and updates come from the npm package via `npx inner-dialogue update`.
 
 ---
 

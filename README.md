@@ -37,15 +37,19 @@ This toolkit solves all of them.
 
 ## Get Started
 
-**Ready to set up your AI therapist?** See the [Getting Started Guide](docs/GETTING-STARTED.md) for step-by-step instructions.
+Setup takes about 10 minutes. You need a Mac or Windows computer and [Claude Code](https://claude.ai/code) (included with Claude Pro, or pay-per-use via the Anthropic API).
 
-Setup takes about 10 minutes and requires:
-- A computer (Mac or Windows)
-- Claude Code (included with Claude Pro, or pay-per-use)
+### Install
 
-### Two ways to install
+**Conversational** (recommended for most people):
 
-**Conversational** (recommended for most people): Open this repo in Claude Code and the setup walks you through it. The conversation gathers your preferences; the framework installs in the background.
+```bash
+git clone https://github.com/ataglianetti/inner-dialogue.git
+cd inner-dialogue
+claude
+```
+
+Claude walks you through setup, gathers your preferences, and installs the framework.
 
 **Direct CLI** (for power users / scripting):
 
@@ -56,19 +60,33 @@ npx inner-dialogue install \
   --modalities cbt,ifs
 ```
 
-To update later — without touching your profile or session notes:
+Run `npx inner-dialogue install` without flags for an interactive prompt.
+
+### Start a session
+
+Once installed, double-click `start-session.command` (Mac/Linux) or `start-session.bat` (Windows) in your therapy folder. Or from terminal: `cd ~/Sage && claude`.
+
+### Update without losing your data
 
 ```bash
 npx inner-dialogue update --path ~/Sage
 ```
 
-The updater hashes every framework file at install time. If you've customized one, it's skipped and your edits are preserved. Each run snapshots `.therapy/` to `.therapy.bak-<timestamp>/` before any write.
+The updater hashes every framework file at install time. If you've customized one, it's skipped and your edits are preserved. Each run snapshots `.therapy/` to `.therapy.bak-<timestamp>/` before any write. Your `profile.md`, `sessions/`, and root `CLAUDE.md` are never touched.
 
-To validate your folder:
+Add `--dry-run` to preview without writing. Add `--force` to overwrite files you've customized (backup runs first regardless).
+
+You can also say "update my therapist" during a session — Claude runs the updater for you and surfaces what will change.
+
+### Validate your folder
 
 ```bash
 npx inner-dialogue doctor --path ~/Sage
 ```
+
+Checks `profile.md` structure, version registry, and framework files. Useful if something seems off.
+
+**Full step-by-step guide:** [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)
 
 ---
 
