@@ -4,6 +4,13 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.2.2] - 2026-05-23
+
+### Fixed
+- **Migration from legacy `version.json` schema now produces a complete registry.** Previously, `update --force` against a pre-2.2.0 folder only recorded hashes for files it wrote — every other framework file that already matched bundled content was left unregistered, causing future updates to re-flag them as "unknown origin." Now `update` detects the legacy schema and folds all `unchanged` files into the new registry alongside any writes, so a single migration run produces a fully-tracked folder. Dry-run output also surfaces this as "Folded into new registry (N)" so users see what the migration accomplishes before applying.
+
+---
+
 ## [2.2.1] - 2026-05-23
 
 ### Added

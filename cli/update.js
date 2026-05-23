@@ -52,6 +52,7 @@ export async function update(opts) {
     (await readVersionJson(paths.versionJson)) ||
     emptyVersionJson('0.0.0');
   const oldFiles = existing.files || {};
+  const isLegacySchema = !existing.files;
   const framework = await loadFramework();
   const pkgJson = JSON.parse(
     await readFile(packageFile('package.json'), 'utf8')
@@ -118,15 +119,27 @@ export async function update(opts) {
     plan.skipped_user_edited = [];
   }
 
+  // On legacy schema, surface that we'll fold unchanged files into the new registry.
+  // This makes dry-run honest about what migration will accomplish.
+  if (isLegacySchema && plan.unchanged.length > 0) {
+    plan.registered_on_migration = plan.unchanged.map((u) => ({
+      path: u.path,
+      version: u.version,
+    }));
+  }
+
   if (opts.dryRun) {
-    return { ok: true, dry_run: true, plan };
+    return { ok: true, dry_run: true, plan, legacy_schema: isLegacySchema };
   }
 
   const willWrite =
     plan.updates.length +
     plan.new_files.length +
     (plan.forced_overwrites?.length || 0);
-  if (willWrite === 0) {
+  const willMigrateRegistry =
+    isLegacySchema && plan.unchanged.length > 0;
+
+  if (willWrite === 0 && !willMigrateRegistry) {
     return {
       ok: true,
       backup: null,
@@ -158,6 +171,17 @@ export async function update(opts) {
     recordFile(newVersion, f.target, f.version, f.hash, f.source);
   }
 
+  // Legacy-schema migration: fold unchanged files into the registry so future
+  // updates don't re-flag them as "unknown origin". Their content already
+  // matches bundled, so we record hash without rewriting the file.
+  if (isLegacySchema) {
+    for (const item of plan.unchanged) {
+      const f = frameworkByTarget.get(item.path);
+      if (!f) continue;
+      recordFile(newVersion, f.target, f.version, f.hash, f.source);
+    }
+  }
+
   await writeVersionJson(paths.versionJson, newVersion);
 
   return {
@@ -165,5 +189,6 @@ export async function update(opts) {
     backup: backupPath,
     plan,
     kit_version: pkgJson.version,
+    legacy_schema_migrated: isLegacySchema,
   };
 }

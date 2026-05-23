@@ -95,6 +95,15 @@ function printResult(result, json) {
       for (const u of p.forced_overwrites)
         process.stdout.write(`  ${u.path}  (was: ${u.reason})\n`);
     }
+    if (p.registered_on_migration && p.registered_on_migration.length) {
+      process.stdout.write(
+        `\nFolded into new registry (${p.registered_on_migration.length}):\n`
+      );
+      process.stdout.write(
+        `  Files already matching the current bundled content. Hashes will be recorded\n` +
+          `  in version.json so future updates can diff against them without flagging.\n`
+      );
+    }
     if (result.message) process.stdout.write(`\n${result.message}\n`);
     return;
   }
