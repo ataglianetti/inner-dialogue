@@ -88,6 +88,13 @@ function printResult(result, json) {
         `\nUse --force to overwrite these. Your edits are backed up regardless.\n`
       );
     }
+    if (p.forced_overwrites && p.forced_overwrites.length) {
+      process.stdout.write(
+        `\nForce-overwritten (${p.forced_overwrites.length}):\n`
+      );
+      for (const u of p.forced_overwrites)
+        process.stdout.write(`  ${u.path}  (was: ${u.reason})\n`);
+    }
     if (result.message) process.stdout.write(`\n${result.message}\n`);
     return;
   }

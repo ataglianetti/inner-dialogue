@@ -88,6 +88,8 @@ Checks `profile.md` structure, version registry, and framework files. Useful if 
 
 **Full step-by-step guide:** [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)
 
+**Existing user from before 2.2.0?** See [MIGRATING.md](MIGRATING.md) for the one-time migration to the hash-aware updater.
+
 ---
 
 ## Features

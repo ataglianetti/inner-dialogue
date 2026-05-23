@@ -229,19 +229,16 @@ Checks that `profile.md` still has the expected sections, `version.json` is vali
 
 ## Migrating from an Older Version
 
-If you set up your therapist before version 1.0.0 (the split-file architecture), you can migrate to the new format:
+If you set up your therapist before version 2.2.0, see [MIGRATING.md](../MIGRATING.md) for the one-time migration to the hash-aware updater. The short version:
 
-1. Open the inner-dialogue repo in Claude Code
-2. Say: **"migrate my existing therapist"**
-3. Claude will:
-   - Read your existing CLAUDE.md to understand your setup
-   - Create the new `.therapy/` folder structure
-   - Preserve all your sessions and profile data
+```bash
+npx inner-dialogue@latest update --path ~/YourFolder --force --dry-run   # preview
+npx inner-dialogue@latest update --path ~/YourFolder --force             # apply
+```
 
-Benefits of migrating:
-- Smaller CLAUDE.md = faster session startup
-- Independent component updates
-- Better organized files
+Your profile and sessions are never touched. The migration only refreshes framework files and generates a fresh hash registry so future `update` runs work normally.
+
+If your folder predates v1.0.0 (no `.therapy/` subdirectory at all), MIGRATING.md covers that case too.
 
 ---
 

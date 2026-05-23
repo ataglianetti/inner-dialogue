@@ -4,6 +4,16 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.2.1] - 2026-05-23
+
+### Added
+- **MIGRATING.md** — Step-by-step guide for users with pre-2.2.0 therapy folders. Documents the one-time `update --force` migration that refreshes framework files and generates a fresh hash registry while leaving `profile.md`, `sessions/`, and root `CLAUDE.md` untouched.
+
+### Fixed
+- **`update --force --dry-run` now actually previews the forced overwrites.** Previously the force-reshuffle of skipped files happened after the dry-run early-return, so users couldn't preview what `--force` would do — making MIGRATING.md's preview step misleading.
+
+---
+
 ## [2.2.0] - 2026-05-22
 
 ### Added
@@ -18,7 +28,7 @@ All notable changes to Inner Dialogue.
 - **`version.json` schema** — Now tracks per-file hashes (`files[path]: {version, hash, source}`) instead of just component versions. Old format auto-migrates on first `update` (treated as unknown-origin until the user confirms).
 
 ### For Existing Users
-Run `npx inner-dialogue update --path <your-folder>` to migrate. Your `profile.md` and `sessions/` are never touched.
+See [MIGRATING.md](MIGRATING.md) for the one-time migration to the hash-aware updater. Your `profile.md`, `sessions/`, and root `CLAUDE.md` are never touched.
 
 ---
 

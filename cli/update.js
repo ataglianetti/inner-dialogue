@@ -113,11 +113,19 @@ export async function update(opts) {
     });
   }
 
+  if (opts.force) {
+    plan.forced_overwrites = plan.skipped_user_edited;
+    plan.skipped_user_edited = [];
+  }
+
   if (opts.dryRun) {
     return { ok: true, dry_run: true, plan };
   }
 
-  const willWrite = plan.updates.length + plan.new_files.length;
+  const willWrite =
+    plan.updates.length +
+    plan.new_files.length +
+    (plan.forced_overwrites?.length || 0);
   if (willWrite === 0) {
     return {
       ok: true,
@@ -136,24 +144,18 @@ export async function update(opts) {
 
   const frameworkByTarget = new Map(framework.map((f) => [f.target, f]));
 
-  for (const item of [...plan.updates, ...plan.new_files]) {
+  const toWrite = [
+    ...plan.updates,
+    ...plan.new_files,
+    ...(plan.forced_overwrites || []),
+  ];
+  for (const item of toWrite) {
     const f = frameworkByTarget.get(item.path);
+    if (!f) continue;
     const targetAbs = join(paths.root, f.target);
     await mkdir(dirname(targetAbs), { recursive: true });
     await writeFile(targetAbs, f.content, 'utf8');
     recordFile(newVersion, f.target, f.version, f.hash, f.source);
-  }
-
-  if (opts.force) {
-    for (const item of plan.skipped_user_edited) {
-      const f = frameworkByTarget.get(item.path);
-      if (!f) continue;
-      const targetAbs = join(paths.root, f.target);
-      await writeFile(targetAbs, f.content, 'utf8');
-      recordFile(newVersion, f.target, f.version, f.hash, f.source);
-    }
-    plan.forced_overwrites = plan.skipped_user_edited;
-    plan.skipped_user_edited = [];
   }
 
   await writeVersionJson(paths.versionJson, newVersion);
