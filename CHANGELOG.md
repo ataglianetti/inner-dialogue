@@ -4,6 +4,13 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.3.1] - 2026-05-23
+
+### Changed
+- **README "How Sessions Work" section updated** to describe the organic profile structure shipped in 2.3.0. Surfaces the seed-then-evolve model and modality-aware sections so users understand the new behavior without having to read the changelog.
+
+---
+
 ## [2.3.0] - 2026-05-23
 
 ### Changed

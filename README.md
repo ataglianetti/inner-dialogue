@@ -133,8 +133,10 @@ Your AI therapist uses evidence-based approaches — choose any combination duri
 Your AI therapist:
 - Remembers everything from previous sessions
 - Takes notes at the end of each conversation
-- Updates your profile as new insights emerge, organized into named sections so it stays readable over time
+- Updates your profile as new insights emerge
 - Follows up on anything you committed to try
+
+**Profile structure grows with you.** New profiles start with a minimal seed (`Background`, `Current Focus`, `Notes`). Your therapist adds and reorganizes sections as themes emerge across sessions, and organizes structure around your active modalities — IFS work surfaces a `Parts` section, somatic work surfaces `Body & Nervous System`, narrative work surfaces `Preferred Stories`, and so on. The profile reflects the actual shape of the work, not an arbitrary a priori taxonomy.
 
 ### Your Files
 
