@@ -4,6 +4,30 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.4.0] - 2026-05-23
+
+### Changed
+- **All 12 modality files comprehensively rewritten** to bring every modality to operational parity with DBT skills (previously the only modality with named, mnemonically packaged protocols). Each file now contains:
+  - **Named protocols** — IFS's 6 F's; CBT's Socratic dialogue + 10 distortions with reframes + Behavioral Activation + Thought Record + Exposure Hierarchy; ACT's three iconic metaphors (Tug of War, Passengers on the Bus, Leaves on a Stream) in full dialogue form; CFT's Compassionate Self protocol + Inner Critic dialogue + Soothing Rhythm Breathing; Psychodynamic's Interpretive Sequence + Transference Recognition; Polyvagal's three state-specific intervention menus; SE's Resourcing + Pendulation + Discharge Recognition scripts; MI's five-level reflection ladder + Change Talk amplification; Narrative's Externalization dialogue + Unique Outcomes protocol; SFBT's Miracle → Scaling → Exceptions chain; Lifespan Integration's Timeline Construction Protocol with explicit AI-limitation framing.
+  - **Signaling cues** — verbatim client language patterns each modality should listen for, pushing activation criteria into the modality files themselves rather than living only in the template router.
+  - **Example AI interventions** — 4–7 full reflections per modality in actual therapist voice, replacing thin "key questions" lists.
+  - **Integrates with** — cross-modality routing rules (e.g., "with compulsive behaviors, IFS leads, CBT follows downstream") so the system stops reinventing composition logic session-by-session.
+  - **Pacing & limitations** including modality-specific AI honesty (SE/LI/IFS depend on real-time tracking text can't fully do) and a generic "Working alongside an external therapist" note positioning Sage to deepen rather than compete with human treatment.
+  - **Homework / between-session work** — 4–6 concrete practices per modality.
+- **7 of 8 persona files padded to warm-4o's depth bar.** Same structural pattern; denser content per section. New across the set: expanded Tone Qualities with nuance, Language Patterns subdivided into 6–9 categories with example phrasings, Challenge Style with a moves table, Conversation Arc as a 5-beat structure tuned to each persona's natural flow, Energy Matching for 5–6 client states. Distinct voices preserved (Coach: action-forward; Contemplative: spacious; Creative: playful/metaphor-rich; Direct-Challenging: sharp/uncompromising; Philosophical: existential; Warm-Supportive: steady reassuring presence; Grounded & Real: direct + warm).
+- **Per-file version bumps `1.0.0 → 1.1.0`** across all 12 modalities and 7 personas (warm-4o was already at 1.1.0 from a prior pass).
+- **`manifest.json` bumped `1.1.0 → 1.2.0`** to reflect the content release.
+
+### For Existing Users
+The `update` CLI detects per-file version changes and rolls them out cleanly:
+- Files you haven't customized are upgraded automatically.
+- Files you've customized are skipped with a warning — your edits are preserved. Re-run with `--force` to overwrite if you want the new versions.
+- `profile.md`, `sessions/`, and `CLAUDE.md` are never touched by `update`.
+
+If you've been using the framework in active sessions, expect noticeably sharper modality work — most of all in IFS, where the previous file stopped at naming parts; the rewrite adds the 6 F's protocol, manager-appreciation scripts, firefighter-as-part framing (vs. CBT habit-substitution), and an Exile-trust protocol for when the wounded part rejects the Self's offering.
+
+---
+
 ## [2.3.1] - 2026-05-23
 
 ### Changed
