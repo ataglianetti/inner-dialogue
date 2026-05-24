@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 
@@ -114,6 +114,117 @@ export async function update(opts) {
     });
   }
 
+  // Active-file refresh: .therapy/persona.md, .therapy/session-structure.md,
+  // and .therapy/modalities/*.md are copies the user's session loads directly.
+  // The library loop above only updates the reference copies under
+  // .therapy/library/. Without this loop, library updates land but active
+  // sessions keep loading the prior version.
+  //
+  // Source resolution: modality active files map to library by filename
+  // (.therapy/modalities/ifs.md → modalities/ifs.md). Persona and
+  // session-structure are slug-less in the active path, so we identify their
+  // library source by hash-matching against library files of the same kind.
+  //
+  // Hash-gating: an active file is safe to refresh if its content matches
+  // either (a) the explicitly-recorded active hash, or (b) the previously-
+  // recorded library hash for its source. This catches both modern installs
+  // (active entries in version.json) and legacy installs (where active
+  // entries weren't recorded but library entries were).
+  const frameworkBySource = new Map();
+  for (const f of framework) {
+    if (f.source) frameworkBySource.set(f.source, f);
+  }
+  const activeToLib = new Map();
+
+  function recordActivePlan(activePath, activeHash, libFile, explicitEntry) {
+    if (activeHash === libFile.hash) {
+      plan.unchanged.push({ path: activePath, version: libFile.version });
+      return;
+    }
+    const recordedActiveHash = explicitEntry?.hash;
+    const recordedLibHash = oldFiles[libFile.target]?.hash;
+    const matchesPrior =
+      (recordedActiveHash && activeHash === recordedActiveHash) ||
+      (recordedLibHash && activeHash === recordedLibHash);
+    if (matchesPrior) {
+      plan.updates.push({
+        path: activePath,
+        from_version: explicitEntry?.version ?? null,
+        to_version: libFile.version,
+      });
+      activeToLib.set(activePath, libFile);
+    } else {
+      plan.skipped_user_edited.push({
+        path: activePath,
+        reason: 'customized active file',
+        to_version: libFile.version,
+      });
+      activeToLib.set(activePath, libFile);
+    }
+  }
+
+  async function processSluglessActive(activePath, libraryKind) {
+    const activeAbs = join(paths.root, activePath);
+    if (!existsSync(activeAbs)) return;
+    const content = await readFile(activeAbs, 'utf8');
+    const activeHash = hashString(content);
+    const explicitEntry = oldFiles[activePath];
+
+    // Prefer explicit source pointer if present
+    let libFile = explicitEntry?.source
+      ? frameworkBySource.get(explicitEntry.source)
+      : null;
+
+    // Fallback: hash-match against library files of this kind, trying current
+    // and previously-recorded hashes
+    if (!libFile) {
+      for (const f of framework) {
+        if (!f.source?.startsWith(libraryKind + '/')) continue;
+        const recordedHash = oldFiles[f.target]?.hash;
+        if (f.hash === activeHash || recordedHash === activeHash) {
+          libFile = f;
+          break;
+        }
+      }
+    }
+
+    if (!libFile) {
+      plan.skipped_user_edited.push({
+        path: activePath,
+        reason: 'unknown origin (no library source matched on hash)',
+      });
+      return;
+    }
+
+    recordActivePlan(activePath, activeHash, libFile, explicitEntry);
+  }
+
+  await processSluglessActive('.therapy/persona.md', 'personas');
+  await processSluglessActive('.therapy/session-structure.md', 'structures');
+
+  // Modalities are slug-named, so filename gives us the library source directly.
+  const modalitiesDir = join(paths.root, '.therapy', 'modalities');
+  if (existsSync(modalitiesDir)) {
+    const entries = await readdir(modalitiesDir);
+    for (const name of entries) {
+      if (!name.endsWith('.md')) continue;
+      const activePath = `.therapy/modalities/${name}`;
+      const slug = name.replace(/\.md$/, '');
+      const libFile = frameworkBySource.get(`modalities/${slug}.md`);
+      if (!libFile) {
+        plan.skipped_user_edited.push({
+          path: activePath,
+          reason: `library source modalities/${slug}.md no longer exists`,
+        });
+        continue;
+      }
+      const activeAbs = join(paths.root, activePath);
+      const content = await readFile(activeAbs, 'utf8');
+      const activeHash = hashString(content);
+      recordActivePlan(activePath, activeHash, libFile, oldFiles[activePath]);
+    }
+  }
+
   if (opts.force) {
     plan.forced_overwrites = plan.skipped_user_edited;
     plan.skipped_user_edited = [];
@@ -163,12 +274,13 @@ export async function update(opts) {
     ...(plan.forced_overwrites || []),
   ];
   for (const item of toWrite) {
-    const f = frameworkByTarget.get(item.path);
+    const isActive = isActiveCopy(item.path);
+    const f = isActive ? activeToLib.get(item.path) : frameworkByTarget.get(item.path);
     if (!f) continue;
-    const targetAbs = join(paths.root, f.target);
+    const targetAbs = join(paths.root, item.path);
     await mkdir(dirname(targetAbs), { recursive: true });
     await writeFile(targetAbs, f.content, 'utf8');
-    recordFile(newVersion, f.target, f.version, f.hash, f.source);
+    recordFile(newVersion, item.path, isActive ? null : f.version, f.hash, f.source);
   }
 
   // Legacy-schema migration: fold unchanged files into the registry so future

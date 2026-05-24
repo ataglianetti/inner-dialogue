@@ -4,6 +4,18 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.4.1] - 2026-05-23
+
+### Fixed
+- **`update` now refreshes active files, not just the library.** Previously, running `update` would refresh the reference copies under `.therapy/library/` but leave the active files your session actually loads (`.therapy/persona.md`, `.therapy/session-structure.md`, `.therapy/modalities/*.md`) on the prior version. Result: users who ran `update` after the v2.4.0 release got the new modality library content but their sessions kept loading the v1.0.0 files. This was a latent bug going back further — any prior library content release had the same gap — it just became loud with v2.4.0's substantial rewrites.
+- **Active files are now hash-gated like library files.** Refresh happens only when the on-disk content matches either the explicitly-recorded active hash, the previously-recorded library hash, or (for persona/session-structure) any library file's known hash of the same kind. Customized active files are preserved and reported in `skipped_user_edited` — re-run with `--force` to overwrite.
+- **Legacy installs (no active entries in version.json) are now backfilled.** For modalities, the active filename gives the library source directly. For persona and session-structure, hash-matching identifies the source. Once refreshed, version.json gains the active entries for cleaner future updates.
+
+### Known Limitation
+If you ran `update` against v2.4.0 (which refreshed the library to 1.1.0 but left the active files at 1.0.0), your `version.json` no longer remembers the 1.0.0 library hashes. The 2.4.1 update flow will mark your active modality/persona files as "customized" rather than auto-refreshing them. Re-run with `--force` to overwrite, or manually copy from `.therapy/library/` to the active slots.
+
+---
+
 ## [2.4.0] - 2026-05-23
 
 ### Changed
