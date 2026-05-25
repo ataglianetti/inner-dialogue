@@ -64,7 +64,7 @@ Run `npx inner-dialogue install` without flags for an interactive prompt.
 
 ### Start a session
 
-Once installed, double-click `start-session.command` (Mac/Linux) or `start-session.bat` (Windows) in your therapy folder. Or from terminal: `cd ~/Sage && claude`.
+Open the Claude AI app (Pro plan) and navigate to your therapy folder, or from terminal: `cd ~/Sage && claude`.
 
 ### Update without losing your data
 

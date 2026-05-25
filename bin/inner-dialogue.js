@@ -60,7 +60,7 @@ function printResult(result, json) {
         `  persona:    ${result.persona}\n` +
         `  structure:  ${result.structure}\n` +
         `  modalities: ${result.modalities.join(', ')}\n\n` +
-        `Start a session: double-click start-session.command (Mac/Linux) or .bat (Windows)\n`
+        `Start a session: open the Claude AI app and navigate to ${result.path}, or run \`claude\` in Terminal from that folder.\n`
     );
     return;
   }
@@ -94,6 +94,16 @@ function printResult(result, json) {
       );
       for (const u of p.forced_overwrites)
         process.stdout.write(`  ${u.path}  (was: ${u.reason})\n`);
+    }
+    if (p.legacy_removed && p.legacy_removed.length) {
+      process.stdout.write(
+        `\nRemoved deprecated launcher files (${p.legacy_removed.length}):\n`
+      );
+      for (const u of p.legacy_removed)
+        process.stdout.write(`  ${u.path}\n`);
+      process.stdout.write(
+        `  Start sessions via the Claude AI app, or run \`claude\` in Terminal.\n`
+      );
     }
     if (p.registered_on_migration && p.registered_on_migration.length) {
       process.stdout.write(

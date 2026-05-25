@@ -126,11 +126,7 @@ At the end of setup, Claude will ask if you want to start your first session. Sa
 
 ### Future Sessions
 
-**Easiest way:** Double-click the launcher script in your therapy folder:
-- Mac/Linux: `start-session.command`
-- Windows: `start-session.bat`
-
-Tip: Drag this to your Dock (Mac) or taskbar (Windows) for one-click access.
+**Easiest way:** Open the Claude AI app (Pro plan), navigate to your therapy folder, and start a session.
 
 **Or use Terminal:**
 ```

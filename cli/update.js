@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, unlink } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 
@@ -63,6 +63,7 @@ export async function update(opts) {
     new_files: [],
     skipped_user_edited: [],
     unchanged: [],
+    legacy_removed: [],
   };
 
   for (const f of framework) {
@@ -225,6 +226,40 @@ export async function update(opts) {
     }
   }
 
+  // Legacy launcher cleanup. start-session.command and start-session.bat were
+  // shipped pre-v2.4.2 as convenience launchers. They're no longer needed —
+  // users start sessions via the Claude AI app or by running `claude` directly.
+  // Only remove if the file matches a known unmodified shipped pattern; leave
+  // customized launchers in place.
+  const legacyLaunchers = [
+    {
+      filename: 'start-session.command',
+      patterns: [
+        `#!/bin/bash\ncd "${paths.root}"\nclaude\n`,
+        `#\\!/bin/bash\ncd "${paths.root}"\nclaude\n`,
+      ],
+    },
+    {
+      filename: 'start-session.bat',
+      patterns: [
+        `@echo off\r\ncd /d "${paths.root}"\r\nclaude\r\n`,
+      ],
+    },
+  ];
+  for (const launcher of legacyLaunchers) {
+    const launcherAbs = join(paths.root, launcher.filename);
+    if (!existsSync(launcherAbs)) continue;
+    const content = await readFile(launcherAbs, 'utf8');
+    if (launcher.patterns.includes(content)) {
+      plan.legacy_removed.push({ path: launcher.filename });
+    } else {
+      plan.skipped_user_edited.push({
+        path: launcher.filename,
+        reason: 'launcher file modified; left in place (no longer needed — use Claude AI app)',
+      });
+    }
+  }
+
   if (opts.force) {
     plan.forced_overwrites = plan.skipped_user_edited;
     plan.skipped_user_edited = [];
@@ -246,7 +281,8 @@ export async function update(opts) {
   const willWrite =
     plan.updates.length +
     plan.new_files.length +
-    (plan.forced_overwrites?.length || 0);
+    (plan.forced_overwrites?.length || 0) +
+    plan.legacy_removed.length;
   const willMigrateRegistry =
     isLegacySchema && plan.unchanged.length > 0;
 
@@ -291,6 +327,14 @@ export async function update(opts) {
       const f = frameworkByTarget.get(item.path);
       if (!f) continue;
       recordFile(newVersion, f.target, f.version, f.hash, f.source);
+    }
+  }
+
+  // Remove deprecated launcher files (only those matching unmodified shipped patterns)
+  for (const item of plan.legacy_removed) {
+    const launcherAbs = join(paths.root, item.path);
+    if (existsSync(launcherAbs)) {
+      await unlink(launcherAbs);
     }
   }
 

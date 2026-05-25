@@ -36,7 +36,5 @@ export function therapyPaths(root) {
     libraryPersonas: join(r, '.therapy', 'library', 'personas'),
     libraryModalities: join(r, '.therapy', 'library', 'modalities'),
     libraryStructures: join(r, '.therapy', 'library', 'structures'),
-    launcherUnix: join(r, 'start-session.command'),
-    launcherWin: join(r, 'start-session.bat'),
   };
 }

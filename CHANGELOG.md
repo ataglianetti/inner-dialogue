@@ -4,6 +4,18 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.4.2] - 2026-05-25
+
+### Removed
+- **`start-session.command` and `start-session.bat` launcher files no longer ship.** Pre-CLI versions of these scripts had a broken shebang (`#\!/bin/bash`) that prevented them from opening on macOS. Even when generated correctly by later CLI versions, the launchers depend on the standalone `claude` command being on PATH — which most users now don't have because Claude Code is built into the Claude AI app. Start sessions by opening the Claude AI app and navigating to your therapy folder, or by running `claude` in Terminal from that folder.
+
+### Changed
+- **`update` now removes deprecated launcher files from existing vaults.** When the launcher matches an unmodified shipped pattern (either the pre-CLI broken shebang or the post-CLI correct version), it's deleted and reported under `Removed deprecated launcher files`. Customized launchers are left in place and surfaced in `skipped_user_edited` so users can decide what to do with them. Backups still cover the launcher files in `.therapy.bak-<timestamp>` regardless.
+- **`install` no longer creates launcher files.** The install success message now points users to the Claude AI app or Terminal directly.
+- Documentation updated across `README.md`, `docs/GETTING-STARTED.md`, `MIGRATING.md`, and `CLAUDE.md` to remove launcher references.
+
+---
+
 ## [2.4.1] - 2026-05-23
 
 ### Fixed

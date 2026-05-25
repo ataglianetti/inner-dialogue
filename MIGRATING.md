@@ -89,13 +89,11 @@ Expected output: `Dry run — no files written.` (no Updates, Added, or Skipped 
 
 ## Step 4: Start a session
 
-Open your therapy folder and run Claude as usual:
+Open the Claude AI app (Pro plan) and navigate to your therapy folder, or from Terminal:
 
 ```bash
 cd ~/Sage && claude
 ```
-
-Or double-click `start-session.command` / `start-session.bat`.
 
 Your therapist will read the refreshed framework files and continue from your existing profile and session history.
 

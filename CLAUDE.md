@@ -18,7 +18,7 @@ Ask for their therapist's name, then provide access instructions:
 
 > To start a session with {therapist_name}:
 >
-> **Option 1:** Double-click `start-session.command` (Mac/Linux) or `start-session.bat` (Windows) in your therapy folder.
+> **Option 1:** Open the Claude AI app (Pro plan) and navigate to your therapy folder.
 >
 > **Option 2:** Terminal: `cd ~/{therapist_name} && claude`
 >
@@ -142,7 +142,6 @@ The CLI:
 - Writes `CLAUDE.md` with the therapist's name interpolated
 - Writes `profile.md` from the template
 - Generates `version.json` with per-file hashes (used by `update`)
-- Creates `start-session.command` and `start-session.bat` launchers
 
 Parse the JSON result. If `ok: true`, continue. If not, surface the error to the user.
 
@@ -175,7 +174,7 @@ Parse the JSON result. If `ok: true`, continue. If not, surface the error to the
 > **Style:** {style}
 > **Approaches:** {approaches}
 >
-> Double-click `start-session.command` (or `.bat` on Windows) to start a session.
+> To start a session, open the Claude AI app and navigate to your therapy folder, or run `cd {storage_path} && claude` in Terminal.
 >
 > Would you like to start your first session now?
 

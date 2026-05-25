@@ -1,4 +1,4 @@
-import { mkdir, writeFile, chmod, readFile, copyFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import { createInterface } from 'node:readline/promises';
@@ -119,15 +119,6 @@ async function writeTemplateClaudeMd(targetPath, therapistName) {
   return rendered;
 }
 
-async function writeLaunchers(paths) {
-  const unix = `#!/bin/bash\ncd "${paths.root}"\nclaude\n`;
-  await writeFile(paths.launcherUnix, unix, 'utf8');
-  await chmod(paths.launcherUnix, 0o755);
-
-  const win = `@echo off\r\ncd /d "${paths.root}"\r\nclaude\r\n`;
-  await writeFile(paths.launcherWin, win, 'utf8');
-}
-
 export async function install(rawOpts) {
   const available = {
     personas: await listLibrary('personas'),
@@ -226,7 +217,6 @@ export async function install(rawOpts) {
   await writeTemplateClaudeMd(paths.claudeMd, opts.name);
 
   await writeVersionJson(paths.versionJson, versionData);
-  await writeLaunchers(paths);
 
   return {
     ok: true,
@@ -235,6 +225,6 @@ export async function install(rawOpts) {
     persona: opts.persona,
     structure: opts.structure,
     modalities: opts.modalities,
-    files_written: Object.keys(versionData.files).length + 3,
+    files_written: Object.keys(versionData.files).length + 1,
   };
 }
