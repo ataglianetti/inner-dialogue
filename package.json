@@ -1,6 +1,6 @@
 {
   "name": "inner-dialogue",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Private, persistent AI therapist that lives on your computer.",
   "type": "module",
   "bin": {
