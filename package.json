@@ -19,6 +19,7 @@
     "commands.md",
     "CLAUDE.template.md",
     "profile.template.md",
+    "claude-settings.template.json",
     "manifest.json",
     "README.md",
     "LICENSE",

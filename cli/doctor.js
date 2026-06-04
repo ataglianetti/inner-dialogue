@@ -99,6 +99,14 @@ export async function doctor(opts) {
     errors.push('profile.md missing');
   }
 
+  if (existsSync(paths.claudeSettings)) {
+    ok.push('.claude/settings.json present');
+  } else {
+    warnings.push(
+      '.claude/settings.json missing — without it the therapist has no signal for current local time (affects session pacing and time-of-day awareness). Run `inner-dialogue update` to scaffold it.'
+    );
+  }
+
   return {
     ok: errors.length === 0,
     errors,
