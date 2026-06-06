@@ -38,5 +38,11 @@ export function therapyPaths(root) {
     libraryStructures: join(r, '.therapy', 'library', 'structures'),
     claudeDir: join(r, '.claude'),
     claudeSettings: join(r, '.claude', 'settings.json'),
+    context: join(r, 'context'),
+    contextIndex: join(r, 'context', 'index.md'),
+    contextPeople: join(r, 'context', 'people'),
+    contextPlaces: join(r, 'context', 'places'),
+    contextConcepts: join(r, 'context', 'concepts'),
+    contextEvents: join(r, 'context', 'events'),
   };
 }

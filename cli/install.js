@@ -157,6 +157,10 @@ export async function install(rawOpts) {
   await mkdir(paths.libraryModalities, { recursive: true });
   await mkdir(paths.libraryStructures, { recursive: true });
   await mkdir(paths.claudeDir, { recursive: true });
+  await mkdir(paths.contextPeople, { recursive: true });
+  await mkdir(paths.contextPlaces, { recursive: true });
+  await mkdir(paths.contextConcepts, { recursive: true });
+  await mkdir(paths.contextEvents, { recursive: true });
 
   const framework = await loadFramework();
   const pkgJson = JSON.parse(
@@ -217,6 +221,10 @@ export async function install(rawOpts) {
 
   if (!existsSync(paths.claudeSettings)) {
     await copyFile(packageFile('claude-settings.template.json'), paths.claudeSettings);
+  }
+
+  if (!existsSync(paths.contextIndex)) {
+    await copyFile(packageFile('context', 'index.template.md'), paths.contextIndex);
   }
 
   await writeTemplateClaudeMd(paths.claudeMd, opts.name);

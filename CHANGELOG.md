@@ -4,6 +4,23 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [Unreleased]
+
+### Added
+- **`context/` knowledge graph — structure layer.** A new top-level folder for subject-level reference: `context/{people,places,concepts,events}/`. Subject files are free-form markdown; event filenames use `YYYY-MM-DD-slug.md` so dates are visible at a glance. `context/index.md` is the routing layer, scaffolded on install from a new `context/index.template.md`. Entries follow `- **Subject** (\`subfolder/slug.md\`) — synthesis. **Active.**`. Lives alongside `profile.md` (about the client) and `sessions/` (chronological) — synthesized per-subject so the therapist doesn't have to grep session history to reconstruct what's known.
+  - **Protocol layer is intentionally not part of this PR.** The semantics of the **Active** flag, when to create/update subject files, drift-discipline rules for reconciling `context/` against `sessions/`, and the read order at session start are scoped to the maintainer's follow-up in `CLAUDE.template.md` — see #8 for the split rationale.
+- **`update.js` scaffold path extended.** The `plan.scaffolded` array (introduced in 2.7.0 for `.claude/settings.json`) now also covers `context/index.md` and the four `context/` subdirectories. Visible in `--dry-run`; the apply phase creates dirs via idempotent `mkdir -p` and copies templates only when the target doesn't exist.
+
+### Changed
+- **`doctor`** warns (not errors) when `context/` or `context/index.md` is missing, suggesting `update` to scaffold. Warnings (not errors) so pre-feature installs don't fail validation before they've upgraded.
+- **`manifest.json` `1.3.0 → 1.4.0`.** Adds `context-index` component with `scaffold_only: true`, matching the pattern established for `claude-settings` in 2.7.0.
+- **npm package `files`** array includes `context/` so the template ships.
+
+### For Existing Users
+Run `inner-dialogue update --path <your-folder>` to scaffold `context/`. Additive — no existing files are touched. `profile.md`, `sessions/`, and `CLAUDE.md` remain protected as always. The protocol layer that teaches the therapist how to read `context/` will land in the follow-up; until then, the folder is staged and ready.
+
+---
+
 ## [2.7.1] - 2026-06-10
 
 ### Fixed

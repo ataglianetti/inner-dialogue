@@ -15,6 +15,7 @@
     "personas/",
     "modalities/",
     "structures/",
+    "context/",
     "safety-protocol.md",
     "commands.md",
     "CLAUDE.template.md",
