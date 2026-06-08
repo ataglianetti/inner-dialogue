@@ -4,6 +4,17 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.6.0] - 2026-06-08
+
+### Changed
+- **Voice-adherence fix extended to all personas.** v2.5.0 fixed `grounded-real`; this adds a `Default Length` block to the other seven (`coach`, `direct-challenging`, `warm-supportive`, `contemplative`, `philosophical`, `creative`, `warm-4o`), each tuned to that persona's own register rather than a one-size block — `direct-challenging` runs 1–3 sentences and ends blunt; `contemplative` keeps brevity as *space* rather than efficiency; `philosophical` is told to resist the monologue; `warm-4o`'s native casual brevity is reinforced so the template stops overriding it. All personas 1.1.0 → 1.2.0.
+- **This is the change that reaches existing installs.** Persona files propagate via `update` (the template does not), so putting the discipline in every persona is what actually delivers the voice fix to current users — whichever persona they run, provided they haven't customized their persona file.
+
+### Validation
+- Field-condition test (old five-beat template still present + new persona, fixed fictional vignette): median reply length came in at direct-challenging 38w, creative 55w, warm-4o 62w, coach 73w, philosophical 88w (down from ~250w pre-fix), contemplative brief-and-spacious — all staying in-register, none reverting to the five-beat essay.
+
+---
+
 ## [2.5.0] - 2026-06-08
 
 ### Changed
