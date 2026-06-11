@@ -107,6 +107,21 @@ export async function doctor(opts) {
     );
   }
 
+  if (existsSync(paths.context)) {
+    ok.push('context/ folder present');
+    if (!existsSync(paths.contextIndex)) {
+      warnings.push(
+        'context/index.md missing — the index routes the therapist to subject files (people, places, concepts, events). Run `inner-dialogue update` to scaffold it.'
+      );
+    } else {
+      ok.push('context/index.md present');
+    }
+  } else {
+    warnings.push(
+      'context/ folder missing — the subject-level context library is a newer feature. Run `inner-dialogue update` to scaffold it.'
+    );
+  }
+
   return {
     ok: errors.length === 0,
     errors,
