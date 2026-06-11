@@ -4,6 +4,16 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [2.7.1] - 2026-06-10
+
+### Fixed
+- **Therapist no longer mislabels its own session notes with `therapist:` frontmatter.** When a client has imported real-care records (which carry a `therapist:` field per the *Working Alongside Real-World Care* protocol), the therapist reads them for continuity at session start — and could then pattern-complete that same frontmatter onto its *own* end-of-session note, falsely attributing its words to the real provider. The only safeguard was a parenthetical in the protocol section, read at session start and far from the point where notes are actually written. Hardened in two places in `CLAUDE.template.md`: the protocol line is now a standalone imperative ("never write that frontmatter onto a note you authored," with the trust-boundary-inversion spelled out), and the *At Session End* write block gains an explicit point-of-action prohibition ("start with the `# Session:` heading, with no frontmatter… reading a file that carries the field is not a format to replicate"). `CLAUDE.template.md` `1.0.1 → 1.0.2`.
+
+### For Existing Users
+By design, `update` does not modify an existing install's `CLAUDE.md` (it is in `ALWAYS_SKIP_RELATIVE`), so this fix reaches **new installs only**. Existing installs that have imported real-care records are the ones exposed; to pick up the fix, reinstall (`install --force`, which preserves `profile.md` and `sessions/`) or copy the two hardened sections into your `CLAUDE.md` by hand.
+
+---
+
 ## [2.7.0] - 2026-06-10
 
 ### Added
