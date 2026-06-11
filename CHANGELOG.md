@@ -4,6 +4,26 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [Unreleased]
+
+### Added
+- **Current-time hook via `.claude/settings.json`.** A new `claude-settings.template.json` ships with a `UserPromptSubmit` hook that runs `date` and surfaces current local time to the therapist on every message. Helps with session pacing (length, time-of-day awareness — a 2am message warrants a softer pace than a midday check-in). Pure local shell command — no data transmitted. Scaffolded by `install` (new `.claude/` mkdir + copy) and by `update` for existing installs that pre-date the feature. Never overwritten if a settings file already exists (same `existsSync` protection as `profile.md`).
+- **`update` gains a top-level `scaffold` plan path.** New `plan.scaffolded` array surfaces files that are created once and never overwritten. Visible in `--dry-run`. Currently used for `.claude/settings.json`; lays the groundwork for future scaffold-only files.
+
+### Changed
+- **`CLAUDE.template.md` `1.0.0 → 1.0.1`.** Adds a brief "Time awareness" subsection under Session Startup Protocol. The guidance is defensively phrased: *if* a `Current local time:` line is present at the top of a user message, use it for pacing/tone; *if not*, proceed without — never reach for a time the model doesn't have. Hook absence is treated as a normal state (pre-existing settings file, Claude surface that doesn't run hooks, user hasn't run `update` yet).
+- **`doctor`** now warns (not errors) when `.claude/settings.json` is missing, suggesting `update` to scaffold it.
+- **`manifest.json` `1.2.0 → 1.3.0`.** Adds `claude-settings` component with a new `scaffold_only` flag indicating files that are created once and never overwritten on update.
+- **npm package `files`** array includes `claude-settings.template.json` so the template ships.
+
+### For Existing Users
+Run `inner-dialogue update --path <your-folder>` to scaffold `.claude/settings.json`. Additive — no existing files are touched. `profile.md`, `sessions/`, and `CLAUDE.md` remain protected as always.
+
+### Follow-up
+A separate PR will land the `context/` knowledge graph for subject-level synthesis of people, places, concepts, and events — split out from this change so the protocol layer (how the therapist trusts and reconciles `context/` against sessions) can be designed carefully alongside the structure.
+
+---
+
 ## [2.6.0] - 2026-06-08
 
 ### Changed

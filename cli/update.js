@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, readdir, unlink } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, unlink, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 
@@ -64,7 +64,28 @@ export async function update(opts) {
     skipped_user_edited: [],
     unchanged: [],
     legacy_removed: [],
+    scaffolded: [],
   };
+
+  // Top-level scaffolds: directories and template-derived files that ship with
+  // newer kit versions. We create dirs unconditionally (mkdir is idempotent)
+  // and only copy template files when the target doesn't exist — never
+  // overwrite user content (same protection as profile.md and CLAUDE.md).
+  const scaffoldDirs = [
+    paths.claudeDir,
+  ];
+  const scaffoldTemplates = [
+    {
+      target: paths.claudeSettings,
+      rel: '.claude/settings.json',
+      source: packageFile('claude-settings.template.json'),
+    },
+  ];
+  for (const sf of scaffoldTemplates) {
+    if (!existsSync(sf.target)) {
+      plan.scaffolded.push({ path: sf.rel });
+    }
+  }
 
   for (const f of framework) {
     if (isProtected(f.target)) continue;
@@ -282,7 +303,8 @@ export async function update(opts) {
     plan.updates.length +
     plan.new_files.length +
     (plan.forced_overwrites?.length || 0) +
-    plan.legacy_removed.length;
+    plan.legacy_removed.length +
+    plan.scaffolded.length;
   const willMigrateRegistry =
     isLegacySchema && plan.unchanged.length > 0;
 
@@ -335,6 +357,17 @@ export async function update(opts) {
     const launcherAbs = join(paths.root, item.path);
     if (existsSync(launcherAbs)) {
       await unlink(launcherAbs);
+    }
+  }
+
+  // Apply scaffolds: create directories (idempotent) and copy templates
+  // only when the target doesn't exist. Never overwrites user content.
+  for (const dir of scaffoldDirs) {
+    await mkdir(dir, { recursive: true });
+  }
+  for (const sf of scaffoldTemplates) {
+    if (!existsSync(sf.target)) {
+      await copyFile(sf.source, sf.target);
     }
   }
 

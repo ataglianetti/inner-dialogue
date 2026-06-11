@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Inner Dialogue updatable components",
   "base_url": "https://raw.githubusercontent.com/ataglianetti/inner-dialogue/main/",
   "components": {
@@ -14,6 +14,13 @@
       "target": ".therapy/commands.md",
       "required": true,
       "description": "Customization commands (import, update, persona, etc.)"
+    },
+    "claude-settings": {
+      "file": "claude-settings.template.json",
+      "target": ".claude/settings.json",
+      "required": false,
+      "scaffold_only": true,
+      "description": "Claude Code hooks for the therapist install. Default ships a UserPromptSubmit hook that emits current local time. Scaffolded on install/update; never overwritten."
     }
   },
   "library": {
