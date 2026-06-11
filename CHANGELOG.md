@@ -4,7 +4,7 @@ All notable changes to Inner Dialogue.
 
 ---
 
-## [Unreleased]
+## [2.7.0] - 2026-06-10
 
 ### Added
 - **Current-time hook via `.claude/settings.json`.** A new `claude-settings.template.json` ships with a `UserPromptSubmit` hook that runs `date` and surfaces current local time to the therapist on every message. Helps with session pacing (length, time-of-day awareness — a 2am message warrants a softer pace than a midday check-in). Pure local shell command — no data transmitted. Scaffolded by `install` (new `.claude/` mkdir + copy) and by `update` for existing installs that pre-date the feature. Never overwritten if a settings file already exists (same `existsSync` protection as `profile.md`).
