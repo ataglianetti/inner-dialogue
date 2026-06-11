@@ -24,6 +24,33 @@ A separate PR will land the `context/` knowledge graph for subject-level synthes
 
 ---
 
+## [2.6.0] - 2026-06-08
+
+### Changed
+- **Voice-adherence fix extended to all personas.** v2.5.0 fixed `grounded-real`; this adds a `Default Length` block to the other seven (`coach`, `direct-challenging`, `warm-supportive`, `contemplative`, `philosophical`, `creative`, `warm-4o`), each tuned to that persona's own register rather than a one-size block — `direct-challenging` runs 1–3 sentences and ends blunt; `contemplative` keeps brevity as *space* rather than efficiency; `philosophical` is told to resist the monologue; `warm-4o`'s native casual brevity is reinforced so the template stops overriding it. All personas 1.1.0 → 1.2.0.
+- **This is the change that reaches existing installs.** Persona files propagate via `update` (the template does not), so putting the discipline in every persona is what actually delivers the voice fix to current users — whichever persona they run, provided they haven't customized their persona file.
+
+### Validation
+- Field-condition test (old five-beat template still present + new persona, fixed fictional vignette): median reply length came in at direct-challenging 38w, creative 55w, warm-4o 62w, coach 73w, philosophical 88w (down from ~250w pre-fix), contemplative brief-and-spacious — all staying in-register, none reverting to the five-beat essay.
+
+---
+
+## [2.5.0] - 2026-06-08
+
+### Changed
+- **Response shape and length now defer to the persona instead of a fixed five-beat.** The template's `Response Guidelines` previously prescribed an Acknowledge → Reflect/Validate → Observe → Suggest → Close structure on *every* turn, which pulled responses toward long, generic-sounding "AI therapist" essays regardless of the selected persona. Replaced with a *Shape* section that hands turn structure to the persona and explicitly permits single-move replies, and a *Length* section that makes the persona's length guidance authoritative and defaults to brevity. In A/B testing on a fixed prompt (5 samples per condition), this cut median response length ~60% and reflexive question-endings from 80% to 20%, with non-overlapping distributions — a real effect, not run-to-run variance.
+- **`grounded-real` persona gains an explicit Default Length block** — brief by default (2–4 sentences), going long only when the client opens real depth, and ending on a statement rather than a reflexively tacked-on question. (Persona 1.1.0 → 1.2.0; propagates to existing installs via `update`.)
+
+### Added
+- **"Working Alongside Real-World Care" protocol in the template.** When a client also sees a real in-person therapist or provider, session notes tagged with a `therapist:` frontmatter field are treated as real-care continuity carrying clinical authority, and the AI positions itself as *adjunct* — helping prep for and process real sessions, reinforcing the provider's work, and deferring diagnosis/medication/crisis/treatment decisions to the provider. Fully generic and de-identified; no provider names ship in the framework.
+- **Care Team stub in `profile.template.md`** for recording real-world providers.
+- **Setup import flow now distinguishes real-therapy records from AI-chat history** (`CLAUDE.md`): real-therapy imports get `therapist:` frontmatter and follow the adjunct protocol; AI-chat history converts to ordinary session notes.
+
+### Note
+- `CLAUDE.template.md` changes reach **new installs**; by design, `update` does not modify an existing install's `CLAUDE.md`. The persona change *does* propagate via `update`, and in testing carried most of the voice improvement on its own. Existing users who want the full template change should reinstall or copy the new sections in.
+
+---
+
 ## [2.4.2] - 2026-05-25
 
 ### Removed

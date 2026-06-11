@@ -96,7 +96,15 @@ Ask conversationally, one at a time.
 
 If yes, ask for paths and read the files. Imports require LLM judgment, so handle them yourself (don't pass to the CLI):
 - **profile.md** → Merge into the generated profile after install
-- **ChatGPT JSON/ZIP, markdown, PDFs** → Extract patterns/themes; convert conversations into `sessions/YYYY-MM-DD.md` files
+- **ChatGPT JSON/ZIP, markdown, PDFs** → Extract patterns/themes; convert conversations into `sessions/YYYY-MM-DD.md` files (ordinary session notes, no special frontmatter)
+- **Records of real human therapy** (transcripts or notes from sessions with a licensed therapist — e.g. exported from a transcription tool) → convert to `sessions/YYYY-MM-DD.md`, but tag each with frontmatter so the therapist treats them as real-care continuity rather than its own work:
+  ```
+  ---
+  therapist: <Provider Name>
+  source: <tool name or "import">
+  ---
+  ```
+  These follow the **Working Alongside Real-World Care** protocol in the generated `CLAUDE.md`: read for continuity, clinical authority deferred to the real provider. Do *not* tag AI-chat history this way.
 - After reading the imports, surface what you found and use it to inform modality recommendations in step 7
 
 ### 7. Therapeutic Approaches → `modalities` slugs
@@ -149,7 +157,7 @@ Parse the JSON result. If `ok: true`, continue. If not, surface the error to the
 
 **Imported profile data:** If the user provided files and you extracted profile info, overwrite `{storage_path}/profile.md` with a pre-populated version. Keep the H2 section structure from the template (the doctor command validates against it).
 
-**Imported sessions:** Write each converted conversation to `{storage_path}/sessions/YYYY-MM-DD.md` (or `{import_date}-import.md` if dates are unknown) in the standard format:
+**Imported sessions:** Write each converted conversation to `{storage_path}/sessions/YYYY-MM-DD.md` (or `{import_date}-import.md` if dates are unknown) in the standard format. (Real-therapy records get the `therapist:` frontmatter from step 6; AI-chat imports do not.)
 
 ```markdown
 # Session: YYYY-MM-DD

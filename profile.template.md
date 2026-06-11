@@ -10,6 +10,12 @@
 
 ---
 
+## Care Team
+
+*Any real-world providers you're working with — therapist, psychiatrist, counselor. If you have one, your AI therapist works as an adjunct: it supports the work between your real sessions and defers clinical decisions to your provider. Leave blank if not applicable.*
+
+---
+
 ## Current Focus
 
 *What you're actively working on right now. This evolves as priorities shift.*
