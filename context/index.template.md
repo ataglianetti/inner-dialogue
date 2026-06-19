@@ -1,4 +1,4 @@
-<!-- version: 0.2.0 -->
+<!-- version: 1.0.0 -->
 # Context Index
 
 *This file routes to the subject-level context library. The therapist's protocol for reading, trusting, creating, and updating these files is defined in `CLAUDE.md`.*
@@ -13,7 +13,7 @@
 
 - The subject name and the relative path to the subject file are required.
 - The synthesis is one line. Anything longer lives in the subject file itself.
-- **Flags are markers**, written in bold at the end of the line. The format permits multiple flag names — `**Active (YYYY-MM-DD)**`, `**Core**`, or others. Their semantics — what each flag means, when entries gain or lose a flag, how flagged entries should be handled at session start — are defined in `CLAUDE.md`. The date in `**Active (YYYY-MM-DD)**` is a stable marker of when the flag was last refreshed; entries without a flag are inactive by default.
+- **Flags are markers**, written in bold at the end of the line. The format permits multiple flag names — `**Active (YYYY-MM-DD)**`, `**Core**`, `**Provisional (YYYY-MM-DD)**`, or others. Their semantics — what each flag means, when entries gain or lose a flag, how flagged entries should be handled at session start — are defined in `CLAUDE.md`. The date in `**Active (YYYY-MM-DD)**` and `**Provisional (YYYY-MM-DD)**` is a stable marker of when the flag was last refreshed or distilled; entries without a flag are inactive by default.
 
 ---
 
