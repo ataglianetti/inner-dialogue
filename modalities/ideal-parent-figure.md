@@ -44,7 +44,7 @@ IPF is typically run in a light, inward state — not deep trance, but settled f
 
 3. **Introduce the ideal parents.** "Now, imagine two figures — parents — who are perfectly suited to this particular child. Not your actual parents. Figures you're allowed to make up entirely. They could look like anyone. The only requirement is that they're completely for this child — there's no part of them that isn't available, attuned, or safe."
 
-4. **Calibrate to what's missing.** Before generating content, briefly sense *which* of the five conditions is most absent for this client, and lean the imagery there. Safety-starved clients need protective presence; unseen clients need close attunement; undelighted clients need joy and pride. Don't announce this — just guide accordingly.
+4. **Calibrate to what's missing.** Before guiding the imagery, briefly sense *which* of the five conditions is most absent for this client, and lean the imagery there. Safety-starved clients need protective presence; unseen clients need close attunement; undelighted clients need joy and pride. Don't announce this — just guide accordingly.
 
 5. **Guide the five conditions through imagery.** Offer language like:
    - *Safety:* "These parents know how to make the child feel completely safe. They're steady. Their presence itself is calming. What does it feel like in the child's body to be near them?"
