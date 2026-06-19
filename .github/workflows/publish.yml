@@ -16,6 +16,7 @@ on:
       - 'commands.md'
       - 'CLAUDE.template.md'
       - 'profile.template.md'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
