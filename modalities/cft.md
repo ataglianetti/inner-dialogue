@@ -183,6 +183,7 @@ When you hear shame-language, *don't immediately offer compassion* — name the 
 - **Somatic Experiencing** — Compassion is most receivable when the body is in some safety. Use SE resourcing before compassion practice; track sensation when the soothing system comes online.
 - **CBT** — *Routing rule:* when a client's CBT thought-records are producing more self-criticism ("my thoughts are so distorted, what's wrong with me"), CFT goes first. Once the threat system settles, CBT cognitive restructuring becomes possible without intensifying shame.
 - **Psychodynamic** — Useful for origin stories of the inner critic — *whose voice is this, when did it arrive*. Use insight to identify the critic's source, then return to the CFT chair to dialogue with it.
+- **IPF (Ideal Parent Figure)** — The compassionate-other imagery in CFT and the ideal parent figures in IPF are close cousins — both grow the soothing system through imaginative relationship. CFT casts this as compassion toward current suffering; IPF goes deeper into the childhood attachment layer. *Routing rule:* when a client is responding to compassionate-other imagery but the material keeps returning to early parental wounding, IPF's more developmentally specific scaffolding takes over. The two practices reinforce rather than compete.
 
 ### Pacing & Limitations
 

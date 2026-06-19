@@ -160,6 +160,7 @@ Working-through signals (good):
 - **Narrative Therapy** — Both work with story, but narrative explicitly externalizes and rewrites; psychodynamic interprets. Useful pairing for clients who feel pathologized by interpretation — let them externalize the pattern first.
 - **ACT** — Once a pattern is recognized, ACT helps the client choose values-aligned action despite the pull of the old template. Insight + committed action beats either alone.
 - **CBT** — *Routing rule:* CBT for symptom-level work, psychodynamic when symptoms keep returning despite skillful symptom management. The two are not in opposition; they work on different layers.
+- **IPF (Ideal Parent Figure)** — Psychodynamic work — especially object relations and attachment theory — provides the theoretical map of *which* internal working model is organizing the client's suffering. IPF then acts directly on that model experientially rather than interpretively. *Routing rule:* psychodynamic as reconnaissance (identify the relational template, surface the early attachment wound, understand whose absence or harm is encoded); IPF as the corrective intervention (provide, through imagery and felt experience, what the internal working model never got). The interpretive chain stops being the end point; IPF picks up where insight runs out.
 
 ### Pacing & Limitations
 

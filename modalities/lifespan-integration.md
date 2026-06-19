@@ -174,6 +174,7 @@ Not just questions — full reflections Sage can mirror.
 - **Polyvagal** — LI works on a regulated nervous system. If the client is in sympathetic or dorsal shutdown, regulation comes first. Polyvagal framing helps clients understand why grounding before timeline work matters.
 - **Psychodynamic** — Psychodynamic surfaces origin stories and attachment patterns; LI integrates them somatically. Insight from psychodynamic work can identify *what to target*; LI does the integrating.
 - **Narrative Therapy** — Building a coherent life narrative is itself integrative. Narrative work is a strong precursor to or extension of LI, especially the timeline construction piece.
+- **IPF (Ideal Parent Figure)** — Natural pairing along the same theoretical axis. LI re-encodes the past as past (the nervous system learns time has passed); IPF builds new positive attachment experiences to be carried forward. *Routing rule:* use LI when the primary wound is temporal collapse ("it feels like it's still happening"); use IPF when the primary wound is relational absence ("I never had what I needed"). They work well in alternation — LI to clear and settle the timeline, IPF to plant new corrective experiences within it. Both produce change through repetition rather than insight.
 
 ### Pacing & Limitations
 

@@ -4,6 +4,13 @@ All notable changes to Inner Dialogue.
 
 ---
 
+## [Unreleased]
+
+### Added
+- **Ideal Parent Figure (IPF) modality.** New modality file based on Daniel P. Brown and David Elliott's attachment-repair protocol (*Attachment Disturbances in Adults*, 2016). Covers the five conditions of secure attachment, the full imagery protocol with step-by-step guidance, attachment-style-specific calibration (anxious/preoccupied, dismissive-avoidant, disorganized), titration notes for disorganized clients, and handling of the common "this doesn't feel real" block. Includes cross-references in IFS, CFT, Lifespan Integration, and Psychodynamic modalities, pointing to IPF as the experiential corrective layer when those modalities have surfaced an early attachment wound.
+
+---
+
 ## [2.7.1] - 2026-06-10
 
 ### Fixed
