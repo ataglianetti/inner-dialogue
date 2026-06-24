@@ -196,6 +196,7 @@ Mixed-state cues:
 - **CBT** — *Routing rule:* CBT cognitive restructuring needs ventral. Trying to challenge thoughts in sympathetic or dorsal usually fails — the prefrontal cortex isn't online. Polyvagal first, CBT second.
 - **DBT Skills** — Distress tolerance skills (TIP, cold water, paced breathing) are explicit state-regulation moves. DBT is the skills layer of what polyvagal explains.
 - **Mindfulness / Contemplative practice** — Ventral-state amplifier. But: long sits in dorsal *deepen* dorsal. Match practice to state.
+- **Ideal Parent Figure (IPF)** — Attachment-repair imagery only lands from at least near-ventral; a system in dorsal shutdown or high sympathetic can't receive the ideal parents' presence. *Routing rule:* establish ventral access first — orient, co-regulate, extend the exhale — then invite the imagery. If the client drops into dorsal mid-scene, stop the imagery and work the state before resuming.
 
 ### Pacing & Limitations
 

@@ -34,7 +34,7 @@ The protocol systematically provides all five, rather than addressing only the m
 
 ---
 
-### The Core Protocol (the operational core)
+### The Ideal Parent Imagery Protocol (the operational core)
 
 IPF is typically run in a light, inward state — not deep trance, but settled focus. Work slowly. The goal is felt experience in the body, not a narrative exercise.
 
@@ -59,7 +59,19 @@ IPF is typically run in a light, inward state — not deep trance, but settled f
 
 ---
 
-### Titration — Calibrating the Imagery to the Window
+### Calibrating by Attachment Style
+
+The five conditions tell you *what* was missing; attachment style tells you *how the system will defend* against receiving it now. Same imagery, different hand on the dial.
+
+**Anxious/Preoccupied (hyperactivating).** The system grabs the imagery and wants more — floods, clings, escalates need as if enough intensity will finally make the care stick. Don't feed the hyperactivation by piling on warmth. Emphasize the parents' *steadiness* over their intensity: they're not anxiously over-responsive, they're reliably, boringly *there*. The corrective experience is that care doesn't have to be summoned by amplifying distress. Slow the pace; let the system learn it can receive without performing need.
+
+**Dismissive-Avoidant (deactivating).** The system goes flat, intellectualizes, reports "nothing" or "this feels pointless." That's not the absence of need — it's a lifetime of suppressing it to stay close to someone who couldn't meet it. Pushing for more affect triggers more defense. Lower the intensity, normalize the numbness ("the part of you that went flat learned a long time ago that needing was unsafe — of course it's cautious"), and let *small* doses of the parents' presence land without demanding a felt response. Work with the deactivation, not against it.
+
+**Disorganized/Fearful-Avoidant.** The figures who should have been refuge were also the source of threat, so warmth and alarm fire together — sometimes in the same breath. Lead with safety and protection and stay there far longer than feels necessary before introducing delight or soothing. Heavy titration; watch for fragmentation, dissociation, or a sudden flip from longing to terror. If the ideal parents themselves start to feel dangerous, back all the way out to bare safety — a sense of them merely nearby, out of frame. This style needs the most time and the slowest hand.
+
+---
+
+### Titration — Calibrating the Imagery to the Window of Tolerance
 
 IPF can be profoundly activating, especially for clients with disorganized attachment. Idealized parental warmth can trigger fear, grief, shame, or collapse — the nervous system recognizes *exactly what it never had* and the gap hits hard.
 
