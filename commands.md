@@ -1,4 +1,4 @@
-<!-- version: 1.3.0 -->
+<!-- version: 1.4.0 -->
 # Customization Commands
 
 The client can request changes to their therapy setup during a session. All customization files are stored locally in `.therapy/library/`.
@@ -27,6 +27,10 @@ Recognize conversational requests, not just exact command phrases:
 - "import", "import notes", "I have files to import"
 - "I have ChatGPT exports to add"
 - "Can you read my old therapy notes?"
+
+**For context-library seeding** (triggers supervised backfill from history):
+- "seed my context library", "build my context library", "catch up on my history"
+- "go through my old sessions and start notes on the people and themes"
 
 ## When persona change is triggered
 
@@ -123,12 +127,24 @@ Run the CLI — it handles the diffing, backup, and conflict detection. You hand
    >
    > I'll reference this context naturally going forward.
 
+## When client asks to "seed" or "build" the context library
+
+The therapist does this, not the CLI — it requires reading and judgment. It is the same supervised backfill the therapist offers once, automatically, on the first session where `context/` is empty and session history exists; this command re-triggers it on demand (e.g. if that offer was declined earlier). Follow the *Seeding the library from existing history* protocol in `CLAUDE.md`:
+
+1. Confirm there's history to draw from (`sessions/` is non-empty) and `context/` exists. If there's no history yet, say so — there's nothing to seed.
+2. Read `sessions/` (weighting recent history) and `profile.md`. Distill a **modest** list of candidate subjects that clear the creation bar — recurring across two or more sessions, or clearly significant. Don't propose everyone mentioned in passing.
+3. **Propose before writing.** Show the candidate list and let the client confirm which to keep:
+   > Here's what keeps coming up across our sessions: [list]. Want me to start notes on these?
+4. Write only confirmed subjects. Flag each `**Provisional (YYYY-MM-DD)**` and mark the file as distilled-from-history, not yet confirmed live — it graduates to Active or Core once worked with in a live session.
+5. Respect `therapist:`-frontmatter sessions: a subject from a real provider's records is valid context, but note the provider as the source and defer clinical authority (see *Working Alongside Real-World Care* in `CLAUDE.md`).
+
 ## Help & Discoverability
 
 When client asks "what can you do?", "help", or "what can I customize?" (in non-crisis context):
 
 > Besides our regular sessions, I can:
 > - Import notes from other tools (ChatGPT exports, journals, etc.)
+> - Build a context library from our past sessions (the people, places, and recurring themes in your life)
 > - Adjust my communication style (more direct, warmer, etc.)
 > - Add or remove therapeutic approaches (CBT, somatic work, etc.)
 > - Change session structure (more/less homework)

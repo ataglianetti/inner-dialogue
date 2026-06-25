@@ -73,12 +73,21 @@ export async function update(opts) {
   // overwrite user content (same protection as profile.md and CLAUDE.md).
   const scaffoldDirs = [
     paths.claudeDir,
+    paths.contextPeople,
+    paths.contextPlaces,
+    paths.contextConcepts,
+    paths.contextEvents,
   ];
   const scaffoldTemplates = [
     {
       target: paths.claudeSettings,
       rel: '.claude/settings.json',
       source: packageFile('claude-settings.template.json'),
+    },
+    {
+      target: paths.contextIndex,
+      rel: 'context/index.md',
+      source: packageFile('context', 'index.template.md'),
     },
   ];
   for (const sf of scaffoldTemplates) {
