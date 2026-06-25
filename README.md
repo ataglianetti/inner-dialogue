@@ -127,6 +127,7 @@ Your AI therapist uses evidence-based approaches — choose any combination duri
 | **Psychodynamic** | Understanding patterns from the past |
 | **SFBT** | Solution-focused, strengths-based, future-oriented |
 | **Somatic Experiencing** | Nervous system awareness and regulation |
+| **Ideal Parent Figure (IPF)** | Attachment repair, earned security, corrective parental imagery |
 
 ### How Sessions Work
 

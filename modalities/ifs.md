@@ -151,6 +151,7 @@ Not just questions — full reflections Sage can use as starting language.
 - **Polyvagal** — Self-energy maps onto ventral-vagal regulation. If client is in sympathetic or dorsal state, prioritize state-shifting before parts work.
 - **Somatic Experiencing** — Parts often live in body locations. SE's titration pairs well with the 6 F's pacing.
 - **CBT** — *Specific routing rule:* with compulsive behaviors, IFS leads, CBT follows. CBT habit-substitution alone risks firefighter migration. Use CBT tools downstream once the firefighter has been befriended.
+- **Ideal Parent Figure (IPF)** — Natural partner for Exile work. When the 6 F's surface an Exile carrying early attachment wounds, IPF provides the corrective relational experience that Exile never had — the ideal parents who were exactly right. *Routing rule:* after befriending the Exile and understanding its burden, offer IPF imagery before asking it to unburden. What it needed in early life becomes available through the imagery. Conversely, IPF can grow Self-energy in clients who struggle to access the 8 C's, making subsequent parts work more possible.
 
 ### Pacing & Limitations
 

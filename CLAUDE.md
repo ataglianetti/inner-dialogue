@@ -127,6 +127,7 @@ Otherwise, ask:
 > 10. **Psychodynamic** → `psychodynamic`
 > 11. **SFBT** → `sfbt`
 > 12. **Somatic Experiencing** → `somatic-experiencing`
+> 13. **Ideal Parent Figure (IPF)** → `ideal-parent-figure`
 
 ---
 

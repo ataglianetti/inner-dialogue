@@ -191,6 +191,7 @@ Completion signals (good):
 - **EMDR / Lifespan Integration** — Strong synergy. SE titration is a useful pacing principle inside any trauma reprocessing modality.
 - **DBT Skills** — DBT's TIP and grounding skills are crude versions of orienting and resourcing. Use DBT skills for crisis stabilization, SE for the slower processing work once stable.
 - **CBT** — *Routing rule:* if cognitive work keeps bouncing off because the body won't settle, SE goes first. Once the nervous system has more capacity, CBT can engage with the cognitive layer.
+- **Ideal Parent Figure (IPF)** — The five conditions have to *land in the body* to produce change, which is SE's home turf. Use SE resourcing to stabilize before IPF imagery, and track sensation throughout — a felt shift (warmth, settling, a fuller breath) is the signal the imagery is landing and not just running as narrative. If the system shows chronic shutdown or sympathetic overload, settle it first.
 
 ### Pacing & Limitations
 
