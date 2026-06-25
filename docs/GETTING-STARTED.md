@@ -54,7 +54,7 @@ Claude walks you through setup by asking a few questions:
 
 1. **Therapist name** — What to call your AI therapist (e.g., Sage, Willow, Quinn)
 2. **Communication style** — Choose from 8 styles (Warm, Direct, Coach, and more)
-3. **Therapeutic approaches** — Choose from 12 evidence-based approaches (CBT, ACT, DBT Skills, IFS, and more)
+3. **Therapeutic approaches** — Choose from 13 evidence-based approaches (CBT, ACT, DBT Skills, IFS, and more)
 4. **Storage location** — Where to save your session files
 5. **Import history** (optional) — Bring in notes from ChatGPT or other tools
 
@@ -73,7 +73,7 @@ Available `--persona` values: `warm-4o`, `direct-challenging`, `warm-supportive`
 
 Available `--structure` values: `structured`, `moderate`, `freeform`.
 
-Available `--modalities` values (comma-separated): `cbt`, `act`, `cft`, `dbt-skills`, `ifs`, `lifespan-integration`, `motivational-interviewing`, `narrative`, `polyvagal`, `psychodynamic`, `sfbt`, `somatic-experiencing`.
+Available `--modalities` values (comma-separated): `cbt`, `act`, `cft`, `dbt-skills`, `ifs`, `lifespan-integration`, `motivational-interviewing`, `narrative`, `polyvagal`, `psychodynamic`, `sfbt`, `somatic-experiencing`, `ideal-parent-figure`.
 
 Running `npx inner-dialogue install` without flags drops into an interactive prompt with the same options.
 
@@ -254,7 +254,7 @@ This changes how your therapist communicates without affecting their memory of y
 
 Say: **"add modality"** or **"remove modality"**
 
-Choose from 12 evidence-based approaches: CBT, ACT, CFT, DBT Skills, IFS, Lifespan Integration, Motivational Interviewing, Narrative Therapy, Polyvagal-Informed Work, Psychodynamic, SFBT, and Somatic Experiencing.
+Choose from 13 evidence-based approaches: CBT, ACT, CFT, DBT Skills, IFS, Lifespan Integration, Motivational Interviewing, Narrative Therapy, Polyvagal-Informed Work, Psychodynamic, SFBT, Somatic Experiencing, and Ideal Parent Figure.
 
 ### Change Session Structure
 
