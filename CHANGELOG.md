@@ -4,7 +4,7 @@ All notable changes to Inner Dialogue.
 
 ---
 
-## [Unreleased]
+## [2.8.0] - 2026-06-24
 
 ### Added
 - **`context/` knowledge graph — structure layer.** A new top-level folder for subject-level reference: `context/{people,places,concepts,events}/`. Subject files are free-form markdown; event filenames use `YYYY-MM-DD-slug.md` so dates are visible at a glance. `context/index.md` is the routing layer, scaffolded on install from a new `context/index.template.md`. Entries follow `- **Subject** (\`subfolder/slug.md\`) — synthesis. **Active (YYYY-MM-DD).**`. Lives alongside `profile.md` (about the client) and `sessions/` (chronological) — synthesized per-subject so the therapist doesn't have to grep session history to reconstruct what's known.
