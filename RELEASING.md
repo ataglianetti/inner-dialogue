@@ -86,6 +86,25 @@ Should print the new version. (npm can take a minute to propagate — if it show
 
 Also check [npmjs.com/package/inner-dialogue](https://www.npmjs.com/package/inner-dialogue) — the new version should be listed with a green "provenance" badge (proves it came from this GitHub Actions workflow).
 
+### 8. Publish the GitHub Release
+
+The tag push publishes to npm but does **not** create a GitHub Release — that's a separate manual step, and it's the one most likely to get skipped (2.7.0 and 2.7.1 shipped without one until they were backfilled). The Releases page is what people browsing the repo see, so keep it current.
+
+The tag already exists, so you're only attaching notes:
+
+```bash
+gh release create vX.Y.Z --verify-tag --latest \
+  --title "vX.Y.Z — <theme>" \
+  --notes-file <notes.md>
+```
+
+- **Title:** themed, matching the existing style — `vX.Y.Z — <short theme>` (e.g. "v2.6.0 — Persona Adherence").
+- **Body:** adapt the CHANGELOG entry into prose — a lead line, the key changes as bullets, a closing note on what reaches existing installs. Don't paste the raw changelog.
+- **`--latest`** marks it the current release. When backfilling an *older* version that was skipped, use `--latest=false` so it doesn't steal the Latest pointer.
+- Credit community PRs by number (e.g. "Landed via #12, #9") so contributors get linked.
+
+Verify with `gh release list` — the newest version should carry the "Latest" badge, with no gaps in the version history.
+
 ## If something goes wrong
 
 ### Tag pushed but CI failed
