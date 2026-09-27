@@ -25,3 +25,7 @@ desktop.ini
 
 # Node (if adding tooling later)
 node_modules/
+
+# Crisis-eval reply captures (evals/run.js --capture). Model replies to crisis
+# prompts stay local even though the prompts are synthetic.
+evals/results/
