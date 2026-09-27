@@ -207,6 +207,8 @@ Honest framing of what it is and isn't:
 
 The `doctor` command checks that the script is present, unmodified, and registered. You're free to edit it, but we recommend you don't — the safety net is there for a reason. The hook requires Claude Code 2.1.139 or newer; `doctor` warns if your installed version is older.
 
+Because the hook fails open, a hook that can't run looks exactly like one that never needed to fire. So `doctor` also runs it. It sends one test prompt through your installed Claude Code and checks that the hook fired. The prompt is stopped before it reaches a model: no model call, no cost, nothing saved to your session history.
+
 ### Usage-pattern reflection
 
 Every install also includes a `SessionStart` hook that records session timing to a **local** plain-text file (`.therapy/usage-log.txt`) and computes a few simple cadence facts — how often you come in, time of day, and how that trends against your own baseline.
