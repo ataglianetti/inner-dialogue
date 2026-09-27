@@ -6,6 +6,7 @@ import { therapyPaths } from './lib/paths.js';
 import { readVersionJson } from './lib/version.js';
 import { hashFile } from './lib/hash.js';
 import { hasSafetyNetHook, hasHook, USAGE_STATS_DESC } from './lib/settings.js';
+import { runHookProbe } from './lib/hook-probe.js';
 
 // Minimal seed sections. Profiles are expected to evolve beyond these — the
 // LLM is instructed to add H2s as themes emerge and reorganize around active
@@ -312,6 +313,45 @@ export async function doctor(opts) {
     );
   }
   // status 'unknown' (claude not on PATH or unparseable output): skip silently.
+
+  // Live probe (see cli/lib/hook-probe.js): ask Claude Code to run the user's
+  // actual registration on a must-fire prompt, blocked before any model call.
+  // Runs only when there's something to probe — script present, entry
+  // registered, settings parseable, and a `claude` on PATH. Warning severity,
+  // same posture as the version floor: the install itself is fine, the runtime
+  // is what fails. `opts.runHookProbe` is the test seam: undefined runs the real
+  // probe, null skips it, a function replaces it.
+  const probeable =
+    existsSync(paths.safetyNetHook) &&
+    !settingsMalformed &&
+    hasSafetyNetHook(claudeSettings) &&
+    claudeVersion.status !== 'unknown';
+  const probeFn = opts.runHookProbe !== undefined ? opts.runHookProbe : runHookProbe;
+  if (probeable && probeFn) {
+    const probe = probeFn({ root: paths.root, settings: claudeSettings });
+    const tested = `Claude Code ${claudeVersion.version}`;
+    if (probe.status === 'fired') {
+      ok.push(`safety-net hook fired in a live check under ${tested} (no model call)`);
+    } else if (probe.status === 'failed') {
+      warnings.push(
+        `safety-net hook is registered but crashed when ${tested} ran it: ${probe.detail} The hook will not run on prompts. ` +
+          (claudeVersion.status === 'outdated'
+            ? 'This confirms the Claude Code version warning above; updating Claude Code is the fix.'
+            : `Check the safety-net entry in .claude/settings.json, or run \`${safetyNetFix}\` to restore it.`)
+      );
+    } else if (probe.status === 'no-response') {
+      warnings.push(
+        `safety-net hook did not report back within a few seconds when ${tested} ran it — it may be hanging or disabled (check for "disableAllHooks" in your Claude Code user settings).`
+      );
+    } else if (probe.status === 'reached-model') {
+      warnings.push(
+        `the live safety-net check reached the model instead of stopping first — its result is unreliable. Please report this at https://github.com/ataglianetti/inner-dialogue/issues.`
+      );
+    }
+    // 'unavailable' (probe couldn't launch, or this CLI streams no hook
+    // events): skip silently, like an unknown version. The version floor
+    // above still covers the known failure.
+  }
 
   // Profile-protocol presence. Warning (not error) severity: pre-feature
   // installs that haven't run `update` yet must keep validating clean.

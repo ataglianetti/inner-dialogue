@@ -170,7 +170,9 @@ function makeInstall() {
 async function runDoctor(claudeVersionOutput) {
   const root = makeInstall();
   try {
-    return await doctor({ path: root, claudeVersionOutput });
+    // runHookProbe: null — this suite tests the version floor; the live probe
+    // has its own suite (hook-probe.test.js) and must not spawn claude here.
+    return await doctor({ path: root, claudeVersionOutput, runHookProbe: null });
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

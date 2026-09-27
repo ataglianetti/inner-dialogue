@@ -6,6 +6,9 @@ All notable changes to Inner Dialogue.
 
 ## [Unreleased]
 
+### Added
+- **`doctor` runs the safety-net hook.** The other safety-net checks confirm the script is present, unmodified and registered, and that Claude Code is new enough. All of them can pass while the hook still never runs. `doctor` now asks Claude Code to run the hook. It copies the registration from your `.claude/settings.json` into a temporary project, sends one crisis-language test prompt through `claude -p`, and reads the hook events. A second hook blocks the prompt before it reaches a model, so the check makes no model call, costs nothing, and takes about 3 seconds. Session persistence is off, so the test prompt never enters your Claude Code history. If the hook crashed or never reported back, `doctor` warns and names the cause. On Claude Code 2.1.138 the named cause is that node started without the hook script. If `claude` isn't on PATH, or the check can't run, it skips silently. The version-floor warning still covers that case.
+
 ---
 
 ## [2.9.0] - 2026-07-15
