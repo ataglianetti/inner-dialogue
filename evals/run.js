@@ -18,6 +18,7 @@ import { prepFixture } from './lib/prep-fixture.js';
 import { runSubject } from './lib/run-subject.js';
 import { checkMechanical } from './lib/mechanical.js';
 import { judge, loadRubric, stubCallModel } from './lib/judge.js';
+import { buildRecord, appendRecord } from './lib/capture.js';
 
 const USAGE = `Usage: node evals/run.js --cases <glob-or-comma-list> [options]
 
@@ -30,6 +31,9 @@ Options:
   --mock                   mock the subject (no real API/binary)
   --judge <on|off>         run the LLM judge (default: off)
   --judge-mock             allow the offline all-pass judge stub (labeled STUB)
+  --capture <file>         append every reply to a JSON Lines file, one record
+                           per case repetition (keep it under evals/results/,
+                           which is gitignored)
 `;
 
 // A usage/harness error that should exit 2 with a clear message.
@@ -110,6 +114,7 @@ function parseFlags(argv) {
         mock: { type: 'boolean', default: false },
         judge: { type: 'string', default: 'off' },
         'judge-mock': { type: 'boolean', default: false },
+        capture: { type: 'string' },
         help: { type: 'boolean', default: false },
       },
       allowPositionals: false,
@@ -135,6 +140,9 @@ function parseFlags(argv) {
   if (!Number.isInteger(n) || n < 1) {
     throw new UsageError(`--n must be a positive integer (got "${v.n}")`);
   }
+  if (v.capture !== undefined && v.capture.trim() === '') {
+    throw new UsageError('--capture needs a file path');
+  }
 
   return {
     help: false,
@@ -145,15 +153,19 @@ function parseFlags(argv) {
     mock: v.mock,
     judge: v.judge === 'on',
     judgeMock: v['judge-mock'],
+    capture: v.capture,
   };
 }
 
 // --- one case, one repetition ----------------------------------------------
 // Plays a case's messages in sequence, threading sessionId for multi-turn.
 // For the degraded arm, PREPEND the preamble to the FIRST message only.
-// Returns the final subject result (last turn's response + any error).
+// Returns the final subject result (last turn's response + any error), plus
+// `turns`: each case message as written (without the preamble) and its reply,
+// for reply capture.
 function playCase(caseObj, { cwd, degradedPreamble, mock }) {
   const messages = Array.isArray(caseObj.messages) ? caseObj.messages : [];
+  const turns = [];
   let resumeSessionId;
   let last = { response: '', sessionId: null };
   for (let t = 0; t < messages.length; t++) {
@@ -162,15 +174,21 @@ function playCase(caseObj, { cwd, degradedPreamble, mock }) {
       message = `${degradedPreamble}\n\n${message}`;
     }
     const res = runSubject({ cwd, message, resumeSessionId, mock });
+    turns.push({ message: messages[t], response: res.response || '', models: res.models || [] });
     if (res.error) {
       // A subject-level error on any turn ends this repetition; surface it so
       // the case is scored against an empty response (mechanical will fail).
-      return { response: res.response || '', sessionId: res.sessionId, error: res.error };
+      return {
+        response: res.response || '',
+        sessionId: res.sessionId,
+        error: res.error,
+        turns,
+      };
     }
     resumeSessionId = res.sessionId || resumeSessionId;
     last = res;
   }
-  return { response: last.response || '', sessionId: last.sessionId };
+  return { response: last.response || '', sessionId: last.sessionId, turns };
 }
 
 // --- judge wiring ----------------------------------------------------------
@@ -235,6 +253,7 @@ function run(argv, out = process.stdout, err = process.stderr) {
   // throw after prep (or during prep, after the temp dir exists) still cleans
   // up. fixture stays undefined until prep returns, so the finally guards on it.
   const rows = [];
+  let captured = 0;
   let fixture;
   try {
     try {
@@ -261,6 +280,18 @@ function run(argv, out = process.stdout, err = process.stderr) {
         if (mech.pass) mechPass++;
         for (const f of mech.failures) failureSamples.add(f);
 
+        if (flags.capture) {
+          // A capture that silently stops writing is worse than none: the run
+          // would look complete while the replies behind it are missing. So a
+          // write failure ends the run as a harness error.
+          try {
+            appendRecord(flags.capture, buildRecord({ caseObj, flags, rep, played, mech }));
+            captured++;
+          } catch (e) {
+            throw new UsageError(`capture write failed (${flags.capture}): ${e.message}`);
+          }
+        }
+
         if (judgeCfg.enabled) {
           const rubricText = rubricFor(caseObj.category);
           const j = judge({
@@ -286,11 +317,11 @@ function run(argv, out = process.stdout, err = process.stderr) {
     if (fixture) fixture.cleanup();
   }
 
-  printSummary(out, { flags, judgeCfg, rows });
+  printSummary(out, { flags, judgeCfg, rows, captured });
   return 0;
 }
 
-function printSummary(out, { flags, judgeCfg, rows }) {
+function printSummary(out, { flags, judgeCfg, rows, captured = 0 }) {
   const N = flags.n;
   out.write('\nCrisis Eval — run summary\n');
   out.write(
@@ -322,6 +353,9 @@ function printSummary(out, { flags, judgeCfg, rows }) {
       (judgeCfg.enabled ? '  (judge column is STUB — placeholder, not a real judgment)' : '') +
       '\n'
   );
+  if (flags.capture) {
+    out.write(`  CAPTURED: ${captured} replies appended to ${flags.capture}\n`);
+  }
 }
 
 // Entry point (ESM-safe main check).

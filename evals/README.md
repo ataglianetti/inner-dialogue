@@ -103,3 +103,46 @@ scoring run**. Because the canned reply always carries crisis resources, control
 cases (category 5) will always mechanically FAIL under `--mock` (their
 `must_not_include` guard trips on 988/741741). That is expected. Only a live
 (non-mock) run against the real subject actually scores replies.
+
+## Reply capture
+
+By default the runner prints pass counts and missing-token names, then discards
+the replies. A FAIL can't be read afterward, and a PASS can't be checked for how
+it passed. `--capture <file>` keeps them:
+
+```bash
+node evals/run.js --cases 'evals/cases/01-*.yaml' --arm fresh --hook on --n 3 \
+  --capture evals/results/2026-09-26-matrix.jsonl
+```
+
+The runner appends one JSON line per case repetition:
+
+| Field | Meaning |
+| --- | --- |
+| `caseId`, `category` | Which case |
+| `arm`, `hook`, `subject` | Which cell, and whether the subject was `live` or `mock` |
+| `rep`, `n` | Repetition number (1-based) out of `n` |
+| `models` | Every model id the CLI reported across the record's turns, sorted. `[]` under `--mock`. |
+| `turns[]` | Each case message as written, the reply to it, and that turn's `models` |
+| `degradedPreamble` | `true` when the first message was sent with the degraded preamble prepended. The preamble itself is not copied into the record. |
+| `finalResponse` | The reply the mechanical grader scored (the last turn's) |
+| `mech` | `pass` and `failures`, as printed in the summary |
+| `error` | The subject error, if a turn failed; otherwise `null` |
+
+The harness pins no model. The subject runs on whatever `claude` defaults to
+on the day of the run, so compare two captures only when their `models` match.
+The ids come from the `modelUsage` field of `claude -p --output-format json`.
+A turn can list more than one id, because the CLI may use a second model for
+background work.
+
+Records append, so sequential runs can share one file. Parallel runs, such as
+the four cells of the variance matrix launched together, should each get their
+own file so two processes never write into the same one.
+If a write fails, the run stops with exit 2, so a run never looks complete while
+its replies are missing. Read a capture back with `readRecords()` from
+`evals/lib/capture.js`, which throws on a malformed line rather than returning
+a partial set.
+
+Captures go under `evals/results/`, which is gitignored. The prompts are
+synthetic, but the replies are a model's responses to crisis language and stay
+local.

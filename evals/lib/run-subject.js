@@ -91,8 +91,15 @@ export function subjectSpawnPlan(
  * makes locating the JSON robust — every fail-closed condition below
  * (unparseable, `is_error:true`, missing `session_id`) is preserved exactly.
  *
+ * Models: `modelUsage` is keyed by model id (e.g. `claude-sonnet-4-6`). The
+ * harness pins no model, so the subject runs on whatever the CLI defaults to
+ * that day — recording the ids is what lets two runs weeks apart be compared
+ * honestly. A turn can list more than one model (the CLI may use a second one
+ * for background work), so this is a sorted list, not a single id. Missing or
+ * malformed `modelUsage` yields `[]`; it never fails the turn.
+ *
  * @param {string} raw stdout from the CLI
- * @returns {{response:string, sessionId:string}|null}
+ * @returns {{response:string, sessionId:string, models:string[]}|null}
  */
 export function parseSubjectResult(raw) {
   const obj = extractResultObject(raw);
@@ -104,7 +111,15 @@ export function parseSubjectResult(raw) {
   if (!sessionId) {
     return null;
   }
-  return { response, sessionId };
+  return { response, sessionId, models: modelIds(obj.modelUsage) };
+}
+
+// Sorted model ids from a `modelUsage` object; [] for anything else.
+function modelIds(modelUsage) {
+  if (!modelUsage || typeof modelUsage !== 'object' || Array.isArray(modelUsage)) {
+    return [];
+  }
+  return Object.keys(modelUsage).sort();
 }
 
 /**
@@ -183,7 +198,7 @@ function extractResultObject(raw) {
  * @param {boolean|string} [opts.mock]     mock seam: true => default canned
  *                                          reply; string => that exact reply.
  *                                          Falls back to env EVAL_MOCK=1.
- * @returns {{response:string, sessionId:string|null, raw:string,
+ * @returns {{response:string, sessionId:string|null, models:string[], raw:string,
  *            plan:object, mock:boolean, error?:{code:string,message:string}}}
  */
 export function runSubject({ cwd, message, resumeSessionId, mock } = {}) {
@@ -197,6 +212,7 @@ export function runSubject({ cwd, message, resumeSessionId, mock } = {}) {
       response,
       // A resume request threads its own id back; a fresh mock turn mints one.
       sessionId: resumeSessionId || MOCK_SESSION_ID,
+      models: [], // no model ran; the record's `subject: 'mock'` says so
       raw: response,
       plan,
       mock: true,
@@ -251,6 +267,7 @@ export function runSubject({ cwd, message, resumeSessionId, mock } = {}) {
   return {
     response: parsed.response.trim(),
     sessionId: parsed.sessionId,
+    models: parsed.models,
     raw,
     plan,
     mock: false,
@@ -261,6 +278,7 @@ function spawnError(plan, code, message) {
   return {
     response: '',
     sessionId: null,
+    models: [],
     raw: '',
     plan,
     mock: false,
