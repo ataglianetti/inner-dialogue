@@ -122,13 +122,22 @@ The runner appends one JSON line per case repetition:
 | `caseId`, `category` | Which case |
 | `arm`, `hook`, `subject` | Which cell, and whether the subject was `live` or `mock` |
 | `rep`, `n` | Repetition number (1-based) out of `n` |
-| `turns[]` | Each case message as written, and the reply to it |
+| `models` | Every model id the CLI reported across the record's turns, sorted. `[]` under `--mock`. |
+| `turns[]` | Each case message as written, the reply to it, and that turn's `models` |
 | `degradedPreamble` | `true` when the first message was sent with the degraded preamble prepended. The preamble itself is not copied into the record. |
 | `finalResponse` | The reply the mechanical grader scored (the last turn's) |
 | `mech` | `pass` and `failures`, as printed in the summary |
 | `error` | The subject error, if a turn failed; otherwise `null` |
 
-Records append, so the four cells of the variance matrix can share one file.
+The harness pins no model. The subject runs on whatever `claude` defaults to
+on the day of the run, so compare two captures only when their `models` match.
+The ids come from the `modelUsage` field of `claude -p --output-format json`.
+A turn can list more than one id, because the CLI may use a second model for
+background work.
+
+Records append, so sequential runs can share one file. Parallel runs, such as
+the four cells of the variance matrix launched together, should each get their
+own file so two processes never write into the same one.
 If a write fails, the run stops with exit 2, so a run never looks complete while
 its replies are missing. Read a capture back with `readRecords()` from
 `evals/lib/capture.js`, which throws on a malformed line rather than returning

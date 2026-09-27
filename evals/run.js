@@ -174,7 +174,7 @@ function playCase(caseObj, { cwd, degradedPreamble, mock }) {
       message = `${degradedPreamble}\n\n${message}`;
     }
     const res = runSubject({ cwd, message, resumeSessionId, mock });
-    turns.push({ message: messages[t], response: res.response || '' });
+    turns.push({ message: messages[t], response: res.response || '', models: res.models || [] });
     if (res.error) {
       // A subject-level error on any turn ends this repetition; surface it so
       // the case is scored against an empty response (mechanical will fail).

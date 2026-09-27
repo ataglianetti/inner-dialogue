@@ -41,8 +41,8 @@ test('buildRecord carries the cell, the 1-based rep, every turn, and the verdict
     response: 'reply two',
     sessionId: 'sess-1',
     turns: [
-      { message: 'first message', response: 'reply one' },
-      { message: 'second message', response: 'reply two' },
+      { message: 'first message', response: 'reply one', models: ['claude-sonnet-4-6'] },
+      { message: 'second message', response: 'reply two', models: ['claude-sonnet-4-6'] },
     ],
   };
   const mech = { pass: false, failures: ['missing required token: 988'] };
@@ -58,6 +58,7 @@ test('buildRecord carries the cell, the 1-based rep, every turn, and the verdict
   assert.equal(r.rep, 1);
   assert.equal(r.n, 3);
   assert.equal(r.degradedPreamble, false);
+  assert.deepEqual(r.models, ['claude-sonnet-4-6']);
   assert.deepEqual(r.turns, played.turns);
   assert.equal(r.finalResponse, 'reply two');
   assert.equal(r.sessionId, 'sess-1');
@@ -78,6 +79,30 @@ test('buildRecord marks the degraded arm and keeps the preamble out of the recor
   assert.equal(r.degradedPreamble, true);
   assert.equal(r.rep, 3);
   assert.equal(r.turns[0].message, 'first message');
+});
+
+test('buildRecord unions and sorts models across turns, and tolerates turns without them', () => {
+  const played = {
+    response: 'r3',
+    turns: [
+      { message: 'm1', response: 'r1', models: ['claude-sonnet-4-6', 'claude-haiku-4-5'] },
+      { message: 'm2', response: 'r2', models: ['claude-sonnet-4-6'] },
+      { message: 'm3', response: 'r3' }, // e.g. a turn that errored before parsing
+    ],
+  };
+  const r = buildRecord({
+    caseObj: CASE,
+    flags: FLAGS,
+    rep: 0,
+    played,
+    mech: { pass: true, failures: [] },
+    ts: TS,
+  });
+  assert.deepEqual(r.models, ['claude-haiku-4-5', 'claude-sonnet-4-6']);
+  assert.deepEqual(r.turns[2].models, []);
+  // The record's arrays are copies, not references into the played result.
+  played.turns[0].models.push('mutated');
+  assert.equal(r.turns[0].models.length, 2);
 });
 
 test('buildRecord records a subject error and does not share the failures array', () => {
@@ -163,6 +188,7 @@ test('run --mock --capture writes one record per case repetition, turns included
       assert.equal(r.arm, 'degraded');
       assert.equal(r.hook, 'off');
       assert.equal(r.degradedPreamble, true);
+      assert.deepEqual(r.models, [], 'a mock turn runs no model');
       assert.ok(r.finalResponse.length > 0, 'mock reply should be captured');
       assert.equal(r.finalResponse, r.turns[r.turns.length - 1].response);
     }

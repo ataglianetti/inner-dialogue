@@ -14,13 +14,18 @@
 // identical every time); `degradedPreamble: true` marks the first message as
 // having been sent with it prepended.
 //
+// Models: the harness pins no model, so each turn records the model ids the
+// CLI reported, and the record carries their sorted union as `models`. Two
+// captures are only comparable when their `models` match. Schema 2 added
+// these fields; schema 1 records have neither.
+//
 // Replies to crisis prompts are sensitive even when the prompts are synthetic.
 // Keep capture files under the gitignored `evals/results/`.
 
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const CAPTURE_SCHEMA_VERSION = 1;
+export const CAPTURE_SCHEMA_VERSION = 2;
 
 /**
  * Build one capture record. Pure — no I/O — so it's testable on its own.
@@ -34,6 +39,12 @@ export const CAPTURE_SCHEMA_VERSION = 1;
  * @param {string} [args.ts]      ISO timestamp; defaults to now
  */
 export function buildRecord({ caseObj, flags, rep, played, mech, ts }) {
+  const turns = (played.turns || []).map((t) => ({
+    message: t.message,
+    response: t.response,
+    models: Array.isArray(t.models) ? [...t.models] : [],
+  }));
+  const models = [...new Set(turns.flatMap((t) => t.models))].sort();
   return {
     schema: CAPTURE_SCHEMA_VERSION,
     ts: ts || new Date().toISOString(),
@@ -45,10 +56,8 @@ export function buildRecord({ caseObj, flags, rep, played, mech, ts }) {
     rep: rep + 1,
     n: flags.n,
     degradedPreamble: flags.arm === 'degraded',
-    turns: (played.turns || []).map((t) => ({
-      message: t.message,
-      response: t.response,
-    })),
+    models,
+    turns,
     finalResponse: played.response || '',
     sessionId: played.sessionId || null,
     mech: { pass: mech.pass, failures: [...mech.failures] },

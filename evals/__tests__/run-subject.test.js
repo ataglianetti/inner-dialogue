@@ -187,6 +187,32 @@ test('parseSubjectResult: extracts response text and session id from real shape'
   assert.ok(parsed, 'parsed non-null');
   assert.equal(parsed.response, 'I hear you. Tell me more about what that felt like.');
   assert.equal(parsed.sessionId, '75b13ac7-ca1c-4f6f-8acc-b5809c6f3178');
+  assert.deepEqual(parsed.models, [], 'no modelUsage in the sample => no models');
+});
+
+test('parseSubjectResult: reads model ids from modelUsage, sorted', () => {
+  // Shape observed from claude 2.1.138 (2026-09-26): modelUsage is keyed by
+  // model id, with per-model token and cost fields as the values.
+  const raw = JSON.stringify({
+    type: 'result',
+    is_error: false,
+    result: 'ok',
+    session_id: 'sid-models',
+    modelUsage: {
+      'claude-sonnet-4-6': { inputTokens: 3, outputTokens: 4, costUSD: 0.02 },
+      'claude-haiku-4-5': { inputTokens: 1, outputTokens: 1, costUSD: 0.001 },
+    },
+  });
+  assert.deepEqual(parseSubjectResult(raw).models, ['claude-haiku-4-5', 'claude-sonnet-4-6']);
+});
+
+test('parseSubjectResult: malformed modelUsage yields no models and does not fail the turn', () => {
+  for (const modelUsage of [null, 'claude-sonnet-4-6', ['claude-sonnet-4-6'], 42]) {
+    const raw = JSON.stringify({ is_error: false, result: 'ok', session_id: 'sid', modelUsage });
+    const parsed = parseSubjectResult(raw);
+    assert.ok(parsed, `turn still parses with modelUsage=${JSON.stringify(modelUsage)}`);
+    assert.deepEqual(parsed.models, []);
+  }
 });
 
 test('parseSubjectResult: null on unparseable output (fail closed)', () => {
